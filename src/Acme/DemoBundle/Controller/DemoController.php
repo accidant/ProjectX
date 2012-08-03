@@ -27,6 +27,7 @@ class DemoController extends Controller
      */
     public function helloAction($name)
     {
+		var_dump("Controller");
         return array('name' => $name);
     }
 

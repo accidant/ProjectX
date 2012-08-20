@@ -48,9 +48,21 @@ class ProjectInjectionKernelListener {
 	 */
 	private function swapController(FilterControllerEvent $event) {
 		$controller = $event->getController();
-		$requestController = new EntranceController();
 
+		$handleController = 'FrontendEntranceController';
+		if($this->isBackendRequest($event->getRequest()))
+			$handleController = 'BackendEntranceController';
+		$requestController = $this->initializeHandleController($handleController);
 		$requestController->setRequestController($controller);
 		$event->setController(array($requestController, 'handleRequestAction'));
+	}
+
+	private function isBackendRequest(\Symfony\Component\HttpFoundation\Request $request){
+		return \count(\preg_match('/admin/.+', $request->getPathInfo()));
+	}
+
+	private function initializeHandleController($controllerName){
+		$controller = new $controllerName();
+		$controller->setContainer();
 	}
 }

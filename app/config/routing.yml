@@ -1,19 +1,12 @@
-CoreSecurityBundle:
-    resource: "@CoreSecurityBundle/Resources/config/routing.xml"
-    prefix:   /
-
-AdminLogin:
-     pattern:   /admin/login
-     defaults:  { _controller: CoreSecurityBundle:Security:login }
+Frontend:
+    resource: "frontend.yml"
+    prefix: /
 
 
-SystemPageBundle:
-    resource: "@SystemPageBundle/Resources/config/routing.xml"
-    prefix:   /
+Backend:
+    resource: "backend.yml"
+    prefix: /admin
 
-CoreEntranceBundle:
-    resource: "@CoreEntranceBundle/Resources/config/routing.yml"
-    prefix:   /
 
 # Internal routing configuration to handle ESI
 #_internal:

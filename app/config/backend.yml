@@ -1,0 +1,2 @@
+SecurityBundle:
+    resource: "@CoreSecurityBundle/Resources/config/routing.yml"

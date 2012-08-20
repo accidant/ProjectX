@@ -49,6 +49,7 @@ class ProjectInjectionKernelListener {
 	private function swapController(FilterControllerEvent $event) {
 		$controller = $event->getController();
 		$requestController = new EntranceController();
+
 		$requestController->setRequestController($controller);
 		$event->setController(array($requestController, 'handleRequestAction'));
 	}

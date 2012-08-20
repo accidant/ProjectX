@@ -2,6 +2,8 @@
 
 namespace Core\EntranceBundle\Component\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
 /**
  * Date: 20.08.12
  * Time: 11:30
@@ -9,7 +11,7 @@ namespace Core\EntranceBundle\Component\Controller;
  * @email tjoussen@databay.de
  * @company www.databay.de
  */
-abstract class CmsControllerContainer {
+abstract class CmsControllerContainer extends Controller{
 
 	protected $requestedController;
 

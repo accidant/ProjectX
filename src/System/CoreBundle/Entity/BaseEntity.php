@@ -12,11 +12,10 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\MappedSuperclass
  */
-class BaseEntity{
+abstract class BaseEntity{
 
 	/**
 	 * Die ID für jede Entität
-	 *
 	 *
 	 * @var integer
 	 * @ORM\Id

@@ -1,17 +1,18 @@
 <?php
 
 namespace Core\EntranceBundle\Component\Request;
-
 /**
  * Date: 03.08.12
- * Time: 13:38
+ * Time: 13:32
  * @author Thomas Joußen
  * @email tjoussen@databay.de
  * @company www.databay.de
  */
-class CoreRequestHandler extends AbstractRequestHandler{
+abstract class AbstractHandler {
 
-	protected function arrangeRequest() {
+   public function handle(){
 
-	}
+   }
+
+	abstract protected function doRequirements();
 }

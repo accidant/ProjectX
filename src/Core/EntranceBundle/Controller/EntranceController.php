@@ -15,6 +15,7 @@ use Core\EntranceBundle\Component\Controller\CmsControllerContainer;
 class EntranceController extends CmsControllerContainer{
 
 	public function handleRequestAction(){
+
 		var_dump("hallo");
 		exit;
 	}

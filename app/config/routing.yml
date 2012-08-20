@@ -1,3 +1,16 @@
+CoreSecurityBundle:
+    resource: "@CoreSecurityBundle/Resources/config/routing.xml"
+    prefix:   /
+
+AdminLogin:
+     pattern:   /admin/login
+     defaults:  { _controller: CoreSecurityBundle:Security:login }
+
+
+SystemPageBundle:
+    resource: "@SystemPageBundle/Resources/config/routing.xml"
+    prefix:   /
+
 CoreEntranceBundle:
     resource: "@CoreEntranceBundle/Resources/config/routing.yml"
     prefix:   /

@@ -1,0 +1,3 @@
+CoreEntranceBundle_homepage:
+   pattern:  /test/
+   defaults: { _controller: CoreEntranceBundle:Test:index }

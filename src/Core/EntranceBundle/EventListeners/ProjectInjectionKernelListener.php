@@ -63,7 +63,7 @@ class ProjectInjectionKernelListener extends ContainerAware {
 	 * @return boolean
 	 */
 	private function isBackendRequest(\Symfony\Component\HttpFoundation\Request $request){
-		return (boolean)\preg_match('|/admin/.+|', $request->getPathInfo());
+		return (boolean)\preg_match('|/admin/.*|', $request->getPathInfo());
 	}
 
 	/**

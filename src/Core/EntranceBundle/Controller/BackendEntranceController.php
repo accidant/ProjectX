@@ -15,6 +15,6 @@ class BackendEntranceController extends AbstractEntranceController{
 	 * @return mixed
 	 */
 	protected function handleRequest() {
-		var_dump("Backend");
+		return $this->requestedController[0]->{$this->requestedController[1]}();
 	}
 }

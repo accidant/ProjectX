@@ -1,3 +1,7 @@
-admin_login:
-    pattern:  /login
-    defaults: { _controller: CoreSecurityBundle:Security:login }
+#admin_login:
+ #   pattern:  /login
+  #defaults: { _controller: CoreSecurityBundle:Security:login }
+
+admin_test:
+    pattern:  /test
+    defaults: { _controller: CoreSecurityBundle:Security:test }

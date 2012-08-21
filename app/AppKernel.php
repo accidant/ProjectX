@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Core\EntranceBundle\CoreEntranceBundle(),
             new System\PageBundle\SystemPageBundle(),
             new Core\SecurityBundle\CoreSecurityBundle(),
+            new Core\UserBundle\CoreUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

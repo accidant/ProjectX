@@ -6,7 +6,12 @@ SecurityBundleBackend:
     resource: "@CoreSecurityBundle/Resources/config/backend.yml"
     prefix: /admin
 
+login:
+  pattern:  /login
+  defaults: { _controller: CoreSecurityBundle:Security:login }
 
+login_check:
+  pattern:  /login_check
 
 
 

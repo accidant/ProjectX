@@ -15,6 +15,6 @@ class FrontendEntranceController extends AbstractEntranceController{
 	 * @return mixed
 	 */
 	protected function handleRequest() {
-		var_dump("Frontend");
+		return $this->requestedController[0]->{$this->requestedController[1]}();
 	}
 }

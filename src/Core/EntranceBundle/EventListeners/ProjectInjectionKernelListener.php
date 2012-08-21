@@ -29,13 +29,18 @@ class ProjectInjectionKernelListener extends ContainerAware {
 	/**
 	 * Überprüft ob der Request einen Tausch des eigentlichen Controller erlaubt.
 	 * Zum einen muss es der Hauptrequest sein und es darf keine Ajax anfrage sein.
+	 * Ebenfalls wird überprüft ob es ein von Symfony umgeleiteter Request auf den SecurityController ist,
+	 * weil ein Login benötigt wird. Dann wird ebenfall der Controller direkt angesteuert.
 	 *
 	 * @param FilterControllerEvent $event
 	 * @return bool
 	 */
 	private function isChangeable(FilterControllerEvent $event) {
+		$controller = $event->getController();
 		return	HttpKernelInterface::MASTER_REQUEST == $event->getRequestType() &&
-				!$event->getRequest()->isXmlHttpRequest();
+				!$event->getRequest()->isXmlHttpRequest() &&
+				!($controller[0] instanceof \Core\SecurityBundle\Controller\SecurityController &&
+				$controller[1] == 'loginAction');
 	}
 
 	/**

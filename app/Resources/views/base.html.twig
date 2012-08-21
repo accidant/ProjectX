@@ -3,11 +3,35 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+			<link rel="stylesheet" type="text/css" href="{{ asset('bundles/coreentrance/css/base.css') }}" />
+		{% endblock %}
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
+		<div id="wrapper">
+			<div id="header">{% block header %}{% endblock %}</div>
+			<div id="content">
+				{% if block('left') == true %}
+					<div id="left">{% block left %}{% endblock %}</div>
+				{% endif %}
+				{% if block('right') == true %}
+					<div id="right">{% block right %}{% endblock %}</div>
+				{% endif %}
+
+				<div id="main">
+					{% block errors %}
+						{% if error %}
+							<div>{{ error.message }}</div>
+						{% endif %}
+					{% endblock %}
+					{% block main %}{% endblock %}
+				</div>
+			</div>
+			{% if block('main') == true %}
+				<div id="footer">{% block footer %}{% endblock %}</div>
+			{% endif %}
+		</div>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

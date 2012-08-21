@@ -8,8 +8,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  * Date: 20.08.12
  * Time: 11:30
  * @author Thomas Joußen
- * @email tjoussen@databay.de
- * @company www.databay.de
  */
 abstract class CmsControllerContainer extends Controller{
 

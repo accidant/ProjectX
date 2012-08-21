@@ -1,0 +1,3 @@
+admin_login:
+    pattern:  /login
+    defaults: { _controller: CoreSecurityBundle:Security:login }

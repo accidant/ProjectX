@@ -1,0 +1,20 @@
+<?php
+
+namespace Core\EntranceBundle\Controller;
+
+/**
+ * Date: 20.08.12
+ * Time: 09:09
+ * @author Thomas Joußen
+ */
+class FrontendEntranceController extends AbstractEntranceController{
+
+	/**
+	 * Übernimmt die spezifischen Aufgaben eines Controllers, die zum Handeln eines Requests notwendig sind.
+	 *
+	 * @return mixed
+	 */
+	protected function handleRequest() {
+		var_dump("Frontend");
+	}
+}

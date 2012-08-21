@@ -1,11 +1,13 @@
-Frontend:
-    resource: "frontend.yml"
-    prefix: /
+# SecurityBundle
+SecurityBundleFrontend:
+    resource: "@CoreSecurityBundle/Resources/config/frontend.yml"
 
-
-Backend:
-    resource: "backend.yml"
+SecurityBundleBackend:
+    resource: "@CoreSecurityBundle/Resources/config/backend.yml"
     prefix: /admin
+
+
+
 
 
 # Internal routing configuration to handle ESI

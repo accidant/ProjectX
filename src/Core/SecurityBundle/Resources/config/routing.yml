@@ -1,3 +1,6 @@
-login:
-    pattern:  /login
-    defaults: { _controller: CoreSecurityBundle:Security:login }
+Frontend:
+    resource: frontend.yml
+
+Backend:
+    resource: backend.yml
+    prefix: /admin

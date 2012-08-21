@@ -4,17 +4,15 @@ namespace Core\EntranceBundle\EventListeners;
 
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
-use Core\EntranceBundle\Controller\EntranceController;
+use Symfony\Component\DependencyInjection\ContainerAware;
 
 
 /**
  * Date: 03.08.12
  * Time: 12:23
- * @author Thomas Joußen
- * @email tjoussen@databay.de
- * @company www.databay.de
+ * @author Thomas Joußen <tjoussen@databay.de>
  */
-class ProjectInjectionKernelListener {
+class ProjectInjectionKernelListener extends ContainerAware {
 
 	/**
 	 * Der Kernvelevent Listener der auf das kernel.controller event wartet und sich einhängt, bevor der eigentliche
@@ -52,17 +50,32 @@ class ProjectInjectionKernelListener {
 		$handleController = 'FrontendEntranceController';
 		if($this->isBackendRequest($event->getRequest()))
 			$handleController = 'BackendEntranceController';
+
 		$requestController = $this->initializeHandleController($handleController);
 		$requestController->setRequestController($controller);
 		$event->setController(array($requestController, 'handleRequestAction'));
 	}
 
+	/**
+	 * Überprüft ob aus der URL hervorgeht, dass es sich um eine Backend-Aktion handelt
+	 *
+	 * @param \Symfony\Component\HttpFoundation\Request $request
+	 * @return boolean
+	 */
 	private function isBackendRequest(\Symfony\Component\HttpFoundation\Request $request){
-		return \count(\preg_match('/admin/.+', $request->getPathInfo()));
+		return (boolean)\preg_match('|/admin/.+|', $request->getPathInfo());
 	}
 
+	/**
+	 * Initialisiert den Controller der die Steuerung des Backend/Frontends übernimmt
+	 *
+	 * @param string $controllerName
+	 * @return mixed
+	 */
 	private function initializeHandleController($controllerName){
+		$controllerName = 'Core\EntranceBundle\Controller\\' . $controllerName;
 		$controller = new $controllerName();
-		$controller->setContainer();
+		$controller->setContainer($this->container);
+		return $controller;
 	}
 }

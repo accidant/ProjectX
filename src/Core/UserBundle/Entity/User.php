@@ -3,7 +3,7 @@
 namespace Core\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use System\CoreBundle\Entity\BaseEntity;
+use Core\CoreBaseBundle\Entity\BaseEntity;
 
 /**
  * Date: 21.08.12

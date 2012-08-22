@@ -1,0 +1,3 @@
+core_entrance:
+  backend_controller:
+    testcontroller: { controller: 'Core\EntranceBundle\Controller\TestController' }

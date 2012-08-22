@@ -2,6 +2,14 @@ CoreInstallingBundle:
     resource: "@CoreInstallingBundle/Resources/config/routing.yml"
     prefix:   /
 
+# CoreBundle
+EntranceBundleFrontend:
+    resource: "@CoreEntranceBundle/Resources/config/frontend.yml"
+
+EntranceBundleBackend:
+    resource: "@CoreEntranceBundle/Resources/config/backend.yml"
+    prefix: /admin
+
 # SecurityBundle
 SecurityBundleFrontend:
     resource: "@CoreSecurityBundle/Resources/config/frontend.yml"

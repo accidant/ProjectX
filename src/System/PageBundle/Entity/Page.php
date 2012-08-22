@@ -3,7 +3,7 @@
 namespace System\PageBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use System\CoreBundle\Entity\BaseEntity;
+use Core\CoreBaseBundle\Entity\BaseEntity;
 
 /**
  * Date: 20.08.12

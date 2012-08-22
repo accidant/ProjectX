@@ -19,7 +19,21 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('core_entrance');
-
+		$rootNode->children()
+					->arrayNode('backend_controller')
+						->useAttributeAsKey('name')
+						->prototype('array')
+							->children()
+								->scalarNode('controller')
+									->isRequired(true)
+								->end()
+								->scalarNode('categorie')
+									->defaultValue('general')
+								->end()
+							->end()
+						->end()
+					->end()
+				->end();
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for
         // more information on that topic.

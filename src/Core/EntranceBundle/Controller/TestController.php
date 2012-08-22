@@ -2,6 +2,8 @@
 
 namespace Core\EntranceBundle\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
 /**
  * Date: 20.08.12
  * Time: 09:36
@@ -10,10 +12,12 @@ namespace Core\EntranceBundle\Controller;
  * @company www.databay.de
  *
  */
-class TestController {
+class TestController extends Controller {
 
 	public function indexAction(){
-		var_dump("blaa");
+		$core_configuration = $this->container->parameters['core_entrance'];
+		print_r($core_configuration);
+		exit;
 		return true;
 	}
 }

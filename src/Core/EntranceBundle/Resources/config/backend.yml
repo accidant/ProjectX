@@ -1,3 +1,7 @@
+backend_welcome:
+   pattern:  /welcome
+   defaults: { _controller: CoreEntranceBundle:BackendEntrance:index }
+
 backend_test:
    pattern:  /test
    defaults: { _controller: CoreEntranceBundle:Test:index }

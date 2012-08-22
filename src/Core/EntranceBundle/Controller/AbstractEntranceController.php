@@ -16,6 +16,12 @@ abstract class AbstractEntranceController extends CmsControllerContainer{
 		return $this->handleRequest();
 	}
 
+	protected function callRequest(){
+		$response = $this->requestedController[0]->{$this->requestedController[1]}();
+		var_dump($this->requestedController[0]);
+		exit;
+	}
+
 	/**
 	 * Übernimmt die spezifischen Aufgaben eines Controllers, die zum Handeln eines Requests notwendig sind.
 	 *

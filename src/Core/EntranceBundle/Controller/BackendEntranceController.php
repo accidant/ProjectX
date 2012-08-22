@@ -15,8 +15,10 @@ class BackendEntranceController extends AbstractEntranceController{
 	 * @return mixed
 	 */
 	protected function handleRequest() {
+		return $this->callRequest();
+	}
 
-
-		return $this->requestedController[0]->{$this->requestedController[1]}();
+	public function indexAction(){
+		return array('welcome' => "Wilkommen im Backend");
 	}
 }

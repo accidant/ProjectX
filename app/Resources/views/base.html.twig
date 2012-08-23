@@ -21,7 +21,7 @@
 
 				<div id="main">
 					{% block errors %}
-						{% if error %}
+						{% if error|default() %}
 							<div>{{ error.message }}</div>
 						{% endif %}
 					{% endblock %}

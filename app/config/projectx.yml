@@ -1,3 +1,4 @@
 core_entrance:
-  backend_controller:
-    testcontroller: { controller: 'Core\EntranceBundle\Controller\TestController' }
+  backend:
+    controller:
+      Test Controller: { route: 'backend_test' }

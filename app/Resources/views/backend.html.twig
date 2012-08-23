@@ -1,14 +1,13 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
+{% extends "::base.html.twig" %}
 
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
-</html>
+{% block title %}Backend Welcome!{% endblock %}
+{% block stylesheets %}
+	<link rel="stylesheet" type="text/css" href="{{ asset('bundles/coreentrance/css/backend.css') }}" />
+{% endblock %}
+{% block left %}
+	<h1>Navigation</h1>
+		{% for element in navigation.elements %}
+			<a href="{{ path(element.route)}}">{{ element.name }}</a>
+		{% endfor %}
+{% endblock %}
+

@@ -15,9 +15,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class TestController extends Controller {
 
 	public function indexAction(){
-		$core_configuration = $this->container->parameters['core_entrance'];
-		print_r($core_configuration);
-		exit;
-		return true;
+
 	}
 }

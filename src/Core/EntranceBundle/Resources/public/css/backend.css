@@ -1,0 +1,29 @@
+body{
+    background-image: url('../images/background.png');
+}
+
+/*****************
+* Basics
+******************/
+#wrapper{
+    background-color: yellow;
+    margin: 0 auto;
+    width: 1024px;
+}
+
+#header{
+    background-color: #8a2be2;
+    height: 150px;
+}
+
+#left{
+    width: 200px;
+    float: left;
+    background-color: #ffc0cb;
+}
+
+#main{
+    height: 200px;
+    margin: 0 auto;
+    background-color: #99ff99;
+}

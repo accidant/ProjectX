@@ -1,38 +1,33 @@
 body{
-    background-image: url('../images/background.png');
+    background: url(../images/login/login_bg.jpg) no-repeat top center;
 }
 
 /*****************
 * Basics
 ******************/
 #wrapper{
-    background-color: yellow;
     margin: 0 auto;
     width: 1024px;
 }
 
 #header{
-    background-color: #8a2be2;
     height: 150px;
 }
 
 #right{
     width: 60px;
     float: right;
-    background-color: #a52a2a;
 }
 
 #left{
     width: 60px;
     float: left;
-    background-color: #ffc0cb;
 }
 
 #main{
     height: 200px;
     margin: 0 auto;
-    background-color: #99ff99;
-    width: 400px;
+    width: 508px
 }
 
 /*****************

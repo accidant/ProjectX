@@ -1,20 +1,36 @@
 {% extends "::base.html.twig" %}
 {% block title %}Login{% endblock %}
 
+{% block stylesheets %}
+	<link rel="stylesheet" type="text/css" href="{{ asset('bundles/coreentrance/css/login.css') }}" />
+{% endblock %}
+
+{% block header %}
+	<a href="index.html"><img src="{{asset('bundles/coreentrance/images/shared/logo.png')}}" width="156" height="40" alt="" /></a>
+	<div class="clear"></div>
+{% endblock %}
 {% block main %}
 	<form action="{{ path('login_check') }}" method="post">
 		<div class="form">
 			<div class="col">
-				<input type="text" id="username" name="_username" value="{{ last_username }}" placeholder="Benutzername" />
+				<label for="username">Benutzername</label>
+				<input type="text" id="username" name="_username" value="{{ last_username }}" placeholder="Benutzernamen eingeben" />
 			</div>
 			<div class="col">
-				<input type="password" id="password" name="_password" placeholder="Passwort"/>
+				<label for="password">Passwort</label>
+				<input type="password" id="password" name="_password" placeholder="Passwort eingeben"/>
+			</div>
+			<div class="col without-label">
+				<input type="checkbox" class="checkbox-size" id="login-check" /><label for="login-check">Remember me</label>
 			</div>
 			{#
 			If you want to control the URL the user is redirected to on success (more details below)
 			<input type="hidden" name="_target_path" value="/account" />
 			#}
-			<button type="submit">login</button>
+			<div class="col without-label">
+				<input type="submit"  />
+			</div>
+
 		</div>
 
 	</form>

@@ -1,0 +1,99 @@
+body{
+    background: url(../images/login/login_bg.jpg) no-repeat top center;
+}
+
+.clear	{
+    clear: both;
+    font-size: 0px;
+    height: 0;
+    line-height: 0px;
+    margin: 0px;
+    padding: 0px;
+}
+/*****************
+* Basics
+******************/
+#wrapper{
+    margin: 0 auto;
+    width: 508px;
+}
+
+#header {
+    height: 35px;
+    margin: 145px 0 0 15px;
+}
+
+#main{
+    background: url(../images/login/loginbox_bg.png) no-repeat;
+    font-size: 12px;
+    height: 212px;
+    line-height: 12px;
+    padding-top: 60px;
+    position: relative;
+    width: 508px;
+}
+
+/*******************
+* FORM
+*******************/
+.form{
+    color: #161616;
+    font-family: Tahoma;
+    font-size: 13px;
+    line-height: 12px;
+    margin: 0 auto;
+    width: 360px;
+}
+.form .col{
+    margin: 0 auto;
+    padding: 0 0 6px 0;
+}
+
+.form .col.without-label{
+    padding-left: 130px;
+}
+
+.form .col.without-label label{
+    float: none;
+}
+
+.form .col label{
+    float: left;
+    width: 120px;
+    color: #161616;
+    cursor: pointer;
+    font-family: Tahoma;
+    font-weight: bold;
+    line-height: 12px;
+    padding: 10px 0 6px 10px;
+}
+
+.form .col input{
+    background: url(../images/login/inp_login.gif) no-repeat;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    height: 28px;
+    padding: 6px 6px 0 10px;
+    width: 204px;
+}
+
+.form .col input[type=checkbox]{
+    width:13px;
+    height:13px;
+    margin: 5px 0;
+}
+
+.form .col input[type=submit]{
+    background: url(../images/login/submit_login.gif) no-repeat;
+    border: none;
+    cursor: pointer;
+    display: block;
+    height: 29px;
+    text-indent: -3000px;
+    width: 73px;
+}
+
+.form .col input[type=submit]:hover{
+    background: url(../images/login/submit_login.gif) no-repeat 0 -29px;
+}

@@ -14,31 +14,44 @@ class Navigation {
 	/**
 	 * @var ArrayCollection
 	 */
-	protected $elements;
+	protected $categories;
 
 	public function __construct(){
-		$this->elements = new ArrayCollection();
+		$this->categories = new ArrayCollection();
 	}
 
 	/**
 	 * @param ArrayCollection $elements
 	 */
-	public function setElements($elements){
-		$this->elements = $elements;
+	public function setCategories($elements){
+		$this->categories = $elements;
 	}
 
 	/**
 	 * @return \Doctrine\Common\Collections\ArrayCollection
 	 */
-	public function getElements(){
-		return $this->elements;
+	public function getCategories(){
+		return $this->categories;
+	}
+
+	/**
+	 * @param string $name
+	 * @return \Core\EntranceBundle\Component\Navigation\Categorie
+	 * @throws \InvalidArgumentException
+	 */
+	public function getCategoryByName($name){
+		foreach($this->categories as $category){
+			if($category->getName() == $name)
+				return $category;
+		}
+		throw new \InvalidArgumentException();
 	}
 
 	/**
 	 * @param Element $element
 	 */
-	public function addElement($element){
-		$this->elements[] = $element;
+	public function addCategory($element){
+		$this->categories[] = $element;
 	}
 
 }

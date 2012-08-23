@@ -33,7 +33,7 @@ class Configuration implements ConfigurationInterface
 										->scalarNode('route')
 											->isRequired(true)
 										->end()
-										->scalarNode('categorie')
+										->scalarNode('category')
 											->defaultValue('general')
 										->end()
 									->end()

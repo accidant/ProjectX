@@ -2,3 +2,5 @@ core_entrance:
   backend:
     controller:
       Test Controller: { route: 'backend_test' }
+      Anderer Test: { route: 'backend_test' }
+      3 Test: { route: 'backend_test' , category: 'Module'}

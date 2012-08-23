@@ -6,8 +6,11 @@
 {% endblock %}
 {% block left %}
 	<h1>Navigation</h1>
-		{% for element in navigation.elements %}
-			<a href="{{ path(element.route)}}">{{ element.name }}</a>
+		{% for category in navigation.categories %}
+			<h2>{{ category.name }}</h2>
+			{% for element in category.elements %}
+				<a href="{{ path(element.route)}}">{{ element.name }}</a>
+			{% endfor %}
 		{% endfor %}
 {% endblock %}
 

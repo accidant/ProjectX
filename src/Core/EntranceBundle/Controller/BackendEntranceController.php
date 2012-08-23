@@ -3,6 +3,7 @@
 namespace Core\EntranceBundle\Controller;
 
 use Core\EntranceBundle\Component\Navigation\Navigation;
+use Core\EntranceBundle\Component\Navigation\Categorie;
 use Core\EntranceBundle\Component\Navigation\Element;
 
 /**
@@ -32,12 +33,28 @@ class BackendEntranceController extends AbstractEntranceController{
 
 		$navigation = new Navigation();
 		foreach($config['backend']['controller'] as $key => $controller){
-			$element = new Element();
-			$element->setName($key);
-			$element->setRoute($controller['route']);
-			$navigation->addElement($element);
+			$category = $this->loadCategory($navigation, $controller);
+			$this->addElementToCategory($key, $controller, $category);
 		}
 
 		return $navigation;
+	}
+
+	private function loadCategory($navigation, $controller) {
+		try {
+			$category = $navigation->getCategoryByName($controller['category']);
+			return $category;
+		} catch(\Exception $exception) {
+			$category = new Categorie($controller['category']);
+			$navigation->addCategory($category);
+			return $category;
+		}
+	}
+
+	private function addElementToCategory($key, $controller, $category) {
+		$element = new Element();
+		$element->setName($key);
+		$element->setRoute($controller['route']);
+		$category->addElement($element);
 	}
 }

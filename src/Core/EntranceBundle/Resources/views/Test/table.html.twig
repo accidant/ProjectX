@@ -11,6 +11,37 @@
 				{{ macros.message('success', 'Ihre Informationen wurden erfolgreich gespeichert') }}
 				{{ macros.message('error', 'Es gabe Probleme mit dem Speichern ihrer Informationen') }}
 			</div>
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>1. Spalte</th>
+						<th>2. Spalte</th>
+						<th>3. Spalte</th>
+						<th>4. Spalte</th>
+						<th>5. Spalte</th>
+						<th class="actions">Aktionen</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for i in 1..8 %}
+						<tr>
+							<td>Spalte 1 Zeile  {{i}}</td>
+							<td>Spalte 2 Zeile  {{i}}</td>
+							<td>Spalte 3 Zeile  {{i}}</td>
+							<td>Spalte 4 Zeile  {{i}}</td>
+							<td>Spalte 5 Zeile  {{i}}</td>
+							<td>
+								<a href="" title="Edit" class="icon icon-edit info-tooltip"></a>
+								<a href="" title="Delete" class="icon icon-delete info-tooltip"></a>
+								<a href="" title="Favorite" class="icon icon-fav info-tooltip"></a>
+								<a href="" title="Shopping" class="icon icon-shop info-tooltip"></a>
+								<a href="" title="Check" class="icon icon-check info-tooltip"></a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
 		</div>
 	</div>
 </div>

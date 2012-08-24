@@ -318,3 +318,98 @@ h3{
     text-decoration: none;
 }
 
+/********************
+* Table
+********************/
+
+.table{
+    margin-bottom: 20px;
+    border-spacing: 0;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.table thead th{
+    background-color: #393939;
+    border: none;
+    padding: 0px 0 0 10px;
+    height: 50px;
+    text-align: left;
+    color: #fff;
+    font-family: Tahoma;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 14px;
+}
+.table thead th:first-child{
+    background: url(../images/table/table_header_checkbox.jpg) no-repeat #393939;
+}
+
+.table thead th{
+    background: url(../images/table/table_header_repeat.jpg) repeat #393939;
+}
+
+.table thead th:last-child{
+    background: url(../images/table/table_header_options.jpg) no-repeat right top #393939;
+}
+
+.table thead th.actions{
+    min-width: 210px;
+    width: 210px;
+}
+
+.table tbody td{
+    border: 1px solid #d2d2d2;
+    padding: 10px 0 10px 10px;
+}
+
+.table tbody tr:hover{
+    color: #94b52c;
+}
+.table tbody tr:nth-child(even){
+    background: #ececec;
+}
+
+
+/*************************
+* Action Icons
+*************************/
+a.icon{
+    display: block;
+    float: left;
+    height: 24px;
+    margin: 0 8px 0 0;
+    width: 24px;
+}
+
+a.icon-edit	{
+    background: url(../images/table/table_icon_1.gif) no-repeat;
+}
+a:hover.icon-edit	{
+    background: url(../images/table/table_icon_1.gif) 0 -24px;
+}
+a.icon-delete	{
+    background: url(../images/table/table_icon_2.gif) no-repeat;
+}
+a:hover.icon-delete{
+    background: url(../images/table/table_icon_2.gif) 0 -24px;
+}
+a.icon-fav	{
+    background: url(../images/table/table_icon_3.gif) no-repeat;
+}
+a:hover.icon-fav	{
+    background: url(../images/table/table_icon_3.gif) 0 -24px;
+}
+a.icon-shop	{
+    background: url(../images/table/table_icon_4.gif) no-repeat;
+}
+a:hover.icon-shop	{
+    background: url(../images/table/table_icon_4.gif) 0 -24px;
+}
+a.icon-check	{
+    background: url(../images/table/table_icon_5.gif) no-repeat;
+}
+a:hover.icon-check	{
+    background: url(../images/table/table_icon_5.gif) 0 -24px;
+}
+

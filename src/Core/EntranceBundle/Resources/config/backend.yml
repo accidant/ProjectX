@@ -1,11 +1,15 @@
-backend_welcome:
-   pattern:  /welcome
-   defaults: { _controller: CoreEntranceBundle:BackendEntrance:index }
+backend:
+   pattern:  /
+   defaults: { _controller: CoreEntranceBundle:Backend:index }
+
+backend_category:
+   pattern: /category/{category}
+   defaults: { _controller: CoreEntranceBundle:BackendEntrance:selectCategory }
 
 backend_test:
    pattern:  /test
-   defaults: { _controller: CoreEntranceBundle:Test:index }
+   defaults: { _controller: CoreEntranceBundle:Backend:test }
 
 backend_table:
   pattern:  /table
-  defaults: { _controller: CoreEntranceBundle:Test:table }
+  defaults: { _controller: CoreEntranceBundle:Backend:table }

@@ -20,7 +20,7 @@ abstract class AbstractEntranceController extends CmsControllerContainer{
 	}
 
 	protected function callRequest(){
-		return $this->requestedController[0]->{$this->requestedController[1]}();
+		return call_user_func_array($this->requestedController, $this->requestedArguments);
 	}
 
 	protected function addToResponse($response, $controller){

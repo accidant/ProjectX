@@ -19,7 +19,7 @@ SecurityBundleBackend:
     prefix: /admin
 
 login:
-  pattern:  /login
+  pattern:  /admin/login
   defaults: { _controller: CoreSecurityBundle:Security:login }
 
 login_check:

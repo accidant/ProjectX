@@ -24,6 +24,11 @@ class Element {
 	protected $route;
 
 	/**
+	 * @var boolean
+	 */
+	protected $active = false;
+
+	/**
 	 * @param string $name
 	 */
 	public function setName($name) {
@@ -49,5 +54,19 @@ class Element {
 	 */
 	public function getRoute() {
 		return $this->route;
+	}
+
+	/**
+	 * @param boolean $active
+	 */
+	public function setActive($active) {
+		$this->active = $active;
+	}
+
+	/**
+	 * @return boolean
+	 */
+	public function isActive() {
+		return $this->active;
 	}
 }

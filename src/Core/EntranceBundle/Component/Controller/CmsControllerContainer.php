@@ -13,6 +13,8 @@ abstract class CmsControllerContainer extends Controller{
 
 	protected $requestedController;
 
+	protected $requestedArguments;
+
 	/**
 	 * Fügt den eigentlichen Controller aus dem Request dem Controller der als Einstieg in das
 	 * CMS dienen soll hinzu
@@ -21,5 +23,9 @@ abstract class CmsControllerContainer extends Controller{
 	 */
 	public function setRequestController($controller){
 		$this->requestedController = $controller;
+	}
+
+	public function setRequestedArguments($arguments){
+		$this->requestedArguments = $arguments;
 	}
 }

@@ -9,10 +9,19 @@ namespace Core\EntranceBundle\Component\Navigation;
  */
 class Builder {
 
-	public function generate($config){
+	protected $route;
+
+	public function __construct($route){
+		$this->route = $route;
+	}
+
+	public function generate($config, $selectedCategory = ''){
 		$navigation = new Navigation();
 		foreach($config as $key => $controller){
 			$category = $this->loadCategory($navigation, $controller);
+			if(\strtolower($category->getName()) == $selectedCategory ||  $controller['route'] == $this->route)
+				$category->setActive(true);
+
 			$this->addElementToCategory($key, $controller, $category);
 		}
 
@@ -34,6 +43,9 @@ class Builder {
 		$element = new Element();
 		$element->setName($key);
 		$element->setRoute($controller['route']);
+		if($this->route == $controller['route'])
+			$element->setActive(true);
+
 		$category->addElement($element);
 	}
 

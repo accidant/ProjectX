@@ -21,7 +21,6 @@ class ProjectInjectionKernelListener extends ContainerAware {
 	 * @param \Symfony\Component\HttpKernel\Event\FilterControllerEvent $event
 	 */
 	public function onKernelController(FilterControllerEvent $event){
-		$test = $event->getRequestType();
 		if ($this->isChangeable($event))
 			$this->swapController($event);
 	}
@@ -40,7 +39,8 @@ class ProjectInjectionKernelListener extends ContainerAware {
 		return	HttpKernelInterface::MASTER_REQUEST == $event->getRequestType() &&
 				!$event->getRequest()->isXmlHttpRequest() &&
 				!($controller[0] instanceof \Core\SecurityBundle\Controller\SecurityController &&
-				$controller[1] == 'loginAction');
+				$controller[1] == 'loginAction') &&
+				!($controller[0] instanceof \Core\EntranceBundle\Controller\AbstractEntranceController);
 	}
 
 	/**
@@ -52,13 +52,31 @@ class ProjectInjectionKernelListener extends ContainerAware {
 	private function swapController(FilterControllerEvent $event) {
 		$controller = $event->getController();
 
+
 		$handleController = 'FrontendEntranceController';
 		if($this->isBackendRequest($event->getRequest()))
 			$handleController = 'BackendEntranceController';
 
 		$requestController = $this->initializeHandleController($handleController);
 		$requestController->setRequestController($controller);
+
+		$this->resolveControllerArguments($event, $controller, $requestController);
+
 		$event->setController(array($requestController, 'handleRequestAction'));
+	}
+
+	/**
+	 * Lädt die Argumente für den momentanen Request mithilfe aus von einem Resolver und setzt sie im überschribenden Controller
+	 * um sie später an den eigentlichen Controller zu übergeben
+	 *
+	 * @param FilterControllerEvent $event
+	 * @param Controller $controller
+	 * @param Controller $requestController
+	 */
+	private function resolveControllerArguments($event, $controller, $requestController) {
+		$resolver = new \Symfony\Component\HttpKernel\Controller\ControllerResolver();
+		$arguments = $resolver->getArguments($event->getRequest(), $controller);
+		$requestController->setRequestedArguments($arguments);
 	}
 
 	/**

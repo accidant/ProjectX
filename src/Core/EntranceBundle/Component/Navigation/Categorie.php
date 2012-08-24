@@ -23,6 +23,11 @@ class Categorie {
 	 */
 	protected $elements;
 
+	/**
+	 * @var boolean
+	 */
+	protected $active =false;
+
 	public function __construct($name){
 		$this->name = $name;
 		$this->elements = new ArrayCollection();
@@ -62,4 +67,20 @@ class Categorie {
 	public function getName() {
 		return $this->name;
 	}
+
+	/**
+	 * @param boolean $active
+	 */
+	public function setActive($active) {
+		$this->active = $active;
+	}
+
+	/**
+	 * @return boolean
+	 */
+	public function isActive() {
+		return $this->active;
+	}
+
+
 }

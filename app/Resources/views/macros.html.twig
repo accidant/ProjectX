@@ -11,6 +11,7 @@
 {% endmacro %}
 
 {% macro render_backend_menu(navigation) %}
+	{% set selected_category = null %}
 	<div id="navigation">
 		{% block navigation %}
 		<div class="nav-bg">
@@ -18,7 +19,10 @@
 				<div class="main-nav">
 					<ul class="elements">
 						{% for category in navigation.categories %}
-							<li><a href=""><b>{{ category.name }}</b></a></li>
+							<li {% if category.active %}class="active"{% endif %}><a href="{{ path('backend_category', {'category': category.name|lower })}}"><b>{{ category.name }}</b></a></li>
+							{% if category.active %}
+								{% set selected_category = category %}
+							{% endif %}
 							{#<li><a href=""><b>Dashboard</b></a></li>
 							<li class="active"><a href="#"><b>Modules</b></a></li>
 							<li><a href="#"><b>Settings</b></a></li>#}
@@ -28,18 +32,22 @@
 			</div>
 		</div>
 
-		<div class="nav-bg">
-			<div class="nav-wrapper">
-				<div class="sub-nav">
-					<ul class="elements">
-						<li><a href="#">Modul1</a></li>
-						<li><a href="#">Modul 2</a></li>
-						<li><a href="#">Modul 3</a></li>
-						<li class="active"><a href="#"><b>Modul 4</b></a></li>
-					</ul>
+		{% if selected_category|default() %}
+			<div class="nav-bg">
+				<div class="nav-wrapper">
+					<div class="sub-nav">
+						<ul class="elements">
+							{% for element in selected_category.elements %}
+								<li {% if element.active %}class="active"{%endif%}><a href="{{ path(element.route)}}">{{ element.name }}</a></li>
+							{% endfor %}
+							{#<li><a href="#">Modul 2</a></li>
+							<li><a href="#">Modul 3</a></li>
+							<li class="active"><a href="#"><b>Modul 4</b></a></li>#}
+						</ul>
+					</div>
 				</div>
 			</div>
-		</div>
+		{% endif %}
 		<div class="clear"></div>
 		{% endblock %}
 	</div>

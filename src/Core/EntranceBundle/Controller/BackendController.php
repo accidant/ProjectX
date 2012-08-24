@@ -12,10 +12,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  * @company www.databay.de
  *
  */
-class TestController extends Controller {
+class BackendController extends Controller {
 
 	public function indexAction(){
-		 return 'CoreEntranceBundle:Test:index.html.twig';
+		return 'CoreEntranceBundle:Test:index.html.twig';
+	}
+
+	public function testAction(){
+		 return 'CoreEntranceBundle:Test:test.html.twig';
 	}
 
 	public function tableAction(){

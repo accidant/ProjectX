@@ -16,7 +16,7 @@
 				{% block header %}
 					<div id="header-content">
 						<div id="logo">
-							<a href=""><img src="{{ asset('bundles/coreentrance/images/shared/logo.png') }}" width="156" height="40" alt="" /></a>
+							<a href="{{ path('backend')}}"><img src="{{ asset('bundles/coreentrance/images/shared/logo.png') }}" width="156" height="40" alt="" /></a>
 						</div>
 						<div id="top-search">
 							<form action="#" method="post">
@@ -38,7 +38,11 @@
 			<div id="content">
 			    <div id="main">
 					{% block main %}
-						{% include main_content %}
+						{% if main_content|default() %}
+							{% include main_content %}
+						{% else %}
+							{% include '::nothing_found.html.twig' %}
+						{% endif %}
 					{% endblock%}
 
 					<div class="clear">&nbsp;</div>

@@ -4,8 +4,9 @@ security:
             pattern:    ^/
             anonymous: ~
             form_login:
-              login_path:  /login
+              login_path:  /admin/login
               check_path:  /login_check
+              default_target_path: /admin/
             #http_basic:
             #    realm: "Secured Demo Area"
 

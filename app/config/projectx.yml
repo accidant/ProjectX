@@ -1,5 +1,5 @@
 core_entrance:
   backend:
     controller:
-      Test Text: { route: 'backend_test', category: 'Test'}
-      Test Tabelle: { route: 'backend_table', category: 'Test'}
+      Test Text: { route: 'backend_test', category: 'Tests'}
+      Test Tabelle: { route: 'backend_table', category: 'Tests'}

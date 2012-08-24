@@ -23,13 +23,20 @@ class BackendEntranceController extends AbstractEntranceController{
 		return $response;
 	}
 
-	public function indexAction(){
-		return array('welcome' => "Wilkommen im Backend");
+	public function selectCategoryAction($category){
+		$response['navigation'] = $this->generateBackendMenu($category);
+		return $this->render('::backend.html.twig', $response);
 	}
 
-	private function generateBackendMenu(){
+	public function generateBackendMenu($category = ''){
 		$config = $this->container->getParameter('core_entrance');
-		$builder = new Builder();
-		return $builder->generate($config['backend']['controller']);
+
+		$route = null;
+		if($this->requestedController != null)
+			$route = $this->requestedController[0]->getRequest()->get('_route');
+
+		$builder = new Builder($route);
+
+		return $builder->generate($config['backend']['controller'], $category);
 	}
 }

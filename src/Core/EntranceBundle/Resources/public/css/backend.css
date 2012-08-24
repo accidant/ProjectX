@@ -13,10 +13,31 @@ body{
     line-height: 0;
 }
 
-/*****************
-* Basics
-******************/
+h1{
+    color: #4b4b4b;
+    font-family: Tahoma;
+    font-size: 22px;
+    line-height: 24px;
+    font-weight: normal;
+}
+h2{
+    color: #393939;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 20px;
+    margin-bottom: 10px;
+}
+h3{
+    color: #92b22c;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 18px;
+    margin-bottom: 10px;
+}
 
+/******************
+* Header
+******************/
 
 #header{
     background: url(../images/shared/top_bg.jpg) top center repeat-x;
@@ -24,15 +45,6 @@ body{
     height: 72px;
 }
 
-#left{
-    width: 200px;
-    float: left;
-    background-color: #ffc0cb;
-}
-
-/******************
-* Header
-******************/
 #header-content{
     margin: 0 auto;
     max-width: 1260px;
@@ -202,13 +214,6 @@ body{
 #page-heading{
     margin: 0 0 15px 20px;
 }
-h1{
-    color: #4b4b4b;
-    font-family: Tahoma;
-    font-size: 22px;
-    line-height: 24px;
-    font-weight: normal;
-}
 
 .content-box-outer{
     background: url('../images/shared/side_shadowleft.jpg') no-repeat center left;
@@ -224,14 +229,22 @@ h1{
     -khtml-border-radius:6px; /* Konqueror */
     border-radius:6px; /* CSS3 */
     border: 1px solid #ccc;
-    height: 400px;
     margin: 0 20px 15px 20px;
     padding: 20px;
+}
+
+.content-box-content .text{
+    line-height: 16px;
+    margin: 0 10px 10px 10px;
+    min-height: 300px;
 }
 
 /*************************
 * Messages
 **************************/
+.messages{
+    padding-bottom: 5px;
+}
 
 .message{
     padding: 0 0 0 20px;
@@ -269,3 +282,39 @@ h1{
     background: url(../images/table/message_green.gif) top left no-repeat;
     color: #6da827;
 }
+
+/************************
+* Footer
+************************/
+
+#footer{
+    height: 70px;
+    margin: 80px auto 0px auto;
+    padding: 0px 0 0 0;
+    text-align: left;
+    min-width: 780px;
+    max-width: 1260px;
+}
+
+#footer-left	{
+    color: #818181;
+    font-size: 11px;
+    line-height: 11px;
+    padding: 15px 0 15px 25px;
+    margin: 0 20px;
+    border-top: 1px solid #dbdbdb;
+    border-bottom: 1px solid #dbdbdb;
+    background: url(../images/shared/icon_idlogo.jpg) no-repeat 0 12px;
+}
+
+#footer a	{
+    color: #818181;
+    text-decoration: none;
+}
+
+#footer a.selected,
+#footer a:hover	{
+    color: #000;
+    text-decoration: none;
+}
+

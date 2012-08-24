@@ -15,6 +15,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class TestController extends Controller {
 
 	public function indexAction(){
+		 return 'CoreEntranceBundle:Test:index.html.twig';
+	}
 
+	public function tableAction(){
+		return 'CoreEntranceBundle:Test:table.html.twig';
 	}
 }

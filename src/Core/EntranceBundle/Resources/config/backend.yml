@@ -5,3 +5,7 @@ backend_welcome:
 backend_test:
    pattern:  /test
    defaults: { _controller: CoreEntranceBundle:Test:index }
+
+backend_table:
+  pattern:  /table
+  defaults: { _controller: CoreEntranceBundle:Test:table }

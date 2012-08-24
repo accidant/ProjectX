@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8" />
-		{% block title %}Backend Welcome!{% endblock %}
+		<title>{% block title %}Backend Welcome!{% endblock %}</title>
 		{% block stylesheets %}
 			<link rel="stylesheet" type="text/css" href="{{ asset('bundles/coreentrance/css/backend.css') }}" />
 		{% endblock %}
@@ -33,63 +33,26 @@
 				{% endblock %}
 			</div>
 
-			<div id="navigation">
-				{% block navigation %}
-					<div class="nav-bg">
-						<div class="nav-wrapper">
-							<div class="main-nav">
-								 <ul class="elements">
-									 <li><a href="#"><b>Dashboard</b></a></li>
-									 <li class="active"><a href="#"><b>Modules</b></a></li>
-									 <li><a href="#"><b>Settings</b></a></li>
-								 </ul>
-							</div>
-						</div>
-					</div>
-					<div class="nav-bg">
-						<div class="nav-wrapper">
-							<div class="sub-nav">
-								<ul class="elements">
-									<li><a href="#">Modul1</a></li>
-									<li><a href="#">Modul 2</a></li>
-									<li><a href="#">Modul 3</a></li>
-									<li class="active"><a href="#"><b>Modul 4</b></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="clear"></div>
-				{% endblock %}
-			</div>
-			<div class="clear"></div>
+			{{ macros.render_backend_menu(navigation) }}
 
 			<div id="content">
 			    <div id="main">
 					{% block main %}
-						<div id="page-heading">
-							<h1>Titel von Modul 1</h1>
-						</div>
-
-						<div class="content-box-outer">
-							<div class="content-box">
-								<div class="content-box-content">
-									<div class="messages">
-										{{ macros.message('warning', 'Die ist eine Warnung') }}
-										{{ macros.message('info', 'Hier kann eine Info dargestellt werden') }}
-										{{ macros.message('success', 'Ihre Informationen wurden erfolgreich gespeichert') }}
-										{{ macros.message('error', 'Es gabe Probleme mit dem Speichern ihrer Informationen') }}
-									</div>
-
-
-
-								</div>
-							</div>
-						</div>
-
+						{% include main_content %}
 					{% endblock%}
-			    </div>
 
+					<div class="clear">&nbsp;</div>
+					<div id="footer">
+						{% block footer %}
+						<div id="footer-left">
+							Admin Skin &copy; Copyright Internet Dreams Ltd. <a href="">www.netdreams.co.uk</a>. All rights reserved.</div>
+						<!--  end footer-left -->
+						<div class="clear">&nbsp;</div>
+						{% endblock %}
+					</div>
+			    </div>
 			</div>
+
 		</div>
 		{% block javascripts %}{% endblock %}
 	</body>

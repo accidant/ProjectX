@@ -18,7 +18,7 @@ class BackendEntranceController extends AbstractEntranceController{
 	 * @return mixed
 	 */
 	protected function handleRequest() {
-		$response = $this->callRequest();
+		$response['main_content'] = $this->callRequest();
 		$response['navigation'] = $this->generateBackendMenu();
 		return $response;
 	}

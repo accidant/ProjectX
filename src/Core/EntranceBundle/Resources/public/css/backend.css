@@ -30,12 +30,6 @@ body{
     background-color: #ffc0cb;
 }
 
-#main{
-    height: 200px;
-    margin: 0 auto;
-    background-color: #99ff99;
-}
-
 /******************
 * Header
 ******************/
@@ -101,7 +95,17 @@ body{
     z-index: 500;
 }
 
-.main-nav .elements{
+.sub-nav{
+    float: left;
+    font-family: Tahoma;
+    font-size: 13px;
+    height: 38px;
+    position: relative;
+    width: 750px;
+    z-index: 500;
+}
+
+.elements{
     float: left;
     list-style: none;
     margin: 0 0px 0 0;
@@ -109,14 +113,14 @@ body{
     white-space: nowrap;
 }
 
-.main-nav .elements li{
+.elements li{
     float: left;
     height: auto;
     margin: 0;
     padding: 0;
 }
 
-.main-nav .elements li a{
+.elements li a{
     color: #fff;
     display: block;
     float: left;
@@ -127,7 +131,7 @@ body{
     white-space: nowrap;
 }
 
-.main-nav .elements li.current a{
+.main-nav .elements li.active a{
     background: url(../images/shared/nav/pro_line_1.gif);
     color: #fff;
     display: block;
@@ -139,7 +143,7 @@ body{
     white-space: nowrap;
 }
 
-.main-nav .elements li.current a b {
+.main-nav .elements li.active a b {
     background: url(../images/shared/nav/pro_line_1.gif) right top;
     display: block;
     padding: 0 20px 0 10px;
@@ -161,3 +165,107 @@ body{
     padding: 0 20px 0 10px;
 }
 
+.sub-nav .elements li a{
+    color: #fff;
+    display: block;
+    float: left;
+    font-weight: bold;
+    height: 37px;
+    line-height: 35px;
+    padding: 0 20px 0 20px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+.sub-nav .elements li.active a,
+.sub-nav .elements li a:hover{
+    color: #94b52c;
+}
+
+/**************************
+* CONTENT
+***************************/
+#content{
+    background: url(../images/shared/content_repeat.jpg) repeat-x;
+}
+
+#main{
+    color: #333;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    line-height: 18px;
+    margin: 0 auto 0 auto;
+    max-width: 1260px;
+    min-width: 780px;
+    padding: 35px 0px 30px 0px;
+}
+
+#page-heading{
+    margin: 0 0 15px 20px;
+}
+h1{
+    color: #4b4b4b;
+    font-family: Tahoma;
+    font-size: 22px;
+    line-height: 24px;
+    font-weight: normal;
+}
+
+.content-box-outer{
+    background: url('../images/shared/side_shadowleft.jpg') no-repeat center left;
+}
+
+.content-box{
+    background: url('../images/shared/side_shadowright.jpg') no-repeat center right;
+}
+
+.content-box-content{
+    -moz-border-radius:6px; /* Firefox */
+    -webkit-border-radius:6px; /* Safari, Chrome */
+    -khtml-border-radius:6px; /* Konqueror */
+    border-radius:6px; /* CSS3 */
+    border: 1px solid #ccc;
+    height: 400px;
+    margin: 0 20px 15px 20px;
+    padding: 20px;
+}
+
+/*************************
+* Messages
+**************************/
+
+.message{
+    padding: 0 0 0 20px;
+    margin-bottom: 5px;
+    font-family: Tahoma;
+    font-weight: bold;
+    height: 35px;
+}
+
+.message .content{
+    float: left;
+    padding-top: 8px;
+}
+
+.message .close{
+    float: right;
+}
+
+.message.warning{
+    background: url(../images/table/message_yellow.gif) top left no-repeat;
+    color: #e79300;
+}
+
+.message.info{
+    background: url(../images/table/message_blue.gif) top left no-repeat;
+    color: #2e74b2;
+}
+
+.message.error{
+    background: url(../images/table/message_red.gif) top left no-repeat;
+    color: #ce2700;
+}
+
+.message.success{
+    background: url(../images/table/message_green.gif) top left no-repeat;
+    color: #6da827;
+}

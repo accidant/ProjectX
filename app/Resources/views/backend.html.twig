@@ -1,3 +1,5 @@
+{%import '::macros.html.twig' as macros %}
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -38,7 +40,7 @@
 							<div class="main-nav">
 								 <ul class="elements">
 									 <li><a href="#"><b>Dashboard</b></a></li>
-									 <li class="current"><a href="#"><b>Modules</b></a></li>
+									 <li class="active"><a href="#"><b>Modules</b></a></li>
 									 <li><a href="#"><b>Settings</b></a></li>
 								 </ul>
 							</div>
@@ -48,15 +50,45 @@
 						<div class="nav-wrapper">
 							<div class="sub-nav">
 								<ul class="elements">
-									<li><a href="#"><b>Modul1</b></a></li>
-									<li><a href="#"><b>Modul 2</b></a></li>
-									<li><a href="#"><b>Modul 3</b></a></li>
-									<li class="current"><a href="#"><b>Modul 4</b></a></li>
+									<li><a href="#">Modul1</a></li>
+									<li><a href="#">Modul 2</a></li>
+									<li><a href="#">Modul 3</a></li>
+									<li class="active"><a href="#"><b>Modul 4</b></a></li>
 								</ul>
 							</div>
 						</div>
 					</div>
+					<div class="clear"></div>
 				{% endblock %}
+			</div>
+			<div class="clear"></div>
+
+			<div id="content">
+			    <div id="main">
+					{% block main %}
+						<div id="page-heading">
+							<h1>Titel von Modul 1</h1>
+						</div>
+
+						<div class="content-box-outer">
+							<div class="content-box">
+								<div class="content-box-content">
+									<div class="messages">
+										{{ macros.message('warning', 'Die ist eine Warnung') }}
+										{{ macros.message('info', 'Hier kann eine Info dargestellt werden') }}
+										{{ macros.message('success', 'Ihre Informationen wurden erfolgreich gespeichert') }}
+										{{ macros.message('error', 'Es gabe Probleme mit dem Speichern ihrer Informationen') }}
+									</div>
+
+
+
+								</div>
+							</div>
+						</div>
+
+					{% endblock%}
+			    </div>
+
 			</div>
 		</div>
 		{% block javascripts %}{% endblock %}

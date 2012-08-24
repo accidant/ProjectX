@@ -1,0 +1,11 @@
+{% macro message (type, content)%}
+	<div class="message {{type}}">
+		<div class="content">
+			{{ content }}
+		</div>
+		<div class="close">
+			<a href="#" ><img src="{{ asset('bundles/coreentrance/images/table/icon_close_'~type~'.gif')}}" alt="close" /></a>
+		</div>
+		<div class="clear"></div>
+	</div>
+{% endmacro %}

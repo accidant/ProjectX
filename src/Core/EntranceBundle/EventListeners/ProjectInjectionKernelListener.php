@@ -5,6 +5,7 @@ namespace Core\EntranceBundle\EventListeners;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\DependencyInjection\ContainerAware;
+use Core\CoreBaseBundle\Component\Controller\InformationService;
 
 
 /**
@@ -52,6 +53,8 @@ class ProjectInjectionKernelListener extends ContainerAware {
 	private function swapController(FilterControllerEvent $event) {
 		$controller = $event->getController();
 
+		if($controller[0] instanceof \Core\CoreBaseBundle\Controller\AbstractModuleController)
+			$controller[0]->setInformationService(new InformationService());
 
 		$handleController = 'FrontendEntranceController';
 		if($this->isBackendRequest($event->getRequest()))
@@ -99,6 +102,7 @@ class ProjectInjectionKernelListener extends ContainerAware {
 		$controllerName = 'Core\EntranceBundle\Controller\\' . $controllerName;
 		$controller = new $controllerName();
 		$controller->setContainer($this->container);
+		$controller->setInformationService(new InformationService());
 		return $controller;
 	}
 }

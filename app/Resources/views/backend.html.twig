@@ -39,7 +39,7 @@
 			    <div id="main">
 					{% block main %}
 						{% if main_content|default() %}
-							{% include main_content %}
+							{% include main_content['_template'] %}
 						{% else %}
 							{% include '::nothing_found.html.twig' %}
 						{% endif %}

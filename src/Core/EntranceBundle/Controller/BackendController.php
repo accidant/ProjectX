@@ -3,6 +3,7 @@
 namespace Core\EntranceBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Core\CoreBaseBundle\Controller\AbstractModuleController;
 
 /**
  * Date: 20.08.12
@@ -12,21 +13,27 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  * @company www.databay.de
  *
  */
-class BackendController extends Controller {
+class BackendController extends AbstractModuleController{
 
 	public function indexAction(){
-		return 'CoreEntranceBundle:Test:index.html.twig';
+		return array(
+			'_template' => 'CoreEntranceBundle:Test:index.html.twig'
+		);
 	}
 
 	public function testAction(){
-		 return 'CoreEntranceBundle:Test:test.html.twig';
+		return array(
+			'_template' => 'CoreEntranceBundle:Test:test.html.twig'
+		);
 	}
 
 	public function tableAction(){
-		return 'CoreEntranceBundle:Test:table.html.twig';
+		return array(
+			'_template' => 'CoreEntranceBundle:Test:table.html.twig'
+		);
 	}
 
 	public function formAction(){
-		return 'CoreEntranceBundle:Test:form.html.twig';
+		return array('blubb' => 'blaa');
 	}
 }

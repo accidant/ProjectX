@@ -2,7 +2,7 @@
 
 namespace System\PageBundle\Controller;
 
-use Core\CoreBaseBundle\Controller;
+use Core\CoreBaseBundle\Controller\AbstractModuleController;
 /**
  * Date: 27.08.12
  * Time: 14:39

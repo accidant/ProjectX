@@ -1,7 +1,8 @@
 <?php
 namespace Core\CoreBaseBundle\Controller;
 
-use Core\CoreBaseBundle\Component\Controller\AbstractInformationFactory;
+use Core\CoreBaseBundle\Component\Controller\AbstractInformationService;
+use Core\CoreBaseBundle\Component\Controller\InformationService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
@@ -17,7 +18,12 @@ abstract class AbstractModuleController extends Controller {
 	 */
 	protected $informationService;
 
-	public function generateInformation(AbstractInformationFactory $factory){
-		$factory->generate($this->container);
+	public function setInformationService(AbstractInformationService $service){
+		$this->informationService = $service;
+		$this->informationService->generate($this->container);
+	}
+
+	public function getInformationService(){
+		return $this->informationService;
 	}
 }

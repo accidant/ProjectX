@@ -19,6 +19,12 @@ class BackendEntranceController extends AbstractEntranceController{
 	 */
 	protected function handleRequest() {
 		$response['main_content'] = $this->callRequest();
+		/**
+		 * @todo Auslagern
+		 */
+		if(!array_key_exists('_template', $response['main_content']))
+			$response['main_content']['_template'] = $this->requestedController[0]->informationService->getFullInformationString() . '.html.twig';
+
 		$response['navigation'] = $this->generateBackendMenu();
 		return $response;
 	}

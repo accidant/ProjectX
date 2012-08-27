@@ -3,13 +3,14 @@
 namespace Core\EntranceBundle\Component\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Core\CoreBaseBundle\Controller\AbstractModuleController;
 
 /**
  * Date: 20.08.12
  * Time: 11:30
  * @author Thomas Joußen
  */
-abstract class CmsControllerContainer extends Controller{
+abstract class CmsControllerContainer extends AbstractModuleController{
 
 	protected $requestedController;
 

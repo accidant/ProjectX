@@ -7,7 +7,7 @@ namespace Core\CoreBaseBundle\Component\Controller;
  * Time: 15:13
  * @author Thomas Joußen <tjoussen@databay.de>
  */
-abstract class AbstractInformationFactory {
+abstract class AbstractInformationService {
 
 	/**
 	 * Der Namespace in welchem sich das Bundle des Controllers befindet

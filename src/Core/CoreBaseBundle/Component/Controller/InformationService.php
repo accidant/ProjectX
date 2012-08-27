@@ -7,7 +7,7 @@ namespace Core\CoreBaseBundle\Component\Controller;
  * Time: 15:13
  * @author Thomas Joußen <tjoussen@databay.de>
  */
-class InformationFactory extends AbstractInformationFactory{
+class InformationService extends AbstractInformationService{
 
 	/**
 	 * Findet aus dem Container die benötigten Elemente für den Request und gibt diese in einem Array zurück

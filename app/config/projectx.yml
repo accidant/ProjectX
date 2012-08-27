@@ -3,3 +3,5 @@ core_entrance:
     controller:
       Test Text: { route: 'backend_test', category: 'Tests'}
       Test Tabelle: { route: 'backend_table', category: 'Tests'}
+      Test Form: { route: 'backend_form', category: 'Tests'}
+      Seitenbaum: { route: 'page', category: 'Seiten'}

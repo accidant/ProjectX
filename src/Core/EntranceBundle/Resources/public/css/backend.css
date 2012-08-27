@@ -35,6 +35,15 @@ h3{
     margin-bottom: 10px;
 }
 
+.clear{
+    clear: both;
+    font-size: 0px;
+    height: 0;
+    line-height: 0px;
+    margin: 0px;
+    padding: 0px;
+}
+
 /******************
 * Header
 ******************/
@@ -411,5 +420,98 @@ a.icon-check	{
 }
 a:hover.icon-check	{
     background: url(../images/table/table_icon_5.gif) 0 -24px;
+}
+
+/*********************
+* Formular
+*********************/
+.form input,
+.form textarea,
+.form select{
+    border: 1px #aaa solid;
+    border-radius: 6px;
+}
+
+.form input[type=text]{
+    color: #393939;
+    height: 25px;
+    padding: 4px 6px 2px 6px;
+    width: 186px;
+}
+
+.form textarea{
+    color: #393939;
+    font-size: 12px;
+    height: 97px;
+    overflow: auto;
+    padding: 4px 6px 2px 6px;
+    width: 375px;
+}
+
+.form select{
+    color: #393939;
+    background-color: #fff;
+    cursor: pointer;
+    display: block;
+    font-family: Arial;
+    font-size: 12px;
+    height: 30px;
+    margin: 0px;
+    padding: 7px 5px 2px 6px;
+    text-align: left;
+    width: 192px;
+}
+
+.form input[type=submit]{
+    cursor: pointer;
+    display: block;
+    float: left;
+    height: 30px;
+    margin: 0 4px 0 0;
+    padding: 0 6px 0 6px;
+    background-color: #85b50d;
+    color: #fff;
+}
+
+.form input[type=submit]:hover{
+    background-color: #6d950d;
+}
+
+.form input[type=reset]{
+    cursor: pointer;
+    display: block;
+    float: left;
+    height: 30px;
+    padding: 0 6px 0 6px;
+    background-color: #6a6a6a;
+    color: #fff;
+}
+.form input[type=reset]:hover{
+    background-color: #4f4f4f;
+}
+
+.form .col{
+    float: left;
+    padding-bottom: 10px;
+    width: 520px;
+}
+
+.form .col.no-label{
+    padding-left: 130px;
+}
+
+.form .col.large{
+    width: 1160px;
+}
+
+.form .col.large textarea{
+    width: 1000px;
+}
+
+.form .col label{
+    float: left;
+    width: 120px;
+    padding: 8px 0 6px 10px;
+    font-weight: bold;
 }
 

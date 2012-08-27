@@ -18,6 +18,12 @@ SecurityBundleBackend:
     resource: "@CoreSecurityBundle/Resources/config/backend.yml"
     prefix: /admin
 
+# PageBundle
+PageBundleBackend:
+    resource: "@SystemPageBundle/Resources/config/backend.yml"
+    prefix: /admin
+
+#General
 login:
   pattern:  /admin/login
   defaults: { _controller: CoreSecurityBundle:Security:login }

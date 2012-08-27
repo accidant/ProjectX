@@ -25,4 +25,8 @@ class BackendController extends Controller {
 	public function tableAction(){
 		return 'CoreEntranceBundle:Test:table.html.twig';
 	}
+
+	public function formAction(){
+		return 'CoreEntranceBundle:Test:form.html.twig';
+	}
 }

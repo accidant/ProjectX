@@ -1,0 +1,3 @@
+page:
+   pattern:  /page/
+   defaults: { _controller: SystemPageBundle:Page:index }

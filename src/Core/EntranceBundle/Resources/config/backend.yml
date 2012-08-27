@@ -13,3 +13,7 @@ backend_test:
 backend_table:
   pattern:  /table
   defaults: { _controller: CoreEntranceBundle:Backend:table }
+
+backend_form:
+  pattern:  /form
+  defaults: { _controller: CoreEntranceBundle:Backend:form }

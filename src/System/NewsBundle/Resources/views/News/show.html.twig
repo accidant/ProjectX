@@ -1,0 +1,73 @@
+<h1>News</h1>
+
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>Title</th>
+            <td>{{ entity.title }}</td>
+        </tr>
+        <tr>
+            <th>Subtitle</th>
+            <td>{{ entity.subtitle }}</td>
+        </tr>
+        <tr>
+            <th>Content</th>
+            <td>{{ entity.content }}</td>
+        </tr>
+        <tr>
+            <th>Startdate</th>
+            <td>{{ entity.startDate|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Enddate</th>
+            <td>{{ entity.endDate|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Published</th>
+            <td>{{ entity.published }}</td>
+        </tr>
+        <tr>
+            <th>Commentsallowed</th>
+            <td>{{ entity.commentsAllowed }}</td>
+        </tr>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Createdate</th>
+            <td>{{ entity.createDate|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Updatedate</th>
+            <td>{{ entity.updateDate|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Hidden</th>
+            <td>{{ entity.hidden }}</td>
+        </tr>
+        <tr>
+            <th>Deleted</th>
+            <td>{{ entity.deleted }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('news') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('news_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('news_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>

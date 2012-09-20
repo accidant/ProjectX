@@ -1,0 +1,51 @@
+news:
+    pattern:  /news
+    defaults: { _controller: SystemNewsBundle:News:index }
+
+news_new:
+    pattern: /news/new
+    defaults: { _controller: SystemNewsBundle:News:new }
+    
+news_show:
+    pattern: /news/show
+    defaults: { _controller: SystemNewsBundle:News:show }
+
+news_create:
+    pattern: /news/create
+    defaults: { _controller: SystemNewsBundle:News:create }
+    
+news_update:
+    pattern: /news/update
+    defaults: { _controller: SystemNewsBundle:News:update }
+    
+news_delete:
+    pattern: /news/delete
+    defaults: { _controller: SystemNewsBundle:News:delete }
+
+newscategory:
+    pattern:  /news_category
+    defaults: { _controller: SystemNewsBundle:NewsCategory:index }
+    
+newscategory_new:
+    pattern:  /news_category/new
+    defaults: { _controller: SystemNewsBundle:NewsCategory:new }
+    
+newscategory_show:
+    pattern:  /news_category/show
+    defaults: { _controller: SystemNewsBundle:NewsCategory:show }
+    
+newscategory_create:
+    pattern:  /news_category/create
+    defaults: { _controller: SystemNewsBundle:NewsCategory:create }
+    
+newscategory_edit:
+    pattern:  /news_category/edit
+    defaults: { _controller: SystemNewsBundle:NewsCategory:edit }
+    
+newscategory_update:
+    pattern:  /news_category/update
+    defaults: { _controller: SystemNewsBundle:NewsCategory:update }
+    
+newscategory_delete:
+    pattern:  /news_category/delete
+    defaults: { _controller: SystemNewsBundle:NewsCategory:delete }

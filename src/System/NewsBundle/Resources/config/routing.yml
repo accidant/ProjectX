@@ -1,0 +1,4 @@
+SystemNewsBundle_news:
+    resource: "@SystemNewsBundle/Resources/config/routing/news.php"
+    prefix:   /news
+

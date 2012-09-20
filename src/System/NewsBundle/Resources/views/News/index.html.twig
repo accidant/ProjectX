@@ -1,0 +1,57 @@
+<h1>News list</h1>
+
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Subtitle</th>
+            <th>Content</th>
+            <th>Startdate</th>
+            <th>Enddate</th>
+            <th>Published</th>
+            <th>Commentsallowed</th>
+            <th>Id</th>
+            <th>Createdate</th>
+            <th>Updatedate</th>
+            <th>Hidden</th>
+            <th>Deleted</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('news_show', { 'id': entity.id }) }}">{{ entity.title }}</a></td>
+            <td>{{ entity.subtitle }}</td>
+            <td>{{ entity.content }}</td>
+            <td>{% if entity.startDate %}{{ entity.startDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{% if entity.endDate %}{{ entity.endDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{{ entity.published }}</td>
+            <td>{{ entity.commentsAllowed }}</td>
+            <td>{{ entity.id }}</td>
+            <td>{% if entity.createDate %}{{ entity.createDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{% if entity.updateDate %}{{ entity.updateDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{{ entity.hidden }}</td>
+            <td>{{ entity.deleted }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('news_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('news_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<ul>
+    <li>
+        <a href="{{ path('news_new') }}">
+            Create a new entry
+        </a>
+    </li>
+</ul>

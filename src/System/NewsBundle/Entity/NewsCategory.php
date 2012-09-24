@@ -103,4 +103,10 @@ use Core\CoreBaseBundle\Entity\BaseEntity;
     {
         return $this->news;
     }
+    
+    
+    public function __toString()
+    {
+        return $this->name;
+    }
 }

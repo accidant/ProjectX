@@ -28,7 +28,7 @@ abstract class BaseEntity{
 	 * Der Zeitstempel zu welchem Zeitpunkt diese Entität erstellt wurde
 	 *
 	 * @var \DateTime
-	 * @ORM\Column(type="datetime")
+	 * @ORM\Column(type="datetime", nullable="true")
 	 */
 	protected $createDate;
 

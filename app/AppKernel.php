@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new Core\EntranceBundle\CoreEntranceBundle(),
             new System\PageBundle\SystemPageBundle(),
+	    new System\NewsBundle\SystemNewsBundle(),
             new Core\SecurityBundle\CoreSecurityBundle(),
             new Core\UserBundle\CoreUserBundle(),
             new Core\InstallingBundle\CoreInstallingBundle(),

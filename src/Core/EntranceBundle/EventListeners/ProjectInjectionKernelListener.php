@@ -22,8 +22,10 @@ class ProjectInjectionKernelListener extends ContainerAware {
 	 * @param \Symfony\Component\HttpKernel\Event\FilterControllerEvent $event
 	 */
 	public function onKernelController(FilterControllerEvent $event){
-		if ($this->isChangeable($event))
+		
+		if ($this->isChangeable($event)){
 			$this->swapController($event);
+		}
 	}
 
 	/**
@@ -41,7 +43,8 @@ class ProjectInjectionKernelListener extends ContainerAware {
 				!$event->getRequest()->isXmlHttpRequest() &&
 				!($controller[0] instanceof \Core\SecurityBundle\Controller\SecurityController &&
 				$controller[1] == 'loginAction') &&
-				!($controller[0] instanceof \Core\EntranceBundle\Controller\AbstractEntranceController);
+				!($controller[0] instanceof \Core\EntranceBundle\Controller\AbstractEntranceController) &&
+				($controller[0] instanceof \Core\CoreBaseBundle\Controller\AbstractModuleController);
 	}
 
 	/**
@@ -53,8 +56,7 @@ class ProjectInjectionKernelListener extends ContainerAware {
 	private function swapController(FilterControllerEvent $event) {
 		$controller = $event->getController();
 
-		if($controller[0] instanceof \Core\CoreBaseBundle\Controller\AbstractModuleController)
-			$controller[0]->setInformationService(new InformationService());
+		$controller[0]->setInformationService(new InformationService());
 
 		$handleController = 'FrontendEntranceController';
 		if($this->isBackendRequest($event->getRequest()))

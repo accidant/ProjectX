@@ -13,14 +13,10 @@ class NewsType extends AbstractType
             ->add('title')
             ->add('subtitle')
             ->add('content')
-            ->add('startDate')
-            ->add('endDate')
-            ->add('published')
-            ->add('commentsAllowed')
-            ->add('createDate')
-            ->add('updateDate')
-            ->add('hidden')
-            ->add('deleted')
+            ->add('startDate', 'datetime', array('required'=>false))
+            ->add('endDate', 'datetime', array('required'=>false))
+            ->add('published', 'checkbox', array('required'=>false))
+            ->add('commentsAllowed', 'checkbox', array('required'=>false))
             ->add('newsCategory')
         ;
     }

@@ -22,7 +22,12 @@ SecurityBundleBackend:
 PageBundleBackend:
     resource: "@SystemPageBundle/Resources/config/backend.yml"
     prefix: /admin
-
+    
+# NewsBundle
+NewsBundleBackend:
+    resource: "@SystemNewsBundle/Resources/config/backend.yml"
+    prefix: /admin
+    
 #General
 login:
   pattern:  /admin/login

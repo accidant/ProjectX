@@ -12,7 +12,7 @@ use Core\CoreBaseBundle\Entity\BaseEntity;
  *
  * @ORM\Table()
  * @ORM\Entity()
- * @UniqueEntity(fields={"username"}, message="Dieser Benutzername ist bereits vergeben!")
+ * x@ORM\UniqueEntity(fields={"username"}, message="Dieser Benutzername ist bereits vergeben!")
  */
 class User extends BaseEntity{
 
@@ -20,7 +20,7 @@ class User extends BaseEntity{
 	 * Der Benutzername
 	 *
 	 * @var string
-	 * @Column(type="string, length=50, unique="true")
+	 * @ORM\Column(type="string", length=50)
 	 */
 	private $username;
 

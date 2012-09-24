@@ -36,13 +36,13 @@ use Core\CoreBaseBundle\Entity\BaseEntity;
 	 
 	 /**
 	 * @var \DateTime
-	 * @ORM\Column(type="datetime")
+	 * @ORM\Column(type="datetime", nullable="true")
 	 */
 	 private $startDate;
 	 
 	 /**
 	 * @var \DateTime
-	 * @ORM\Column(type="datetime")
+	 * @ORM\Column(type="datetime", nullable="true")
 	 */
 	 private $endDate;
 	 

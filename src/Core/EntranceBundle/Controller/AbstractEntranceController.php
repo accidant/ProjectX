@@ -16,6 +16,10 @@ abstract class AbstractEntranceController extends CmsControllerContainer{
 
 	public function handleRequestAction(){
 		$handledRequest = $this->handleRequest();
+                if (isset($handledRequest['main_content']['method']) && $handledRequest['main_content']['method']=='redirect') {
+                    return $this->redirect($handledRequest['main_content']['url']);
+                }
+                
 		return $this->render('::backend.html.twig', $handledRequest);
 	}
 

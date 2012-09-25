@@ -1,7 +1,7 @@
 <h1>NewsCategory creation</h1>
 
-<form action="{{ path('newscategory_create') }}" method="post" {{ form_enctype(form) }}>
-    {{ form_widget(form) }}
+<form action="{{ path('newscategory_create') }}" method="post" {{ form_enctype(main_content['form']) }}>
+    {{ form_widget(main_content['form']) }}
     <p>
         <button type="submit">Create</button>
     </p>

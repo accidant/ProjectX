@@ -12,10 +12,6 @@ class NewsCategoryType extends AbstractType
         $builder
             ->add('name')
             ->add('description')
-            ->add('createDate')
-            ->add('updateDate')
-            ->add('hidden')
-            ->add('deleted')
         ;
     }
 

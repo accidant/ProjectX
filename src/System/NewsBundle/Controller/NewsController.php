@@ -25,7 +25,7 @@ class NewsController extends AbstractModuleController
         $entities = $em->getRepository('SystemNewsBundle:News')->findAll();
 
         return array (
-            'SystemNewsBundle:News:index.html.twig',
+            '_template' => 'SystemNewsBundle:News:index.html.twig',
             'entities' => $entities
         );
     }
@@ -48,7 +48,7 @@ class NewsController extends AbstractModuleController
         $deleteForm = $this->createDeleteForm($id);
 
         return array (
-            'SystemNewsBundle:News:show.html.twig',
+            '_template' => 'SystemNewsBundle:News:show.html.twig',
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView()
         );
@@ -64,7 +64,7 @@ class NewsController extends AbstractModuleController
         $form   = $this->createForm(new NewsType(), $entity);
 
         return array (
-            'SystemNewsBundle:News:new.html.twig',
+            '_template' => 'SystemNewsBundle:News:new.html.twig',
             'entity' => $entity,
             'form'   => $form->createView()
         );
@@ -86,12 +86,9 @@ class NewsController extends AbstractModuleController
             $em->persist($entity);
             $em->flush();
 
-            //$this->redirect($this->generateUrl('news_show', array('id' => $entity->getId())));
             return array (
-                '_template' => 'SystemNewsBundle:News:show.html.twig',
-                'entity' => $entity,
-                'delete_form' => $this->createDeleteForm($entity->getId())->createView(),
-                'id' => $entity->getId()
+                'method' => 'redirect',
+                'url' => $this->generateUrl('news_show', array('id' => $entity->getId()))
             );
             
         }
@@ -156,12 +153,15 @@ class NewsController extends AbstractModuleController
         if ($editForm->isValid()) {
             $em->persist($entity);
             $em->flush();
-
-            return $this->redirect($this->generateUrl('news_edit', array('id' => $id)));
+            
+            return array (
+                'method' => 'redirect',
+                'url' => $this->generateUrl('news_edit', array('id' => $id))
+            );
         }
 
         return array (
-            'SystemNewsBundle:News:edit.html.twig',
+            '_template' => 'SystemNewsBundle:News:edit.html.twig',
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView()

@@ -86,13 +86,15 @@ class NewsCategoryController extends AbstractModuleController
             $em = $this->getDoctrine()->getEntityManager();
             $em->persist($entity);
             $em->flush();
-
-            return $this->redirect($this->generateUrl('newscategory_show', array('id' => $entity->getId())));
             
+            return array (
+                'method' => 'redirect',
+                'url' => $this->generateUrl('newscategory_show', array('id' => $entity->getId())),
+            );
         }
 
         return array (
-            'SystemNewsBundle:NewsCategory:new.html.twig',
+            '_template' => 'SystemNewsBundle:NewsCategory:new.html.twig',
             'entity' => $entity,
             'form'   => $form->createView()
         );
@@ -116,19 +118,23 @@ class NewsCategoryController extends AbstractModuleController
         $editForm = $this->createForm(new NewsCategoryType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return array ('SystemNewsBundle:NewsCategory:edit.html.twig',
+        return array (
+            '_template' => 'SystemNewsBundle:NewsCategory:edit.html.twig',
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'delete_form' => $deleteForm->createView()
         );
+        
     }
 
     /**
      * Edits an existing NewsCategory entity.
      *
      */
-    public function updateAction($id)
+    public function updateAction()
     {
+        $id = $_GET['id'];
+        
         $em = $this->getDoctrine()->getEntityManager();
 
         $entity = $em->getRepository('SystemNewsBundle:NewsCategory')->find($id);
@@ -148,10 +154,14 @@ class NewsCategoryController extends AbstractModuleController
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('newscategory_edit', array('id' => $id)));
+            return array (
+                'method' => 'redirect',
+                'url' => $this->generateUrl('newscategory_edit', array('id' => $id))
+            );
         }
 
-        return array ('SystemNewsBundle:NewsCategory:edit.html.twig',
+        return array (
+            '_template' => 'SystemNewsBundle:NewsCategory:edit.html.twig',
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView()
@@ -162,8 +172,10 @@ class NewsCategoryController extends AbstractModuleController
      * Deletes a NewsCategory entity.
      *
      */
-    public function deleteAction($id)
+    public function deleteAction()
     {
+        $id = $_GET['id'];
+        
         $form = $this->createDeleteForm($id);
         $request = $this->getRequest();
 
@@ -181,7 +193,10 @@ class NewsCategoryController extends AbstractModuleController
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('newscategory'));
+        return array (
+            'method' => 'redirect',
+            'url' => $this->generateUrl('newscategory')
+        );
     }
 
     private function createDeleteForm($id)

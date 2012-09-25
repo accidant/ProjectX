@@ -4,51 +4,51 @@
     <tbody>
         <tr>
             <th>Title</th>
-            <td>{{ entity.title }}</td>
+            <td>{{ main_content['entity'].title }}</td>
         </tr>
         <tr>
             <th>Subtitle</th>
-            <td>{{ entity.subtitle }}</td>
+            <td>{{ main_content['entity'].subtitle }}</td>
         </tr>
         <tr>
             <th>Content</th>
-            <td>{{ entity.content }}</td>
+            <td>{{ main_content['entity'].content }}</td>
         </tr>
         <tr>
             <th>Startdate</th>
-            <td>{{ entity.startDate|date('Y-m-d H:i:s') }}</td>
+            <td>{{ main_content['entity'].startDate|date('Y-m-d H:i:s') }}</td>
         </tr>
         <tr>
             <th>Enddate</th>
-            <td>{{ entity.endDate|date('Y-m-d H:i:s') }}</td>
+            <td>{{ main_content['entity'].endDate|date('Y-m-d H:i:s') }}</td>
         </tr>
         <tr>
             <th>Published</th>
-            <td>{{ entity.published }}</td>
+            <td>{{ main_content['entity'].published }}</td>
         </tr>
         <tr>
             <th>Commentsallowed</th>
-            <td>{{ entity.commentsAllowed }}</td>
+            <td>{{ main_content['entity'].commentsAllowed }}</td>
         </tr>
         <tr>
             <th>Id</th>
-            <td>{{ entity.id }}</td>
+            <td>{{ main_content['entity'].id }}</td>
         </tr>
         <tr>
             <th>Createdate</th>
-            <td>{{ entity.createDate|date('Y-m-d H:i:s') }}</td>
+            <td>{{ main_content['entity'].createDate|date('Y-m-d H:i:s') }}</td>
         </tr>
         <tr>
             <th>Updatedate</th>
-            <td>{{ entity.updateDate|date('Y-m-d H:i:s') }}</td>
+            <td>{{ main_content['entity'].updateDate|date('Y-m-d H:i:s') }}</td>
         </tr>
         <tr>
             <th>Hidden</th>
-            <td>{{ entity.hidden }}</td>
+            <td>{{ main_content['entity'].hidden }}</td>
         </tr>
         <tr>
             <th>Deleted</th>
-            <td>{{ entity.deleted }}</td>
+            <td>{{ main_content['entity'].deleted }}</td>
         </tr>
     </tbody>
 </table>
@@ -60,13 +60,13 @@
         </a>
     </li>
     <li>
-        <a href="{{ path('news_edit', { 'id': entity.id }) }}">
+        <a href="{{ path('news_edit', { 'id': main_content['entity'].id }) }}">
             Edit
         </a>
     </li>
     <li>
-        <form action="{{ path('news_delete', { 'id': entity.id }) }}" method="post">
-            {{ form_widget(delete_form) }}
+        <form action="{{ path('news_delete', { 'id': main_content['entity'].id }) }}" method="post">
+            {{ form_widget(main_content['delete_form']) }}
             <button type="submit">Delete</button>
         </form>
     </li>

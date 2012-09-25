@@ -3,6 +3,7 @@
 namespace System\NewsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Core\CoreBaseBundle\Controller\AbstractModuleController;
 
 use System\NewsBundle\Entity\News;
 use System\NewsBundle\Form\NewsType;
@@ -11,7 +12,7 @@ use System\NewsBundle\Form\NewsType;
  * News controller.
  *
  */
-class NewsController extends Controller
+class NewsController extends AbstractModuleController
 {
     /**
      * Lists all News entities.
@@ -23,17 +24,19 @@ class NewsController extends Controller
 
         $entities = $em->getRepository('SystemNewsBundle:News')->findAll();
 
-        return $this->render('SystemNewsBundle:News:index.html.twig', array(
+        return array (
+            'SystemNewsBundle:News:index.html.twig',
             'entities' => $entities
-        ));
+        );
     }
 
     /**
      * Finds and displays a News entity.
      *
      */
-    public function showAction($id)
+    public function showAction()
     {
+		$id = $_GET['id'];
         $em = $this->getDoctrine()->getEntityManager();
 
         $entity = $em->getRepository('SystemNewsBundle:News')->find($id);
@@ -44,11 +47,11 @@ class NewsController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('SystemNewsBundle:News:show.html.twig', array(
+        return array (
+            'SystemNewsBundle:News:show.html.twig',
             'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-
-        ));
+            'delete_form' => $deleteForm->createView()
+        );
     }
 
     /**
@@ -60,10 +63,11 @@ class NewsController extends Controller
         $entity = new News();
         $form   = $this->createForm(new NewsType(), $entity);
 
-        return $this->render('SystemNewsBundle:News:new.html.twig', array(
+        return array (
+            'SystemNewsBundle:News:new.html.twig',
             'entity' => $entity,
             'form'   => $form->createView()
-        ));
+        );
     }
 
     /**
@@ -82,22 +86,31 @@ class NewsController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('news_show', array('id' => $entity->getId())));
+            //$this->redirect($this->generateUrl('news_show', array('id' => $entity->getId())));
+            return array (
+                '_template' => 'SystemNewsBundle:News:show.html.twig',
+                'entity' => $entity,
+                'delete_form' => $this->createDeleteForm($entity->getId())->createView(),
+                'id' => $entity->getId()
+            );
             
         }
 
-        return $this->render('SystemNewsBundle:News:new.html.twig', array(
+        return array (
+            '_template' => 'SystemNewsBundle:News:new.html.twig',
             'entity' => $entity,
             'form'   => $form->createView()
-        ));
+        );
     }
 
     /**
      * Displays a form to edit an existing News entity.
      *
      */
-    public function editAction($id)
+    public function editAction()
     {
+        $id = $_GET['id'];
+        
         $em = $this->getDoctrine()->getEntityManager();
 
         $entity = $em->getRepository('SystemNewsBundle:News')->find($id);
@@ -109,19 +122,22 @@ class NewsController extends Controller
         $editForm = $this->createForm(new NewsType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('SystemNewsBundle:News:edit.html.twig', array(
+        return array (
+            'SystemNewsBundle:News:edit.html.twig',
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+            'delete_form' => $deleteForm->createView()
+        );
     }
 
     /**
      * Edits an existing News entity.
      *
      */
-    public function updateAction($id)
+    public function updateAction()
     {
+        $id = $_GET['id'];
+        
         $em = $this->getDoctrine()->getEntityManager();
 
         $entity = $em->getRepository('SystemNewsBundle:News')->find($id);
@@ -144,19 +160,22 @@ class NewsController extends Controller
             return $this->redirect($this->generateUrl('news_edit', array('id' => $id)));
         }
 
-        return $this->render('SystemNewsBundle:News:edit.html.twig', array(
+        return array (
+            'SystemNewsBundle:News:edit.html.twig',
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+            'delete_form' => $deleteForm->createView()
+        );
     }
 
     /**
      * Deletes a News entity.
      *
      */
-    public function deleteAction($id)
+    public function deleteAction()
     {
+        $id = $_GET['id'];
+        
         $form = $this->createDeleteForm($id);
         $request = $this->getRequest();
 
@@ -178,7 +197,7 @@ class NewsController extends Controller
     }
 
     private function createDeleteForm($id)
-    {
+    {        
         return $this->createFormBuilder(array('id' => $id))
             ->add('id', 'hidden')
             ->getForm()

@@ -13,6 +13,10 @@ news_show:
 news_create:
     pattern: /news/create
     defaults: { _controller: SystemNewsBundle:News:create }
+
+news_edit:
+    pattern: /news/edit
+    defaults: { _controller: SystemNewsBundle:News:edit }
     
 news_update:
     pattern: /news/update

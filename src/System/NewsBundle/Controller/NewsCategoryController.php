@@ -3,6 +3,7 @@
 namespace System\NewsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Core\CoreBaseBundle\Controller\AbstractModuleController;
 
 use System\NewsBundle\Entity\NewsCategory;
 use System\NewsBundle\Form\NewsCategoryType;
@@ -11,7 +12,7 @@ use System\NewsBundle\Form\NewsCategoryType;
  * NewsCategory controller.
  *
  */
-class NewsCategoryController extends Controller
+class NewsCategoryController extends AbstractModuleController
 {
     /**
      * Lists all NewsCategory entities.
@@ -23,9 +24,10 @@ class NewsCategoryController extends Controller
 
         $entities = $em->getRepository('SystemNewsBundle:NewsCategory')->findAll();
 
-        return $this->render('SystemNewsBundle:NewsCategory:index.html.twig', array(
+        return array (
+            'SystemNewsBundle:NewsCategory:index.html.twig',
             'entities' => $entities
-        ));
+        );
     }
 
     /**
@@ -46,11 +48,11 @@ class NewsCategoryController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('SystemNewsBundle:NewsCategory:show.html.twig', array(
+        return array (
+            'SystemNewsBundle:NewsCategory:show.html.twig',
             'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-
-        ));
+            'delete_form' => $deleteForm->createView()
+        );
     }
 
     /**
@@ -62,10 +64,11 @@ class NewsCategoryController extends Controller
         $entity = new NewsCategory();
         $form   = $this->createForm(new NewsCategoryType(), $entity);
 
-        return $this->render('SystemNewsBundle:NewsCategory:new.html.twig', array(
+        return array (
+            'SystemNewsBundle:NewsCategory:new.html.twig',
             'entity' => $entity,
             'form'   => $form->createView()
-        ));
+        );
     }
 
     /**
@@ -88,10 +91,11 @@ class NewsCategoryController extends Controller
             
         }
 
-        return $this->render('SystemNewsBundle:NewsCategory:new.html.twig', array(
+        return array (
+            'SystemNewsBundle:NewsCategory:new.html.twig',
             'entity' => $entity,
             'form'   => $form->createView()
-        ));
+        );
     }
 
     /**
@@ -112,11 +116,11 @@ class NewsCategoryController extends Controller
         $editForm = $this->createForm(new NewsCategoryType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('SystemNewsBundle:NewsCategory:edit.html.twig', array(
+        return array ('SystemNewsBundle:NewsCategory:edit.html.twig',
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        ));
+        );
     }
 
     /**
@@ -147,11 +151,11 @@ class NewsCategoryController extends Controller
             return $this->redirect($this->generateUrl('newscategory_edit', array('id' => $id)));
         }
 
-        return $this->render('SystemNewsBundle:NewsCategory:edit.html.twig', array(
+        return array ('SystemNewsBundle:NewsCategory:edit.html.twig',
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
+            'delete_form' => $deleteForm->createView()
+        );
     }
 
     /**

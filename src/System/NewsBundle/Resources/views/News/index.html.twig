@@ -19,7 +19,7 @@
         </tr>
     </thead>
     <tbody>
-    {% for entity in entities %}
+    {% for entity in main_content['entities'] %}
         <tr>
             <td><a href="{{ path('news_show', { 'id': entity.id }) }}">{{ entity.title }}</a></td>
             <td>{{ entity.subtitle }}</td>

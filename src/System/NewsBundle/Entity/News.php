@@ -4,6 +4,8 @@ namespace System\NewsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Core\CoreBaseBundle\Entity\BaseEntity;
+use DateTime;
+use DateInterval;
 
 /**
  * Date: 03.08.12
@@ -223,5 +225,15 @@ use Core\CoreBaseBundle\Entity\BaseEntity;
     public function getNewsCategory()
     {
         return $this->newsCategory;
+    }
+    
+    
+    public function __construct() {
+        $date_start = new DateTime();
+        $this->setStartDate($date_start);
+        $date_end = new DateTime();
+        $date_end->add(new DateInterval('P7D'));
+        $this->setEndDate($date_end);
+        $this->setCommentsAllowed(true);
     }
 }

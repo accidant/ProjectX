@@ -25,8 +25,8 @@ class NewsCategoryController extends AbstractModuleController
         $entities = $em->getRepository('SystemNewsBundle:NewsCategory')->findAll();
 
         return array (
-            'SystemNewsBundle:NewsCategory:index.html.twig',
-            'entities' => $entities
+            '_template' => 'SystemNewsBundle:NewsCategory:index.html.twig',
+            'entities'  => $entities
         );
     }
 
@@ -49,7 +49,7 @@ class NewsCategoryController extends AbstractModuleController
         $deleteForm = $this->createDeleteForm($id);
 
         return array (
-            'SystemNewsBundle:NewsCategory:show.html.twig',
+            '_template'   => 'SystemNewsBundle:NewsCategory:show.html.twig',
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView()
         );
@@ -65,9 +65,9 @@ class NewsCategoryController extends AbstractModuleController
         $form   = $this->createForm(new NewsCategoryType(), $entity);
 
         return array (
-            'SystemNewsBundle:NewsCategory:new.html.twig',
-            'entity' => $entity,
-            'form'   => $form->createView()
+            '_template' => 'SystemNewsBundle:NewsCategory:new.html.twig',
+            'entity'    => $entity,
+            'form'      => $form->createView()
         );
     }
 
@@ -89,14 +89,14 @@ class NewsCategoryController extends AbstractModuleController
             
             return array (
                 'method' => 'redirect',
-                'url' => $this->generateUrl('newscategory_show', array('id' => $entity->getId())),
+                'url'    => $this->generateUrl('newscategory_show', array('id' => $entity->getId())),
             );
         }
 
         return array (
             '_template' => 'SystemNewsBundle:NewsCategory:new.html.twig',
-            'entity' => $entity,
-            'form'   => $form->createView()
+            'entity'    => $entity,
+            'form'      => $form->createView()
         );
     }
 
@@ -119,7 +119,7 @@ class NewsCategoryController extends AbstractModuleController
         $deleteForm = $this->createDeleteForm($id);
 
         return array (
-            '_template' => 'SystemNewsBundle:NewsCategory:edit.html.twig',
+            '_template'   => 'SystemNewsBundle:NewsCategory:edit.html.twig',
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView()
@@ -156,12 +156,12 @@ class NewsCategoryController extends AbstractModuleController
 
             return array (
                 'method' => 'redirect',
-                'url' => $this->generateUrl('newscategory_edit', array('id' => $id))
+                'url'    => $this->generateUrl('newscategory_edit', array('id' => $id))
             );
         }
 
         return array (
-            '_template' => 'SystemNewsBundle:NewsCategory:edit.html.twig',
+            '_template'   => 'SystemNewsBundle:NewsCategory:edit.html.twig',
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView()
@@ -195,7 +195,7 @@ class NewsCategoryController extends AbstractModuleController
 
         return array (
             'method' => 'redirect',
-            'url' => $this->generateUrl('newscategory')
+            'url'    => $this->generateUrl('newscategory')
         );
     }
 

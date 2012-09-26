@@ -44,6 +44,15 @@ h3{
     padding: 0px;
 }
 
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
 /******************
 * Header
 ******************/
@@ -373,12 +382,15 @@ h3{
 }
 
 .table tbody tr:hover{
-    color: #94b52c;
+    color: #94b52c !important;
 }
 .table tbody tr:nth-child(even){
     background: #ececec;
 }
 
+.table .checkbox {
+    margin-right: 10px;
+}
 
 /*************************
 * Action Icons
@@ -389,6 +401,14 @@ a.icon{
     height: 24px;
     margin: 0 8px 0 0;
     width: 24px;
+}
+
+a.icon_cb{
+    display: block;
+    float: left;
+    height: 17px;
+    margin: 0 8px 0 0;
+    width: 17px;
 }
 
 a.icon-edit	{
@@ -421,7 +441,12 @@ a.icon-check	{
 a:hover.icon-check	{
     background: url(../images/table/table_icon_5.gif) 0 -24px;
 }
-
+a.icon-checkbox {
+    background: url(../images/shared/checkbox.gif) 0 -17px;
+}
+a:active.icon-checkbox {
+    background: url(../images/shared/checkbox.gif) no-repeat;
+}
 /*********************
 * Formular
 *********************/
@@ -513,5 +538,21 @@ a:hover.icon-check	{
     width: 120px;
     padding: 8px 0 6px 10px;
     font-weight: bold;
+}
+
+/*********************
+* Buttons
+*********************/
+
+.button {
+    display: block;
+    cursor: pointer;
+    display: block;
+    float: left;
+    padding: 5px 6px;
+    background-color: #6a6a6a;
+    color: #fff;
+    border: 1px solid #AAAAAA;
+    border-radius: 6px 6px 6px 6px;
 }
 

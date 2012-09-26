@@ -1,8 +1,20 @@
 <h1>News list</h1>
 
-<table class="records_list">
+{% if main_content['entities']|length==0 %}
+<div class="message info">
+        <div class="content"> Noch keine News vorhanden! </div>
+        <div class="close">
+            <a href="#">
+                <img alt="close" src="/ProjectX/web/bundles/coreentrance/images/table/icon_close_info.gif">
+            </a>
+        </div>
+        <div class="clear"></div>
+</div>
+{% else %}
+<table class="table records_list">
     <thead>
         <tr>
+            <th></th>
             <th>Title</th>
             <th>Subtitle</th>
             <th>Content</th>
@@ -13,45 +25,45 @@
             <th>Id</th>
             <th>Createdate</th>
             <th>Updatedate</th>
-            <th>Hidden</th>
-            <th>Deleted</th>
-            <th>Actions</th>
+            <th class="actions">Actions</th>
         </tr>
     </thead>
     <tbody>
     {% for entity in main_content['entities'] %}
+        {% if entity.deleted == false %}
         <tr>
+            <td><a class="icon_cb icon-checkbox info-tooltip" title="Checkbox"></a></td>
             <td><a href="{{ path('news_show', { 'id': entity.id }) }}">{{ entity.title }}</a></td>
             <td>{{ entity.subtitle }}</td>
             <td>{{ entity.content }}</td>
             <td>{% if entity.startDate %}{{ entity.startDate|date('Y-m-d H:i:s') }}{% endif %}</td>
             <td>{% if entity.endDate %}{{ entity.endDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-            <td>{{ entity.published }}</td>
-            <td>{{ entity.commentsAllowed }}</td>
+            <td>{% if entity.published %}yes{% else %}no{% endif %}</td>
+            <td>{% if entity.commentsAllowed %}yes{% else %}no{% endif %}</td>
             <td>{{ entity.id }}</td>
             <td>{% if entity.createDate %}{{ entity.createDate|date('Y-m-d H:i:s') }}{% endif %}</td>
             <td>{% if entity.updateDate %}{{ entity.updateDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-            <td>{{ entity.hidden }}</td>
-            <td>{{ entity.deleted }}</td>
             <td>
                 <ul>
                     <li>
-                        <a href="{{ path('news_show', { 'id': entity.id }) }}">show</a>
+                        <a href="{{ path('news_edit', { 'id': entity.id }) }}" class="icon icon-edit info-tooltip" title="Edit"></a>
                     </li>
                     <li>
-                        <a href="{{ path('news_edit', { 'id': entity.id }) }}">edit</a>
+                        <a href="{{ path('news_delete', { 'id': entity.id }) }}" class="icon icon-delete info-tooltip" title="Delete"></a>
                     </li>
                 </ul>
             </td>
         </tr>
+        {% endif %}
     {% endfor %}
     </tbody>
 </table>
+{% endif %}
 
 <ul>
     <li>
-        <a href="{{ path('news_new') }}">
-            Create a new entry
+        <a href="{{ path('news_new') }}" class="button">
+            Create News
         </a>
     </li>
 </ul>

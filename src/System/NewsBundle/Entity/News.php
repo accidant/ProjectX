@@ -229,6 +229,7 @@ use DateInterval;
     
     
     public function __construct() {
+        $this->setCreateDate(new DateTime());
         $date_start = new DateTime();
         $this->setStartDate($date_start);
         $date_end = new DateTime();

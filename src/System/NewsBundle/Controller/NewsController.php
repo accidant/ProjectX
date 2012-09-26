@@ -26,7 +26,7 @@ class NewsController extends AbstractModuleController
 
         return array (
             '_template' => 'SystemNewsBundle:News:index.html.twig',
-            'entities' => $entities
+            'entities'  => $entities
         );
     }
 
@@ -36,7 +36,7 @@ class NewsController extends AbstractModuleController
      */
     public function showAction()
     {
-		$id = $_GET['id'];
+        $id = $_GET['id'];
         $em = $this->getDoctrine()->getEntityManager();
 
         $entity = $em->getRepository('SystemNewsBundle:News')->find($id);
@@ -48,7 +48,7 @@ class NewsController extends AbstractModuleController
         $deleteForm = $this->createDeleteForm($id);
 
         return array (
-            '_template' => 'SystemNewsBundle:News:show.html.twig',
+            '_template'   => 'SystemNewsBundle:News:show.html.twig',
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView()
         );
@@ -62,11 +62,15 @@ class NewsController extends AbstractModuleController
     {
         $entity = new News();
         $form   = $this->createForm(new NewsType(), $entity);
-
+        $em = $this->getDoctrine()->getEntityManager();
+        $newsCategories = $em->getRepository('SystemNewsBundle:NewsCategory')->findAll();
+        $em->flush();
+      
         return array (
-            '_template' => 'SystemNewsBundle:News:new.html.twig',
-            'entity' => $entity,
-            'form'   => $form->createView()
+            '_template'       => 'SystemNewsBundle:News:new.html.twig',
+            'entity'          => $entity,
+            'newsCategories'  => $newsCategories,
+            'form'            => $form->createView()
         );
     }
 
@@ -88,15 +92,14 @@ class NewsController extends AbstractModuleController
 
             return array (
                 'method' => 'redirect',
-                'url' => $this->generateUrl('news_show', array('id' => $entity->getId()))
+                'url'    => $this->generateUrl('news_show', array('id' => $entity->getId()))
             );
             
         }
-
         return array (
             '_template' => 'SystemNewsBundle:News:new.html.twig',
-            'entity' => $entity,
-            'form'   => $form->createView()
+            'entity'    => $entity,
+            'form'      => $form->createView()
         );
     }
 
@@ -120,7 +123,7 @@ class NewsController extends AbstractModuleController
         $deleteForm = $this->createDeleteForm($id);
 
         return array (
-            'SystemNewsBundle:News:edit.html.twig',
+            '_template'   => 'SystemNewsBundle:News:edit.html.twig',
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView()
@@ -156,12 +159,12 @@ class NewsController extends AbstractModuleController
             
             return array (
                 'method' => 'redirect',
-                'url' => $this->generateUrl('news_edit', array('id' => $id))
+                'url'    => $this->generateUrl('news_edit', array('id' => $id))
             );
         }
 
         return array (
-            '_template' => 'SystemNewsBundle:News:edit.html.twig',
+            '_template'   => 'SystemNewsBundle:News:edit.html.twig',
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView()
@@ -175,13 +178,12 @@ class NewsController extends AbstractModuleController
     public function deleteAction()
     {
         $id = $_GET['id'];
-        
-        $form = $this->createDeleteForm($id);
+        /*$form = $this->createDeleteForm($id);
         $request = $this->getRequest();
 
         $form->bindRequest($request);
-
-        if ($form->isValid()) {
+        
+        if ($form->isValid()) {*/
             $em = $this->getDoctrine()->getEntityManager();
             $entity = $em->getRepository('SystemNewsBundle:News')->find($id);
 
@@ -191,9 +193,12 @@ class NewsController extends AbstractModuleController
 
             $em->remove($entity);
             $em->flush();
-        }
-
-        return $this->redirect($this->generateUrl('news'));
+        //}
+        
+        return array (
+            'method' => 'redirect',
+            'url'    => $this->generateUrl('news')
+        );
     }
 
     private function createDeleteForm($id)

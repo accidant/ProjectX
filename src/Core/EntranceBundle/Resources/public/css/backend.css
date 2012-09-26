@@ -540,6 +540,10 @@ a:active.icon-checkbox {
     font-weight: bold;
 }
 
+.form .checkbox {
+    margin-top: 10px;
+}
+
 /*********************
 * Buttons
 *********************/

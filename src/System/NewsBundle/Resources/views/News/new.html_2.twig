@@ -1,0 +1,33 @@
+<div id="page-heading">
+	<h1>Titel von Formulartest</h1>
+</div>
+
+<div class="content-box-outer">
+	<div class="content-box">
+		<div class="content-box-content">
+			<form action="{{ path('news_create') }}" method="post" class="form" {{ form_enctype(main_content['form']) }}>
+                        {% set idx = 0 %}
+                        {% for element in main_content['form'] %}
+                            <div class="col">    
+                            {{ form_row(element) }}
+                            </div>
+                            {% if idx==0 or idx==3 or idx==4 or idx==5 or idx==6 %}
+                            <div class="clear"></div>
+                            {% endif %}
+                            {% set idx = idx+1 %}
+                        {% endfor %}
+                        <p>
+                            <button type="submit">Create</button>
+                        </p>
+                    </form>
+
+                    <ul class="record_actions">
+                        <li>
+                            <a href="{{ path('news') }}">
+                                Back to the list
+                            </a>
+                        </li>
+                    </ul>
+		</div>
+	</div>
+</div>

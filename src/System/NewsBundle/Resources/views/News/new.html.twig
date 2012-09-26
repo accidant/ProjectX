@@ -1,21 +1,106 @@
+<script>
+    function setHiddenFields() {
+        var startDate = document.getElementById("startDate");
+        document.getElementById("system_newsbundle_newstype_startDate_date_year").firstElementChild.value=startDate.value.substr(0,4);
+        document.getElementById("system_newsbundle_newstype_startDate_date_month").firstElementChild.value=startDate.value.substr(5,2);
+        document.getElementById("system_newsbundle_newstype_startDate_date_day").firstElementChild.value=startDate.value.substr(8,2);
+        document.getElementById("system_newsbundle_newstype_startDate_time_hour").firstElementChild.value=startDate.value.substr(11,2);
+        document.getElementById("system_newsbundle_newstype_startDate_time_minute").firstElementChild.value=startDate.value.substr(14,2);
+        
+        var endDate = document.getElementById("endDate");
+        document.getElementById("system_newsbundle_newstype_endDate_date_year").firstElementChild.value=endDate.value.substr(0,4);
+        document.getElementById("system_newsbundle_newstype_endDate_date_month").firstElementChild.value=endDate.value.substr(5,2);
+        document.getElementById("system_newsbundle_newstype_endDate_date_day").firstElementChild.value=endDate.value.substr(8,2);
+        document.getElementById("system_newsbundle_newstype_endDate_time_hour").firstElementChild.value=endDate.value.substr(11,2);
+        document.getElementById("system_newsbundle_newstype_endDate_time_minute").firstElementChild.value=endDate.value.substr(14,2);
+    } 
+</script>
+
 <div id="page-heading">
-	<h1>Titel von Formulartest</h1>
+	<h1>Create News</h1>
 </div>
 
 <div class="content-box-outer">
 	<div class="content-box">
 		<div class="content-box-content">
 			<form action="{{ path('news_create') }}" method="post" class="form" {{ form_enctype(main_content['form']) }}>
-                        {% set idx = 0 %}
-                        {% for element in main_content['form'] %}
-                            <div class="col">    
-                            {{ form_row(element) }}
+                            <div id="system_newsbundle_newstype">
+                                {% for element in main_content['form'] if loop.first %}
+                                <div class="col">    
+                                    {{ form_row(element) }}
+                                </div>
+                                <div class="clear"></div>
+                                {% endfor %}
+                                <div class="col">
+                                    <label>Title:</label>
+                                    <input type="text" id="system_newsbundle_newstype_title" name="system_newsbundle_newstype[title]" required="required" />
+                                </div>
+                                <div class="col">
+                                    <label>Subtitle:</label>
+                                    <input type="text" id="system_newsbundle_newstype_subtitle" name="system_newsbundle_newstype[subtitle]" required="required" />
+                                </div>
+                                <div class="clear"></div>
+                                <div class="col">
+                                    <label>Content:</label>
+                                    <textarea id="system_newsbundle_newstype_content" name="system_newsbundle_newstype[content]" required="required"></textarea>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="col">
+                                    <label>Startdate:</label>
+                                    <input type="text" id="startDate" onchange="setHiddenFields();" value="{% if main_content['entity'].startDate!="" %}{{ main_content['entity'].startDate.date }} {% endif %}" />
+                                </div>
+                                <div class="col">
+                                    <div id="system_newsbundle_newstype_startDate">
+                                        <div id="system_newsbundle_newstype_startDate_date">
+                                            <input id="system_newsbundle_newstype_startDate_date_year" name="system_newsbundle_newstype[startDate][date][year]" type="hidden" value="{{main_content['entity'].startDate.date|slice(0, 4)}}" />
+                                            <input id="system_newsbundle_newstype_startDate_date_month" name="system_newsbundle_newstype[startDate][date][month]" type="hidden" value="{{main_content['entity'].startDate.date|slice(5, 2)}}" />
+                                            <input id="system_newsbundle_newstype_startDate_date_day" name="system_newsbundle_newstype[startDate][date][day]" type="hidden" value="{{main_content['entity'].startDate.date|slice(8, 2)}}" />
+                                        </div>    
+                                        <div id="system_newsbundle_newstype_startDate_time">
+                                            <input id="system_newsbundle_newstype_startDate_time_hour" name="system_newsbundle_newstype[startDate][time][hour]" type="hidden" value="{{main_content['entity'].startDate.date|slice(11, 2)}}" />
+                                            <input id="system_newsbundle_newstype_startDate_time_minute" name="system_newsbundle_newstype[startDate][time][minute]" type="hidden" value="{{main_content['entity'].startDate.date|slice(14, 2)}}" />
+                                        </div>   
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label>Enddate:</label>
+                                    <input type="text" id="endDate" value="{% if main_content['entity'].endDate!="" %}{{ main_content['entity'].endDate.date }} {% endif %}" />
+                                </div>
+                                <div class="col">
+                                    <div id="system_newsbundle_newstype_endDate">
+                                        <div id="system_newsbundle_newstype_endDate_date">
+                                            <input id="system_newsbundle_newstype_endDate_date_year" name="system_newsbundle_newstype[endDate][date][year]" type="hidden" value="{{main_content['entity'].endDate.date|slice(0, 4)}}" />
+                                            <input id="system_newsbundle_newstype_endDate_date_month" name="system_newsbundle_newstype[endDate][date][month]" type="hidden" value="{{main_content['entity'].endDate.date|slice(5, 2)}}" />
+                                            <input id="system_newsbundle_newstype_endDate_date_day" name="system_newsbundle_newstype[endDate][date][day]" type="hidden" value="{{main_content['entity'].endDate.date|slice(8, 2)}}" />
+                                        </div>    
+                                        <div id="system_newsbundle_newstype_endDate_time">
+                                            <input id="system_newsbundle_newstype_endDate_time_hour" name="system_newsbundle_newstype[endDate][time][hour]" type="hidden" value="{{main_content['entity'].endDate.date|slice(11, 2)}}" />
+                                            <input id="system_newsbundle_newstype_endDate_time_minute" name="system_newsbundle_newstype[endDate][time][hour]" type="hidden" value="{{main_content['entity'].endDate.date|slice(14, 2)}}" />
+                                        </div>   
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="col">
+                                    <label>Allow Comments:</label>
+                                    <input type="checkbox" class="checkbox" id="system_newsbundle_newstype_commentsAllowed" name="system_newsbundle_newstype[commentsAllowed]" />
+                                </div>
+                                <div class="col">
+                                    <label>Publish:</label>
+                                    <input type="checkbox" class="checkbox" id="system_newsbundle_newstype_published" name="system_newsbundle_newstype[published]" />
+                                </div>
+                                <div class="clear"></div>
+                                <div class="col">
+                                    <label>News Category:</label>
+                                    <select id="system_newsbundle_newstype_newsCategory" name="system_newsbundle_newstype[newsCategory]" required="required">
+                                        {% set i=1 %}
+                                        {% for newsCategory in main_content['newsCategories'] %}
+                                            <option value={{ i }}>{{ newsCategory.name }}</option>
+                                            {% set i=i+1 %}
+                                        {% endfor %}    
+                                    </select>      
+                                </div>
+                                <div class="clear"></div>
                             </div>
-                            {% if idx==0 or idx==3 or idx==4 or idx==5 or idx==6 %}
-                            <div class="clear"></div>
-                            {% endif %}
-                            {% set idx = idx+1 %}
-                        {% endfor %}
                         <p>
                             <button type="submit">Create</button>
                         </p>

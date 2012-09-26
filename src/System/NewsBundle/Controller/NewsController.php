@@ -65,7 +65,6 @@ class NewsController extends AbstractModuleController
         $em = $this->getDoctrine()->getEntityManager();
         $newsCategories = $em->getRepository('SystemNewsBundle:NewsCategory')->findAll();
         $em->flush();
-      
         return array (
             '_template'       => 'SystemNewsBundle:News:new.html.twig',
             'entity'          => $entity,
@@ -83,8 +82,9 @@ class NewsController extends AbstractModuleController
         $entity  = new News();
         $request = $this->getRequest();
         $form    = $this->createForm(new NewsType(), $entity);
+          //      var_dump($form['_token']);exit;
         $form->bindRequest($request);
-
+        var_dump($form->isValid());exit;
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
             $em->persist($entity);
@@ -96,10 +96,17 @@ class NewsController extends AbstractModuleController
             );
             
         }
+        $em = $this->getDoctrine()->getEntityManager();
+        $newsCategories = $em->getRepository('SystemNewsBundle:NewsCategory')->findAll();
+        $em->flush();
+        
+        // needed if form was invalid
+        $entity = new News();
         return array (
-            '_template' => 'SystemNewsBundle:News:new.html.twig',
-            'entity'    => $entity,
-            'form'      => $form->createView()
+            '_template'    => 'SystemNewsBundle:News:new.html.twig',
+            'entity'       => $entity,
+            'newsCategories' => $newsCategories,
+            'form'         => $form->createView()
         );
     }
 

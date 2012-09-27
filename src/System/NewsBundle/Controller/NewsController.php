@@ -117,6 +117,14 @@ class NewsController extends AbstractModuleController
     public function editAction()
     {
         $id = $_GET['id'];
+        $message = "";
+        $status = false;
+        if (isset($_GET['message'])) {
+            $message = $_GET['message'];
+        }
+        if (isset($_GET['status'])) {
+            $status = $_GET['status'];
+        }
         
         $em = $this->getDoctrine()->getEntityManager();
 
@@ -128,12 +136,20 @@ class NewsController extends AbstractModuleController
 
         $editForm = $this->createForm(new NewsType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
+        
+        
+        $em = $this->getDoctrine()->getEntityManager();
+        $newsCategories = $em->getRepository('SystemNewsBundle:NewsCategory')->findAll();
+        $em->flush();
 
         return array (
-            '_template'   => 'SystemNewsBundle:News:edit.html.twig',
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView()
+            '_template'      => 'SystemNewsBundle:News:edit.html.twig',
+            'message'        => $message,
+            'status'         => $status,
+            'entity'         => $entity,
+            'newsCategories' => $newsCategories,
+            'edit_form'      => $editForm->createView(),
+            'delete_form'    => $deleteForm->createView()
         );
     }
 
@@ -159,6 +175,11 @@ class NewsController extends AbstractModuleController
         $request = $this->getRequest();
 
         $editForm->bindRequest($request);
+        
+        
+        $em = $this->getDoctrine()->getEntityManager();
+        $newsCategories = $em->getRepository('SystemNewsBundle:NewsCategory')->findAll();
+        $em->flush();
 
         if ($editForm->isValid()) {
             $em->persist($entity);
@@ -166,15 +187,18 @@ class NewsController extends AbstractModuleController
             
             return array (
                 'method' => 'redirect',
-                'url'    => $this->generateUrl('news_edit', array('id' => $id))
+                'url'    => $this->generateUrl('news_edit', array('id' => $id, 'message' => 'News updated successfully', 'status' => true))
             );
         }
 
         return array (
-            '_template'   => 'SystemNewsBundle:News:edit.html.twig',
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView()
+            '_template'      => 'SystemNewsBundle:News:edit.html.twig',
+            'entity'         => $entity,
+            'message'        => 'News update failed',
+            'status'         => false,
+            'newsCategories' => $newsCategories,
+            'edit_form'      => $editForm->createView(),
+            'delete_form'    => $deleteForm->createView()
         );
     }
 

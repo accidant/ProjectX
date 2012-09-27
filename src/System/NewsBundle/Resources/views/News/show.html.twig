@@ -12,7 +12,7 @@
         </tr>
         <tr>
             <td class="label">Content</td>
-            <td>{{ main_content['entity'].content }}</td>
+            <td>{% autoescape false %}{{ main_content['entity'].content }}{% endautoescape %}</td>
         </tr>
         <tr>
             <td class="label">Startdate</td>

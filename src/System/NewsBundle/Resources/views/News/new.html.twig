@@ -75,7 +75,7 @@
                                         </div>    
                                         <div id="system_newsbundle_newstype_endDate_time">
                                             <input id="system_newsbundle_newstype_endDate_time_hour" name="system_newsbundle_newstype[endDate][time][hour]" type="hidden" value="{{main_content['entity'].endDate.date|slice(11, 2)}}" />
-                                            <input id="system_newsbundle_newstype_endDate_time_minute" name="system_newsbundle_newstype[endDate][time][hour]" type="hidden" value="{{main_content['entity'].endDate.date|slice(14, 2)}}" />
+                                            <input id="system_newsbundle_newstype_endDate_time_minute" name="system_newsbundle_newstype[endDate][time][minute]" type="hidden" value="{{main_content['entity'].endDate.date|slice(14, 2)}}" />
                                         </div>   
                                     </div>
                                 </div>
@@ -108,7 +108,7 @@
 
                     <ul class="record_actions">
                         <li>
-                            <a href="{{ path('news') }}">
+                            <a href="{{ path('news') }}" class="button">
                                 Back to the list
                             </a>
                         </li>

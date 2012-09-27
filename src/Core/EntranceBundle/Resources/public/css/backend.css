@@ -407,7 +407,7 @@ a.icon_cb{
     display: block;
     float: left;
     height: 17px;
-    margin: 0 8px 0 0;
+    margin: 0 5px 0 -3px;
     width: 17px;
 }
 
@@ -560,3 +560,10 @@ a:active.icon-checkbox {
     border-radius: 6px 6px 6px 6px;
 }
 
+
+/***********************/
+
+.record_properties .label{
+    width: 150px;
+    font-weight: bold;
+}

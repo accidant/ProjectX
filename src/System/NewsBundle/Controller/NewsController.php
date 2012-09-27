@@ -84,7 +84,7 @@ class NewsController extends AbstractModuleController
         $form    = $this->createForm(new NewsType(), $entity);
           //      var_dump($form['_token']);exit;
         $form->bindRequest($request);
-        var_dump($form->isValid());exit;
+
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
             $em->persist($entity);

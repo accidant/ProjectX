@@ -558,6 +558,9 @@ a:active.icon-checkbox {
     color: #fff;
     border: 1px solid #AAAAAA;
     border-radius: 6px 6px 6px 6px;
+    min-width: 50px;
+    text-align: center;
+    margin: 0 5px;
 }
 
 

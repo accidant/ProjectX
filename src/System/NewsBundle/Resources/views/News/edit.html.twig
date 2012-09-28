@@ -126,22 +126,15 @@
                                     </select>      
                                 </div>
                                 <div class="clear"></div>
+                                <div class="col no-label">
+                                        <input type="submit" value="Update" />
+                                        <a href="{{ path('news_delete', { 'id': main_content['entity'].id }) }}" class="button">Delete</a>
+                                        <a href="{{ path('news') }}" class="button">Back</a>
+                                </div>
+                                <div class="clear"></div>
                             </div>
-                        <p>
-                            <button type="submit">Update</button>
-                        </p>
+                        
                     </form>
-
-                    <ul class="record_actions">
-                        <li>
-                            <a href="{{ path('news_delete', { 'id': main_content['entity'].id }) }}" class="icon icon-delete info-tooltip" title="Delete"></a>
-                        </li>
-                        <li>
-                            <a href="{{ path('news') }}" class="button">
-                                Back to the list
-                            </a>
-                        </li>
-                    </ul>
 		</div>
 	</div>
 </div>

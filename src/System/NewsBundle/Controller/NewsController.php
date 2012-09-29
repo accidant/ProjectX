@@ -20,13 +20,24 @@ class NewsController extends AbstractModuleController
      */
     public function indexAction()
     {
+        $message = "";
+        $status = false;
+        if (isset($_GET['message'])) {
+            $message = $_GET['message'];
+        }
+        if (isset($_GET['status'])) {
+            $status = $_GET['status'];
+        }
+        
         $em = $this->getDoctrine()->getEntityManager();
 
         $entities = $em->getRepository('SystemNewsBundle:News')->findAll();
 
         return array (
             '_template' => 'SystemNewsBundle:News:index.html.twig',
-            'entities'  => $entities
+            'entities'  => $entities,
+            'message'   => $message,
+            'status'    => $status
         );
     }
 
@@ -187,7 +198,7 @@ class NewsController extends AbstractModuleController
             
             return array (
                 'method' => 'redirect',
-                'url'    => $this->generateUrl('news_edit', array('id' => $id, 'message' => 'News updated successfully', 'status' => true))
+                'url'    => $this->generateUrl('news_edit', array('id' => $id, 'message' => 'News successfully updated', 'status' => true))
             );
         }
 
@@ -228,7 +239,7 @@ class NewsController extends AbstractModuleController
         
         return array (
             'method' => 'redirect',
-            'url'    => $this->generateUrl('news')
+            'url'    => $this->generateUrl('news', array('message' => 'News successfully deleted', 'status' => true))
         );
     }
 

@@ -11,6 +11,10 @@
             <td>{{ main_content['entity'].subtitle }}</td>
         </tr>
         <tr>
+            <td class="label">News Category</td>
+            <td>{{ main_content['entity'].newsCategory }}</td>
+        </tr>
+        <tr>
             <td class="label">Content</td>
             <td>{% autoescape false %}{{ main_content['entity'].content }}{% endautoescape %}</td>
         </tr>

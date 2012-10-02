@@ -18,7 +18,7 @@ use Core\CoreBaseBundle\Entity\BaseEntity;
  
 	/**
 	 * @var string
-	 * @ORM\Column(type="string")
+	 * @ORM\Column(type="string", unique=true)
 	 */
 	private $name;
 	

@@ -1,47 +1,79 @@
-<h1>NewsCategory list</h1>
+<script>
+    function hideMessage(type) {
+        document.getElementsByClassName(type)[0].style.display="none";
+    }
+</script>
 
-<table class="records_list">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Id</th>
-            <th>Createdate</th>
-            <th>Updatedate</th>
-            <th>Hidden</th>
-            <th>Deleted</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-    {% for entity in main_content['entities'] %}
-        <tr>
-            <td><a href="{{ path('newscategory_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
-            <td>{{ entity.description }}</td>
-            <td>{{ entity.id }}</td>
-            <td>{% if entity.createDate %}{{ entity.createDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-            <td>{% if entity.updateDate %}{{ entity.updateDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-            <td>{{ entity.hidden }}</td>
-            <td>{{ entity.deleted }}</td>
-            <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('newscategory_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('newscategory_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-            </td>
-        </tr>
-    {% endfor %}
-    </tbody>
-</table>
+<div id="page-heading">
+    <h1>News Category list</h1>
+</div>
 
-<ul>
-    <li>
-        <a href="{{ path('newscategory_new') }}">
-            Create a new entry
-        </a>
-    </li>
-</ul>
+<div class="content-box-outer">
+	<div class="content-box">
+		<div class="content-box-content">
+                   {% if main_content['status'] and main_content['message'] != "" %}
+                            <div class="message success">
+                                <div class="content"> {{ main_content['message'] }} </div>
+                                <div class="close">
+                                    <a href="javascript:hideMessage('success')">
+                                        <img alt="close" src="/ProjectX/web/bundles/coreentrance/images/table/icon_close_success.gif">
+                                    </a>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                    {% elseif not main_content['status'] and main_content['message'] != "" %}
+                            <div class="message error">
+                                <div class="content"> {{ main_content['message'] }} </div>
+                                <div class="close">
+                                    <a href="javascript:hideMessage('false')">
+                                        <img alt="close" src="/ProjectX/web/bundles/coreentrance/images/table/icon_close_error.gif">
+                                    </a>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                    {% endif %}
+                    {% if main_content['entities']|length==0 %}
+                        <div class="message info">
+                            <div class="content"> Noch keine News vorhanden! </div>
+                            <div class="close">
+                                <a href="javascript:hideMessage('info')">
+                                    <img alt="close" src="/ProjectX/web/bundles/coreentrance/images/table/icon_close_info.gif">
+                                </a>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    {% else %}
+                        <table class="table records_list">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Createdate</th>
+                                    <th>Updatedate</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for entity in main_content['entities'] %}
+                                <tr>
+                                    <td><a class="icon_cb icon-checkbox info-tooltip" title="Checkbox"></a></td>
+                                    <td><a href="{{ path('newscategory_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+                                    <td>{{ entity.description }}</td>
+                                    <td>{% if entity.createDate %}{{ entity.createDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                    <td>{% if entity.updateDate %}{{ entity.updateDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                    <td>
+                                        <a href="{{ path('newscategory_edit', { 'id': entity.id }) }}" class="icon icon-edit info-tooltip" title="Edit"></a>
+                                        <a href="{{ path('newscategory_delete', { 'id': entity.id }) }}" class="icon icon-delete info-tooltip" title="Delete"></a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <div class="clear"></div>
+                    {% endif %}
+                    <a href="{{ path('newscategory_new') }}" class="button">Create News Category</a>
+                    <div class="clear"></div>
+		</div>
+	</div>
+</div>

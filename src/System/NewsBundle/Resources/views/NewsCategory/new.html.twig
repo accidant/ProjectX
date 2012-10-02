@@ -1,16 +1,37 @@
-<h1>NewsCategory creation</h1>
-
-<form action="{{ path('newscategory_create') }}" method="post" {{ form_enctype(main_content['form']) }}>
-    {{ form_widget(main_content['form']) }}
-    <p>
-        <button type="submit">Create</button>
-    </p>
-</form>
-
-<ul class="record_actions">
-    <li>
-        <a href="{{ path('newscategory') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+<div id="page-heading">
+    <h1>NewsCategory creation</h1>
+</div>   
+    
+<div class="content-box-outer">
+    <div class="content-box">
+        <div class="content-box-content">
+            <div class="col">
+                <form action="{{ path('newscategory_create') }}" method="post" class="form" {{ form_enctype(main_content['form']) }}>
+                    <div id="system_newsbundle_newscategorytype">
+                        {% for element in main_content['form'] if loop.first %}
+                        <div class="col">    
+                            {{ form_row(element) }}
+                        </div>
+                        <div class="clear"></div>
+                        {% endfor %}
+                        <div class="col">
+                            <label>Name:</label>
+                            <input type="text" id="system_newsbundle_newscategorytype_name" name="system_newsbundle_newscategorytype[name]" required="required" />
+                        </div>
+                        <div class="clear"></div>
+                        <div class="col">
+                            <label>Description:</label>
+                            <input type="text" id="system_newsbundle_newscategorytype_description" name="system_newsbundle_newscategorytype[description]" required="required" />
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="col">
+                    <input type="submit" value="Create" />
+                    <a href="{{ path('newscategory') }}" class="button">Back</a>
+                    </div>
+                    <div class="clear"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

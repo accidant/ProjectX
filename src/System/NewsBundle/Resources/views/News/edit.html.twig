@@ -15,11 +15,10 @@
         document.getElementById("system_newsbundle_newstype_endDate_time_minute").value=endDate.value.substr(14,2);
     } 
     
-    function hideMessage() {
-        document.getElementsByClassName("message")[0].style.display="none";
+    function hideMessage(type) {
+        document.getElementsByClassName(type)[0].style.display="none";
     }
 </script>
-
 
 <div id="page-heading">
 	<h1>Edit News</h1>
@@ -32,7 +31,7 @@
                             <div class="message success">
                                 <div class="content"> {{ main_content['message'] }} </div>
                                 <div class="close">
-                                    <a href="javascript:hideMessage()">
+                                    <a href="javascript:hideMessage('success')">
                                         <img alt="close" src="/ProjectX/web/bundles/coreentrance/images/table/icon_close_success.gif">
                                     </a>
                                 </div>
@@ -42,7 +41,7 @@
                             <div class="message error">
                                 <div class="content"> {{ main_content['message'] }} </div>
                                 <div class="close">
-                                    <a href="javascript:hideMessage()">
+                                    <a href="javascript:hideMessage('error')">
                                         <img alt="close" src="/ProjectX/web/bundles/coreentrance/images/table/icon_close_error.gif">
                                     </a>
                                 </div>

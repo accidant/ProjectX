@@ -35,13 +35,13 @@
                     {% if main_content['entities']|length==0 %}
                         <div class="message info">
                             <div class="content"> Noch keine News vorhanden! </div>
-                                <div class="close">
-                                    <a href="javascript:hideMessage('info')">
-                                        <img alt="close" src="/ProjectX/web/bundles/coreentrance/images/table/icon_close_info.gif">
-                                    </a>
-                                </div>
-                                <div class="clear"></div>
+                            <div class="close">
+                                <a href="javascript:hideMessage('info')">
+                                    <img alt="close" src="/ProjectX/web/bundles/coreentrance/images/table/icon_close_info.gif">
+                            </a>
                             </div>
+                            <div class="clear"></div>
+                        </div>
                     {% else %}
                         <table class="table records_list">
                             <thead>
@@ -74,14 +74,8 @@
                                             <td>{% if entity.createDate %}{{ entity.createDate|date('Y-m-d H:i:s') }}{% endif %}</td>
                                             <td>{% if entity.updateDate %}{{ entity.updateDate|date('Y-m-d H:i:s') }}{% endif %}</td>
                                             <td>
-                                                <ul>
-                                                    <li>
-                                                        <a href="{{ path('news_edit', { 'id': entity.id }) }}" class="icon icon-edit info-tooltip" title="Edit"></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="{{ path('news_delete', { 'id': entity.id }) }}" class="icon icon-delete info-tooltip" title="Delete"></a>
-                                                    </li>
-                                                </ul>
+                                                <a href="{{ path('news_edit', { 'id': entity.id }) }}" class="icon icon-edit info-tooltip" title="Edit"></a>
+                                                <a href="{{ path('news_delete', { 'id': entity.id }) }}" class="icon icon-delete info-tooltip" title="Delete"></a>
                                             </td>
                                         </tr>
                                     {% endif %}

@@ -367,6 +367,10 @@ a {
     background: url(../images/table/table_header_repeat.jpg) repeat #393939;
 }
 
+.table thead th:first-of-type {
+    width: 10px;
+}
+
 .table thead th:last-child{
     background: url(../images/table/table_header_options.jpg) no-repeat right top #393939;
 }
@@ -442,7 +446,7 @@ a:hover.icon-check	{
     background: url(../images/table/table_icon_5.gif) 0 -24px;
 }
 a.icon-checkbox {
-    background: url(../images/shared/checkbox.gif) 0 -17px;
+    background: url(../images/shared/checkbox.gif) 0 -17px no-repeat;
 }
 a:active.icon-checkbox {
     background: url(../images/shared/checkbox.gif) no-repeat;

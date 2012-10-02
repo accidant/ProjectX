@@ -1,62 +1,66 @@
-<h1>News</h1>
+<div id="page-heading">
+    <h1>News</h1>
+</div>
 
-<table class="table record_properties">
-    <tbody>
-        <tr>
-            <td class="label">Title</td>
-            <td>{{ main_content['entity'].title }}</td>
-        </tr>
-        <tr>
-            <td class="label">Subtitle</td>
-            <td>{{ main_content['entity'].subtitle }}</td>
-        </tr>
-        <tr>
-            <td class="label">News Category</td>
-            <td>{{ main_content['entity'].newsCategory }}</td>
-        </tr>
-        <tr>
-            <td class="label">Content</td>
-            <td>{% autoescape false %}{{ main_content['entity'].content }}{% endautoescape %}</td>
-        </tr>
-        <tr>
-            <td class="label">Startdate</td>
-            <td>{{ main_content['entity'].startDate|date('Y-m-d H:i:s') }}</td>
-        </tr>
-        <tr>
-            <td class="label">Enddate</td>
-            <td>{{ main_content['entity'].endDate|date('Y-m-d H:i:s') }}</td>
-        </tr>
-        <tr>
-            <td class="label">Published</td>
-            <td>{% if main_content['entity'].published %}yes{% else %}no{% endif %}</td>
-        </tr>
-        <tr>
-            <td class="label">Commentsallowed</td>
-            <td>{% if main_content['entity'].commentsAllowed %}yes{% else %}no{% endif %}</td>
-        </tr>
-        <tr>
-            <td class="label">Createdate</td>
-            <td>{{ main_content['entity'].createDate|date('Y-m-d H:i:s') }}</td>
-        </tr>
-        <tr>
-            <td class="label">Updatedate</td>
-            <td>{{ main_content['entity'].updateDate|date('Y-m-d H:i:s') }}</td>
-        </tr>
-    </tbody>
-</table>
+<div class="content-box-outer">
+    <div class="content-box">
+        <div class="content-box-content">
+            <div class="col">
+                <table class="table record_properties">
+                    <tbody>
+                        <tr>
+                            <td class="label">Title</td>
+                            <td>{{ main_content['entity'].title }}</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Subtitle</td>
+                            <td>{{ main_content['entity'].subtitle }}</td>
+                        </tr>
+                        <tr>
+                            <td class="label">News Category</td>
+                            <td>{{ main_content['entity'].newsCategory }}</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Content</td>
+                            <td>{% autoescape false %}{{ main_content['entity'].content }}{% endautoescape %}</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Startdate</td>
+                            <td>{{ main_content['entity'].startDate|date('Y-m-d H:i:s') }}</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Enddate</td>
+                            <td>{{ main_content['entity'].endDate|date('Y-m-d H:i:s') }}</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Published</td>
+                            <td>{% if main_content['entity'].published %}yes{% else %}no{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Commentsallowed</td>
+                            <td>{% if main_content['entity'].commentsAllowed %}yes{% else %}no{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Createdate</td>
+                            <td>{{ main_content['entity'].createDate|date('Y-m-d H:i:s') }}</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Updatedate</td>
+                            <td>{{ main_content['entity'].updateDate|date('Y-m-d H:i:s') }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col">
+                <a href="{{ path('news') }}" class="icon icon-check info-tooltip" title="Back to list"></a>
+                <a href="{{ path('news_edit', { 'id': main_content['entity'].id }) }}" class="icon icon-edit info-tooltip" title="Edit"></a>
+                <form action="{{ path('news_delete', { 'id': main_content['entity'].id }) }}" method="post">
+                    {{ form_widget(main_content['delete_form']) }}
+                    <a type="submit" href="{{ path('news_delete', { 'id': main_content['entity'].id }) }}" class="icon icon-delete info-tooltip" title="Delete"></a>
+                </form>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
 
-<ul class="record_actions">
-    <li>
-        <a href="{{ path('news') }}" class="icon icon-check info-tooltip" title="Back to list"></a>
-    </li>
-    <li>
-        <a href="{{ path('news_edit', { 'id': main_content['entity'].id }) }}" class="icon icon-edit info-tooltip" title="Edit"></a>
-    </li>
-    <li>
-        <form action="{{ path('news_delete', { 'id': main_content['entity'].id }) }}" method="post">
-            {{ form_widget(main_content['delete_form']) }}
-            <a type="submit" href="{{ path('news_delete', { 'id': main_content['entity'].id }) }}" class="icon icon-delete info-tooltip" title="Delete"></a>
-            <!--button type="submit">Delete</button-->
-        </form>
-    </li>
-</ul>

@@ -128,6 +128,7 @@ class NewsController extends AbstractModuleController
     public function editAction()
     {
         $id = $_GET['id'];
+        
         $message = "";
         $status = false;
         if (isset($_GET['message'])) {

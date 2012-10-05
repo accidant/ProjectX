@@ -94,7 +94,7 @@
                                     <select id="system_newsbundle_newstype_newsCategory" name="system_newsbundle_newstype[newsCategory]" required="required">
                                         {% set i=1 %}
                                         {% for newsCategory in main_content['newsCategories'] %}
-                                            <option value={{ i }}>{{ newsCategory.name }}</option>
+                                            <option value={{ newsCategory.id }}>{{ newsCategory.name }}</option>
                                             {% set i=i+1 %}
                                         {% endfor %}    
                                     </select>      

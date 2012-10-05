@@ -125,15 +125,14 @@
                                     </select>      
                                 </div>
                                 <div class="clear"></div>
-                                <div class="col no-label">
-                                        <input type="submit" value="Update" />
-                                        <a href="{{ path('news_delete', { 'id': main_content['entity'].id }) }}" class="button">Delete</a>
-                                        <a href="{{ path('news') }}" class="button">Back</a>
-                                </div>
-                                <div class="clear"></div>
                             </div>
-                        
-                    </form>
+                            <div class="col no-label">
+                                <input type="submit" value="Update" />
+                                <a href="{{ path('news_delete', { 'id': main_content['entity'].id }) }}" class="button">Delete</a>
+                                <a href="{{ path('news') }}" class="button">Back</a>
+                            </div>
+                            <div class="clear"></div>                        
+                        </form>
 		</div>
 	</div>
 </div>

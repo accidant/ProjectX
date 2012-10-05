@@ -451,6 +451,17 @@ a.icon-checkbox {
 a:active.icon-checkbox {
     background: url(../images/shared/checkbox.gif) no-repeat;
 }
+
+/*************************
+* Icons
+*************************/
+
+.icon-game {
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+}
+
 /*********************
 * Formular
 *********************/

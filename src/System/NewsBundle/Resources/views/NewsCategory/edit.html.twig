@@ -50,14 +50,14 @@
                                     <input type="text" id="system_newsbundle_newscategorytype_description" name="system_newsbundle_newscategorytype[description]" required="required" value="{{ main_content['entity'].description }}" />
                                 </div>
                                 <div class="clear"></div>
-                                <div class="col no-label">
-                                        <input type="submit" value="Update" />
-                                        <a href="{{ path('newscategory_delete', { 'id': main_content['entity'].id }) }}" class="button">Delete</a>
-                                        <a href="{{ path('newscategory') }}" class="button">Back</a>
-                                </div>
-                                <div class="clear"></div>
-                          </div>                      
-                    </form>
+                            </div>   
+                            <div class="col no-label">
+                                <input type="submit" value="Update" />
+                                <a href="{{ path('newscategory_delete', { 'id': main_content['entity'].id }) }}" class="button">Delete</a>
+                                <a href="{{ path('newscategory') }}" class="button">Back</a>
+                            </div>
+                            <div class="clear"></div>                   
+                        </form>
 		</div>
 	</div>
 </div>

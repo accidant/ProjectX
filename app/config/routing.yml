@@ -28,6 +28,11 @@ NewsBundleBackend:
     resource: "@SystemNewsBundle/Resources/config/backend.yml"
     prefix: /admin
     
+# GameBundle
+GameBundleBackend:
+    resource: "@ModuleGameBundle/Resources/config/backend.yml"
+    prefix: /admin
+
 #General
 login:
   pattern:  /admin/login

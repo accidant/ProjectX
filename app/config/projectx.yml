@@ -7,3 +7,4 @@ core_entrance:
       Seitenbaum: { route: 'page', category: 'Seiten'}
       News: { route: 'news', category: 'News'}
       News Categories: { route: 'newscategory', category: 'News'}
+      Games: { route: 'games', category: 'Games' }

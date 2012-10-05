@@ -1,3 +1,9 @@
+<script>
+    function hideMessage(type) {
+        document.getElementsByClassName(type)[0].style.display="none";
+    }
+</script>
+
 <div id="page-heading">
     <h1>NewsCategory creation</h1>
 </div>   
@@ -6,6 +12,17 @@
     <div class="content-box">
         <div class="content-box-content">
             <div class="col">
+                {% if not main_content['status'] and main_content['message'] != "" %}
+                    <div class="message error">
+                        <div class="content"> {{ main_content['message'] }} </div>
+                        <div class="close">
+                            <a href="javascript:hideMessage('error')">
+                                <img alt="close" src="/ProjectX/web/bundles/coreentrance/images/table/icon_close_error.gif">
+                            </a>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                {% endif %}
                 <form action="{{ path('newscategory_create') }}" method="post" class="form" {{ form_enctype(main_content['form']) }}>
                     <div id="system_newsbundle_newscategorytype">
                         {% for element in main_content['form'] if loop.first %}

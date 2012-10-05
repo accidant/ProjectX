@@ -1,55 +1,55 @@
 news:
     pattern:  /news
-    defaults: { _controller: SystemNewsBundle:News:index }
+    defaults: { _controller: SystemNewsBundle:NewsBackend:index }
 
 news_new:
     pattern: /news/new
-    defaults: { _controller: SystemNewsBundle:News:new }
+    defaults: { _controller: SystemNewsBundle:NewsBackend:new }
     
 news_show:
     pattern: /news/show
-    defaults: { _controller: SystemNewsBundle:News:show }
+    defaults: { _controller: SystemNewsBundle:NewsBackend:show }
 
 news_create:
     pattern: /news/create
-    defaults: { _controller: SystemNewsBundle:News:create }
+    defaults: { _controller: SystemNewsBundle:NewsBackend:create }
 
 news_edit:
     pattern: /news/edit
-    defaults: { _controller: SystemNewsBundle:News:edit }
+    defaults: { _controller: SystemNewsBundle:NewsBackend:edit }
     
 news_update:
     pattern: /news/update
-    defaults: { _controller: SystemNewsBundle:News:update }
+    defaults: { _controller: SystemNewsBundle:NewsBackend:update }
     
 news_delete:
     pattern: /news/delete
-    defaults: { _controller: SystemNewsBundle:News:delete }
+    defaults: { _controller: SystemNewsBundle:NewsBackend:delete }
 
 newscategory:
     pattern:  /news_category
-    defaults: { _controller: SystemNewsBundle:NewsCategory:index }
+    defaults: { _controller: SystemNewsBundle:NewsCategoryBackend:index }
     
 newscategory_new:
     pattern:  /news_category/new
-    defaults: { _controller: SystemNewsBundle:NewsCategory:new }
+    defaults: { _controller: SystemNewsBundle:NewsCategoryBackend:new }
     
 newscategory_show:
     pattern:  /news_category/show
-    defaults: { _controller: SystemNewsBundle:NewsCategory:show }
+    defaults: { _controller: SystemNewsBundle:NewsCategoryBackend:show }
     
 newscategory_create:
     pattern:  /news_category/create
-    defaults: { _controller: SystemNewsBundle:NewsCategory:create }
+    defaults: { _controller: SystemNewsBundle:NewsCategoryBackend:create }
     
 newscategory_edit:
     pattern:  /news_category/edit
-    defaults: { _controller: SystemNewsBundle:NewsCategory:edit }
+    defaults: { _controller: SystemNewsBundle:NewsCategoryBackend:edit }
     
 newscategory_update:
     pattern:  /news_category/update
-    defaults: { _controller: SystemNewsBundle:NewsCategory:update }
+    defaults: { _controller: SystemNewsBundle:NewsCategoryBackend:update }
     
 newscategory_delete:
     pattern:  /news_category/delete
-    defaults: { _controller: SystemNewsBundle:NewsCategory:delete }
+    defaults: { _controller: SystemNewsBundle:NewsCategoryBackend:delete }

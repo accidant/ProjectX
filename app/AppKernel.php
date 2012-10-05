@@ -18,11 +18,12 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new Core\EntranceBundle\CoreEntranceBundle(),
-            new System\PageBundle\SystemPageBundle(),
-	    new System\NewsBundle\SystemNewsBundle(),
             new Core\SecurityBundle\CoreSecurityBundle(),
             new Core\UserBundle\CoreUserBundle(),
             new Core\InstallingBundle\CoreInstallingBundle(),
+            new System\PageBundle\SystemPageBundle(),
+	    new System\NewsBundle\SystemNewsBundle(),
+            new Module\GameBundle\ModuleGameBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

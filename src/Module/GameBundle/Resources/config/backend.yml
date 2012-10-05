@@ -1,0 +1,21 @@
+games:
+    pattern:  /games
+    defaults: { _controller: ModuleGameBundle:GameBackend:index }
+games_new:
+    pattern:  /games/new
+    defaults: { _controller: ModuleGameBundle:GameBackend:new }
+games_show:
+    pattern:  /games/show
+    defaults: { _controller: ModuleGameBundle:GameBackend:show }
+games_create:
+    pattern:  /games/create
+    defaults: { _controller: ModuleGameBundle:GameBackend:create }
+games_edit:
+    pattern:  /games/edit
+    defaults: { _controller: ModuleGameBundle:GameBackend:edit }
+games_update:
+    pattern:  /games/update
+    defaults: { _controller: ModuleGameBundle:GameBackend:update }
+games_delete:
+    pattern:  /games/delete
+    defaults: { _controller: ModuleGameBundle:GameBackend:delete }

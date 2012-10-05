@@ -1,0 +1,12 @@
+Folgende Fragen sind von meiner Seite aus zu klären:
+
+- wie integriere ich weitere css-Files?
+- wie integriere ich javascript-Files?
+- wie wird tinyMCE integriert bzw. installiert und dann verwendet?
+- wie soll die Datumsauswahl umgesetzt werden? Datepicker? wie integrieren und ins richtige Format für die Form umwandeln?
+- wie wird der Inhalt von z.B. einer News gespeichert? in HTML?
+- wie funktionieren die Checkboxen? mit Javascript? wichtig u.a. für news list...
+- wo sind die icons für edit usw. her? wir bräuchten noch eins für "zurück" (Back to list). Dann könnte man die icons, die nicht direkt zu der action gehören (bei edit wäre das delete und back), oben recht darstellen!
+- wo sollte man manuelles Prüfen von Feldern implementieren? Javascript? oder in php-Funktionen? Konkreter Fall: Überprüfen, ob Url eine gültige Url ist (http://www. oder www.) in Game.
+- wie auf Project-Base-Directory zugreifen? Man will ja nicht, wenn man in html ein Bild anzeigen möchte, den relativen Pfad angeben...
+- wo sollten Helper-Funktionen definiert werden? (Beispiel: Game, getIcons mehrfach in GameBackendController)

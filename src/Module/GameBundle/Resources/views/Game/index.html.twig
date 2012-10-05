@@ -1,0 +1,85 @@
+<script>
+    function hideMessage(type) {
+        document.getElementsByClassName(type)[0].style.display="none";
+    }
+</script>
+
+<div id="page-heading">
+    <h1>Game list</h1>
+</div>
+
+<div class="content-box-outer">
+	<div class="content-box">
+		<div class="content-box-content">
+                   {% if main_content['status'] and main_content['message'] != "" %}
+                            <div class="message success">
+                                <div class="content"> {{ main_content['message'] }} </div>
+                                <div class="close">
+                                    <a href="javascript:hideMessage('success')">
+                                        <img alt="close" src="/ProjectX/web/bundles/coreentrance/images/table/icon_close_success.gif">
+                                    </a>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                    {% elseif not main_content['status'] and main_content['message'] != "" %}
+                            <div class="message error">
+                                <div class="content"> {{ main_content['message'] }} </div>
+                                <div class="close">
+                                    <a href="javascript:hideMessage('false')">
+                                        <img alt="close" src="/ProjectX/web/bundles/coreentrance/images/table/icon_close_error.gif">
+                                    </a>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                    {% endif %}
+                    {% if main_content['entities']|length==0 %}
+                        <div class="message info">
+                            <div class="content"> No game existing! </div>
+                            <div class="close">
+                                <a href="javascript:hideMessage('info')">
+                                    <img alt="close" src="/ProjectX/web/bundles/coreentrance/images/table/icon_close_info.gif">
+                            </a>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    {% else %}
+                        <table class="table records_list">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Icon</th>
+                                    <th>Url</th>
+                                    <th>Createdate</th>
+                                    <th>Updatedate</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for entity in main_content['entities'] %}
+                                {% if entity.deleted == false %}
+                                    <tr>
+                                        <td><a class="icon_cb icon-checkbox info-tooltip" title="Checkbox"></a></td>
+                                        <td><a href="{{ path('games_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+                                        <td>{{ entity.description }}</td>
+                                        <td><img src="{{ entity.icon }}" class="icon-game" alt="No picture" /></td>
+                                        <td>{{ entity.url }}</td>
+                                        <td>{% if entity.createDate %}{{ entity.createDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                        <td>{% if entity.updateDate %}{{ entity.updateDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                        <td>
+                                            <a href="{{ path('games_edit', { 'id': entity.id }) }}" class="icon icon-edit info-tooltip" title="Edit"></a>
+                                            <a href="{{ path('games_delete', { 'id': entity.id }) }}" class="icon icon-delete info-tooltip" title="Delete"></a>
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <div class="clear"></div>
+                    {% endif %}
+                    <a href="{{ path('games_new') }}" class="button">Create Game</a>
+                    <div class="clear"></div>
+		</div>
+	</div>
+</div>

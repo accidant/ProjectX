@@ -1,0 +1,16 @@
+/* 
+    Document   : news
+    Created on : 27.09.2012, 13:34:52
+    Author     : fhermey
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+.record_properties tr {
+    width: 150px;
+    font-style: oblique;
+}

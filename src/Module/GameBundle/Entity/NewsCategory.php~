@@ -1,0 +1,40 @@
+<?php
+
+namespace System\NewsBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Core\CoreBaseBundle\Entity\BaseEntity;
+
+/**
+ * Date: 03.08.12
+ * Time: 21:43
+ *
+ * @author Thomas Jou�en
+ *
+ * @ORM\Entity()
+ * @ORM\Table()
+ */
+ class NewsCategory extends BaseEntity {
+ 
+	/**
+	 * @var string
+	 * @ORM\Column(type="string")
+	 */
+	private $name;
+	
+	/**
+	 * @var string
+	 * @ORM\Column(type="string")
+	 */
+	private $description;
+	
+	
+	 /**
+	 * @var \System\NewsBundle\Entity\NewsCategory
+	 * @ORM\OneToMany(targetEntity="System\NewsBundle\Entity\News", mappedBy="newsCategory")
+	 */
+	 private $news;
+	 
+	 
+	 // TODO: Rechte!
+ }

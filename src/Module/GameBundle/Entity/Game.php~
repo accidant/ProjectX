@@ -1,0 +1,48 @@
+<?php
+
+namespace Module\GameBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Core\CoreBaseBundle\Entity\BaseEntity;
+
+/**
+ * Date: 03.08.12
+ * Time: 21:43
+ *
+ * @author Thomas Jou�en
+ *
+ * @ORM\Entity()
+ * @ORM\Table()
+ */
+ class Game extends BaseEntity {
+ 
+	/**
+	 * @var string
+	 * @ORM\Column(type="string")
+	 */
+	private $name;
+	
+	/**
+	 * @var string
+	 * @ORM\Column(type="string")
+	 */
+	private $description;
+	
+	/**
+	 * @var string
+	 * @ORM\Column(type="string")
+	 */
+	 private $icon;
+	 
+	/**
+	 * @var boolean
+	 * @ORM\Column(type="string")
+	 */
+	 private $url;
+	 
+	 /**
+	 * @var \System\NewsBundle\Entity\NewsCategory
+	 * @ORM\ManyToMany(targetEntity="Core\UserBundle\Entity\User")
+	 */
+	 private $users;
+}

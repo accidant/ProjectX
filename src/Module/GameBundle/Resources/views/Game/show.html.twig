@@ -1,0 +1,49 @@
+<div id="page-heading">
+    <h1>Game</h1>
+</div>
+
+<div class="content-box-outer">
+    <div class="content-box">
+        <div class="content-box-content">
+            <div class="col">
+                <table class="table record_properties">
+                    <tbody>
+                        <tr>
+                            <td class="label">Name</td>
+                            <td>{{ main_content['entity'].name }}</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Description</td>
+                            <td>{{ main_content['entity'].description }}</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Icon</td>
+                            <td><img src="{{ main_content['entity'].icon }}" class="icon-game" alt="No picture" /></td>
+                        </tr>
+                        <tr>
+                            <td class="label">Url</td>
+                            <td><a href={{ main_content['entity'].url }} >{{ main_content['entity'].url }}</a></td>
+                        </tr>
+                        <tr>
+                            <td class="label">Createdate</td>
+                            <td>{{ main_content['entity'].createDate|date('Y-m-d H:i:s') }}</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Updatedate</td>
+                            <td>{{ main_content['entity'].updateDate|date('Y-m-d H:i:s') }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col">
+                <a href="{{ path('games') }}" class="icon icon-check info-tooltip" title="Back to list"></a>
+                <a href="{{ path('games_edit', { 'id': main_content['entity'].id }) }}" class="icon icon-edit info-tooltip" title="Edit"></a>
+                <form action="{{ path('games_delete', { 'id': main_content['entity'].id }) }}" method="post">
+                    {{ form_widget(main_content['delete_form']) }}
+                    <a type="submit" href="{{ path('games_delete', { 'id': main_content['entity'].id }) }}" class="icon icon-delete info-tooltip" title="Delete"></a>
+                </form>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>

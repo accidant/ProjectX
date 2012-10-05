@@ -1,0 +1,8 @@
+ModuleGameBundle_games:
+    resource: "@ModuleGameBundle/Resources/config/routing/game.php"
+    prefix:   /games
+
+SystemNewsBundle_news:
+    resource: "@SystemNewsBundle/Resources/config/routing/news.php"
+    prefix:   /news
+

@@ -1,0 +1,64 @@
+<script>
+    function setHiddenFields() {
+        var startDate = document.getElementById("startDate");
+        document.getElementById("module_eventbundle_eventtype_date_date_year").value=date.value.substr(0,4);
+        document.getElementById("module_eventbundle_eventtype_date_date_month").value=date.value.substr(5,2);
+        document.getElementById("module_eventbundle_eventtype_date_date_day").value=date.value.substr(8,2);
+        document.getElementById("module_eventbundle_eventtype_date_time_hour").value=date.value.substr(11,2);
+        document.getElementById("module_eventbundle_eventtype_date_time_minute").value=date.value.substr(14,2);
+    } 
+</script>
+
+<div id="page-heading">
+    <h1>Event creation</h1>
+</div>
+
+<div class="content-box-outer">
+	<div class="content-box">
+		<div class="content-box-content">
+                    <form action="{{ path('events_create') }}" method="post" class="form" {{ form_enctype(main_content['form']) }}>
+                        <div id="module_eventbundle_eventtype">
+                                {% for element in main_content['form'] if loop.first %}
+                                <div class="col">    
+                                    {{ form_row(element) }}
+                                </div>
+                                <div class="clear"></div>
+                                {% endfor %}
+                                <div class="col">
+                                    <label>Name:</label>
+                                    <input type="text" id="module_eventbundle_eventtype_name" name="module_eventbundle_eventtype[name]" required="required" />
+                                </div>
+                                <div class="clear"></div>
+                                <div class="col">
+                                    <label>Description:</label>
+                                    <input type="text" id="module_eventbundle_eventtype_description" name="module_eventbundle_eventtype[description]" required="required" />
+                                </div>
+                                <div class="clear"></div>
+                                <div class="col">
+                                    <label>Date:</label>
+                                    <input type="text" id="date" onchange="setHiddenFields();" value="{% if main_content['entity'].date!="" %}{{ main_content['entity'].date.date }} {% endif %}" />
+                                </div>
+                                <div class="col">
+                                    <div id="module_eventbundle_eventtype_date">
+                                        <div id="module_eventbundle_eventtype_date_date">
+                                            <input id="module_eventbundle_eventtype_date_date_year" name="module_eventbundle_eventtype[date][date][year]" type="hidden" value="{{main_content['entity'].date.date|slice(0, 4)}}" />
+                                            <input id="module_eventbundle_eventtype_date_date_month" name="module_eventbundle_eventtype[date][date][month]" type="hidden" value="{{main_content['entity'].date.date|slice(5, 2)}}" />
+                                            <input id="module_eventbundle_eventtype_date_date_day" name="module_eventbundle_eventtype[date][date][day]" type="hidden" value="{{main_content['entity'].date.date|slice(8, 2)}}" />
+                                        </div>    
+                                        <div id="module_eventbundle_eventtype_date_time">
+                                            <input id="module_eventbundle_eventtype_date_time_hour" name="module_eventbundle_eventtype[date][time][hour]" type="hidden" value="{{main_content['entity'].date.date|slice(11, 2)}}" />
+                                            <input id="module_eventbundle_eventtype_date_time_minute" name="module_eventbundle_eventtype[date][time][minute]" type="hidden" value="{{main_content['entity'].date.date|slice(14, 2)}}" />
+                                        </div>   
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="col">
+                                <input type="submit" value="Create" />
+                                <a href="{{ path('events') }}" class="button">Back</a>
+                            </div>
+                            <div class="clear"></div>
+                    </form>
+		</div>
+	</div>
+</div>

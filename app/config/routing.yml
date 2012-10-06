@@ -32,6 +32,11 @@ NewsBundleBackend:
 GameBundleBackend:
     resource: "@ModuleGameBundle/Resources/config/backend.yml"
     prefix: /admin
+    
+# EventBundle
+EventBundleBackend:
+    resource: "@ModuleEventBundle/Resources/config/backend.yml"
+    prefix: /admin
 
 #General
 login:

@@ -1,0 +1,21 @@
+events:
+    pattern:  /events
+    defaults: { _controller: ModuleEventBundle:EventBackend:index }
+events_new:
+    pattern:  /events/new
+    defaults: { _controller: ModuleEventBundle:EventBackend:new }
+events_show:
+    pattern:  /events/show
+    defaults: { _controller: ModuleEventBundle:EventBackend:show }
+events_create:
+    pattern:  /events/create
+    defaults: { _controller: ModuleEventBundle:EventBackend:create }
+events_edit:
+    pattern:  /events/edit
+    defaults: { _controller: ModuleEventBundle:EventBackend:edit }
+events_update:
+    pattern:  /events/update
+    defaults: { _controller: ModuleEventBundle:EventBackend:update }
+events_delete:
+    pattern:  /events/delete
+    defaults: { _controller: ModuleEventBundle:EventBackend:delete }

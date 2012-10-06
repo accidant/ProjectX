@@ -23,7 +23,8 @@ class AppKernel extends Kernel
             new Core\InstallingBundle\CoreInstallingBundle(),
             new System\PageBundle\SystemPageBundle(),
 	    new System\NewsBundle\SystemNewsBundle(),
-            new Module\GameBundle\ModuleGameBundle()
+            new Module\GameBundle\ModuleGameBundle(),
+            new Module\EventBundle\ModuleEventBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

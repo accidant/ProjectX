@@ -34,6 +34,7 @@ class GameBackendController extends AbstractModuleController
         $entities = $em->getRepository('ModuleGameBundle:Game')->findAll();
 
         return array (
+            'method'    => 'render',
             '_template' => 'ModuleGameBundle:Game:index.html.twig',
             'entities'  => $entities,
             'status'    => $status,
@@ -59,6 +60,7 @@ class GameBackendController extends AbstractModuleController
         $deleteForm = $this->createDeleteForm($id);
 
         return array (
+            'method'      => 'render',
             '_template'   => 'ModuleGameBundle:Game:show.html.twig',
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
@@ -89,6 +91,7 @@ class GameBackendController extends AbstractModuleController
         closedir($folder); 
 
         return array (
+            'method'    => 'render',
             '_template' => 'ModuleGameBundle:Game:new.html.twig',
             'status'    => false,
             'message'   => '',
@@ -129,6 +132,7 @@ class GameBackendController extends AbstractModuleController
                 $em->flush();
             } catch (\PDOException $e) {
                 return array (
+                    'method'    => 'render',
                     '_template' => 'ModuleGameBundle:Game:new.html.twig',
                     'status'    => false,
                     'message'   => 'Game creation failed. Probably the name is not unique.',
@@ -146,6 +150,7 @@ class GameBackendController extends AbstractModuleController
         }
 
         return array (
+            'method'    => 'render',
             '_template' => 'ModuleGameBundle:Game:new.html.twig',
             'status'    => false,
             'message'   => 'Game creation failed.',
@@ -197,6 +202,7 @@ class GameBackendController extends AbstractModuleController
         closedir($folder); 
         
         return array (
+            'method'      => 'render',
             '_template'   => 'ModuleGameBundle:Game:edit.html.twig',
             'message'     => $message,
             'status'      => $status,
@@ -236,6 +242,7 @@ class GameBackendController extends AbstractModuleController
                 $em->flush();
             } catch (\PDOException $e) {
                 return array (
+                    'method'      => 'render',
                     '_template'   => 'ModuleGameBundle:Game:edit.html.twig',
                     'message'     => 'Game update failed. Probably the name is not unique.',
                     'status'      => false,
@@ -252,6 +259,7 @@ class GameBackendController extends AbstractModuleController
         }
 
         return array (
+            'method'      => 'render',
             '_template'   => 'ModuleGameBundle:Game:edit.html.twig',
             'message'     => 'Game update failed',
             'status'      => false,

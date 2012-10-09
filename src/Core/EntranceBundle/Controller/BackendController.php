@@ -17,23 +17,29 @@ class BackendController extends AbstractModuleController{
 
 	public function indexAction(){
 		return array(
+                        'method'    => 'render',
 			'_template' => 'CoreEntranceBundle:Test:index.html.twig'
 		);
 	}
 
 	public function testAction(){
 		return array(
+                        'method'    => 'render',
 			'_template' => 'CoreEntranceBundle:Test:test.html.twig'
 		);
 	}
 
 	public function tableAction(){
 		return array(
+                        'method'    => 'render',
 			'_template' => 'CoreEntranceBundle:Test:table.html.twig'
 		);
 	}
 
 	public function formAction(){
-		return array('blubb' => 'blaa');
+		return array(
+                    'method' => 'render',
+                    'blubb'  => 'blaa'
+                );
 	}
 }

@@ -11,7 +11,7 @@ use DateInterval;
  * Date: 03.08.12
  * Time: 21:43
  *
- * @author Thomas Jou�en
+ * @author Florian Hermey
  *
  * @ORM\Entity()
  * @ORM\Table()

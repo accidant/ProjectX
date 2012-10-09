@@ -6,12 +6,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Core\CoreBaseBundle\Entity\BaseEntity;
 
 use DateTime;
+use DateInterval;
 
 /**
  * Date: 03.08.12
  * Time: 21:43
  *
- * @author Thomas Jou�en
+ * @author Florian Hermey
  *
  * @ORM\Entity()
  * @ORM\Table()
@@ -100,6 +101,8 @@ use DateTime;
     public function __construct() {
         $this->setCreateDate(new DateTime());
         $date = new DateTime();
+        $date->add(new DateInterval('P1D'));
+        $date->setTime('20','00','00');
         $this->setDate($date);
     }
  }

@@ -34,6 +34,7 @@ class NewsCategoryBackendController extends AbstractModuleController
         $entities = $em->getRepository('SystemNewsBundle:NewsCategory')->findAll();
 
         return array (
+            'method'    => 'render',
             '_template' => 'SystemNewsBundle:NewsCategory:index.html.twig',
             'entities'  => $entities,
             'message'   => $message,
@@ -71,6 +72,7 @@ class NewsCategoryBackendController extends AbstractModuleController
         $deleteForm = $this->createDeleteForm($id);
 
         return array (
+            'method'      => 'render',
             '_template'   => 'SystemNewsBundle:NewsCategory:show.html.twig',
             'entity'      => $entity,
             'news'        => $news,
@@ -90,6 +92,7 @@ class NewsCategoryBackendController extends AbstractModuleController
         $form   = $this->createForm(new NewsCategoryType(), $entity);
 
         return array (
+            'method'    => 'render',
             '_template' => 'SystemNewsBundle:NewsCategory:new.html.twig',
             'entity'    => $entity,
             'form'      => $form->createView()
@@ -114,6 +117,7 @@ class NewsCategoryBackendController extends AbstractModuleController
                 $em->flush();
             } catch (\PDOException $e) {
                 return array (
+                    'method'    => 'render',
                     '_template' => 'SystemNewsBundle:NewsCategory:new.html.twig',
                     'status'    => false,
                     'message'   => 'News Category creation failed. Probably the name is not unique.',
@@ -131,6 +135,7 @@ class NewsCategoryBackendController extends AbstractModuleController
         }
 
         return array (
+            'method'    => 'render',
             '_template' => 'SystemNewsBundle:NewsCategory:new.html.twig',
             'status'    => false,
             'message'   => 'News Category creation failed',
@@ -168,6 +173,7 @@ class NewsCategoryBackendController extends AbstractModuleController
         $deleteForm = $this->createDeleteForm($id);
 
         return array (
+            'method'      => 'render',
             '_template'   => 'SystemNewsBundle:NewsCategory:edit.html.twig',
             'message'     => $message,
             'status'      => $status,
@@ -207,10 +213,11 @@ class NewsCategoryBackendController extends AbstractModuleController
                 $em->flush();
             } catch (\PDOException $e) {
                 return array (
+                    'method'      => 'render',
                     '_template'   => 'SystemNewsBundle:NewsCategory:edit.html.twig',
                     'entity'      => $entity,
-                    'message'        => 'News Category update failed. Probably the name is not unique.',
-                    'status'         => false,
+                    'message'     => 'News Category update failed. Probably the name is not unique.',
+                    'status'      => false,
                     'edit_form'   => $editForm->createView(),
                     'delete_form' => $deleteForm->createView()
                 );
@@ -223,6 +230,7 @@ class NewsCategoryBackendController extends AbstractModuleController
         }
 
         return array (
+            'method'      => 'render',
             '_template'   => 'SystemNewsBundle:NewsCategory:edit.html.twig',
             'entity'      => $entity,
             'message'     => 'News Category update failed',

@@ -36,7 +36,7 @@ class NewsCategoryBackendController extends AbstractModuleController
 	 */
 	public function showAction($id)
 	{
-		$entity = $this->findOneBy('SystemNewsBundle:NewsCategory', array('id' => $id));
+		$entity = $this->findOneBy(array('id' => $id));
 		$deleteForm = $this->createDeleteForm($id);
 
 		return array (
@@ -195,7 +195,7 @@ class NewsCategoryBackendController extends AbstractModuleController
 	 */
 	public function editAction($id)
 	{
-		$entity = $this->findOneBy('SystemNewsBundle:NewsCategory', array('id' => $id));
+		$entity = $this->findOneBy(array('id' => $id));
 
 		$form = $this->createForm(new NewsCategoryType(), $entity);
 		$deleteForm = $this->createDeleteForm($id);
@@ -258,7 +258,7 @@ class NewsCategoryBackendController extends AbstractModuleController
 	 */
 	public function updateAction($id)
 	{
-		$entity = $this->findOneBy('SystemNewsBundle:NewsCategory', array('id' => $id));
+		$entity = $this->findOneBy(array('id' => $id));
 
 		$form   = $this->createForm(new NewsCategoryType(), $entity);
 		$form->bindRequest($this->getRequest());

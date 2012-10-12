@@ -38,11 +38,13 @@ abstract class AbstractModuleController extends Controller {
 	/**
 	 * Trys to find multiple entity from the delivered Repository by the delivered elements
 	 *
-	 * @param string $repository
 	 * @param array $elements
+	 * @param string $repository
 	 * @return array
 	 */
-	public function findBy($repository, array $elements){
+	public function findBy(array $elements, $repository = ''){
+		$repository = $this->getRepositoryName($repository);
+
 		$entity = $this->getDoctrine()->getRepository($repository)->findBy($elements);
 		$this->throwExceptionIfNull($entity);
 
@@ -52,15 +54,32 @@ abstract class AbstractModuleController extends Controller {
 	/**
 	 * Trys to find an entity from the delivered Repository by the delivered elements
 	 *
-	 * @param string $repository
 	 * @param array $elements
+	 * @param string $repository
 	 * @return object
 	 */
-	public function findOneBy($repository, array $elements){
+	public function findOneBy(array $elements, $repository = ''){
+		$repository = $this->getRepositoryName($repository);
+
 		$entity = $this->getDoctrine()->getRepository($repository)->findOneBy($elements);
 		$this->throwExceptionIfNull($entity);
 
 		return $entity;
+	}
+
+	private function getRepositoryName($repository){
+		if($repository == ''){
+			$repository = $this->getInformationService()->getFullControllerName();
+			$strpos = \strrpos($repository, "Backend");
+
+			if (false !== $strpos){
+				$repository = \substr($repository, $strpos);
+			}
+
+			return $repository;
+		}
+
+		return $repository;
 	}
 
 	/**
@@ -74,4 +93,45 @@ abstract class AbstractModuleController extends Controller {
 			throw $this->createNotFoundException('Unable to find NewsCategory entity.');
 		}
 	}
+
+	/**
+	 * Generates an array which is required for a view
+	 *
+	 * @param array $params
+	 * @param null|string $template
+	 * @return array
+	 */
+	public function generateView(array $params, $template = null){
+		return $this->renderer('render', $params, $template);
+	}
+
+	/**
+	 * Generates an array which is required for a redirect
+	 *
+	 * @param string $url
+	 * @param array $params
+	 * @return array
+	 */
+	public function generateRedirect($url, array $params = array()){
+		return $this->renderer('redirect', \array_merge($params, array('url' => $url)), null);
+	}
+
+	/**
+	 * An internal function which generates an array for the rendering of the view
+	 *
+	 * @param string $method
+	 * @param array $params
+	 * @param null|string $template
+	 * @return array
+	 */
+	private function renderer($method, array $params, $template){
+		$renderInformations = array('_method' => $method);
+
+		if($template != null){
+			$renderInformations['_template'] = $template;
+		}
+
+		return \array_merge($params, $renderInformations);
+	}
+
 }

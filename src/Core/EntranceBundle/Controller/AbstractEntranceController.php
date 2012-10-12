@@ -16,12 +16,12 @@ abstract class AbstractEntranceController extends CmsControllerContainer{
 
 	public function handleRequestAction(){
 		$handledRequest = $this->handleRequest();
-                if (isset($handledRequest['main_content']['method']) && $handledRequest['main_content']['method']=='redirect') {
+                if (isset($handledRequest['main_content']['_method']) && $handledRequest['main_content']['_method']=='redirect') {
                     return $this->redirect($handledRequest['main_content']['url']);
-                } elseif (isset($handledRequest['main_content']['method']) && $handledRequest['main_content']['method']=='render') {
+                } elseif (isset($handledRequest['main_content']['_method']) && $handledRequest['main_content']['_method']=='render') {
                     return $this->render('::backend.html.twig', $handledRequest);
                 } else {
-                    throw new \InvalidArgumentException("Invalid or missing argument for 'method'!");
+                    throw new \InvalidArgumentException("Invalid or missing argument for '_method'!");
                 }
 	}
 

@@ -34,7 +34,7 @@ class PageMetadata {
 	 * Die Sprache in der die Seite verfasst ist
 	 *
 	 * @var string
-	 * @ORM\Column(type="string")
+	 * @ORM\Column(type="string", nullable="true")
 	 */
 	private $language;
 
@@ -42,7 +42,7 @@ class PageMetadata {
 	 * Die Robots, die in den Kopf des HTML eingesetzt werden sollen
 	 *
 	 * @var string
-	 * @ORM\Column(type="string")
+	 * @ORM\Column(type="string", nullable="true")
 	 */
 	private $robots;
 
@@ -50,7 +50,7 @@ class PageMetadata {
 	 * Die Beschreibung, welche in den Kopf des HTML eingesetzt werden soll
 	 *
 	 * @var string
-	 * @ORM\Column(type="text")
+	 * @ORM\Column(type="text", nullable="true")
 	 */
 	private $description;
 

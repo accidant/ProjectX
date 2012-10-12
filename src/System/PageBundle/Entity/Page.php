@@ -47,6 +47,14 @@ class Page extends BaseEntity{
 	private $parent;
 
 	/**
+	 * Gibt die Position der Seite in der Seitenstruktur an
+	 *
+	 * @var int
+	 * @ORM\Column(type="integer")
+	 */
+	private $position = 0;
+
+	/**
 	 * Die Metadaten zu dieser Seite
 	 *
 	 * @var PageMetadata
@@ -122,5 +130,19 @@ class Page extends BaseEntity{
 	 */
 	public function getMetadata() {
 		return $this->metadata;
+	}
+
+	/**
+	 * @param int $position
+	 */
+	public function setPosition($position) {
+		$this->position = $position;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getPosition() {
+		return $this->position;
 	}
 }

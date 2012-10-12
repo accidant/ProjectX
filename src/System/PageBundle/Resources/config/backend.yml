@@ -1,3 +1,35 @@
 page:
    pattern:  /page/
    defaults: { _controller: SystemPageBundle:Page:index }
+
+page_show:
+  pattern:  /page/{id}/show
+  defaults: { _controller: SystemPageBundle:Page:show }
+  requirements:
+    id: \d+
+
+page_new:
+   pattern:  /page/new
+   defaults: { _controller: SystemPageBundle:Page:new }
+
+page_create:
+   pattern:  /page/create
+   defaults: { _controller: SystemPageBundle:Page:create }
+
+page_edit:
+   pattern:  /page/{id}/edit
+   defaults: { _controller: SystemPageBundle:Page:edit }
+   requirements:
+    id: \d+
+
+page_update:
+   pattern:  /page/{id}/update
+   defaults: { _controller: SystemPageBundle:Page:update }
+   requirements:
+    id: \d+
+
+page_delete:
+   pattern:  /page/{id}/delete
+   defaults: { _controller: SystemPageBundle:Page:delete }
+   requirements:
+    id: \d+

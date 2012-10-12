@@ -1,35 +1,43 @@
 <div id="page-heading">
-	<h1>Titel von Modul 1</h1>
+    <h1>Page List</h1>
 </div>
 
 <div class="content-box-outer">
 	<div class="content-box">
 		<div class="content-box-content">
-			{#<div class="messages">
-				{{ macros.message('warning', 'Die ist eine Warnung') }}
-				{{ macros.message('info', 'Hier kann eine Info dargestellt werden') }}
-				{{ macros.message('success', 'Ihre Informationen wurden erfolgreich gespeichert') }}
-				{{ macros.message('error', 'Es gabe Probleme mit dem Speichern ihrer Informationen') }}
-			</div>                                                                                     #}
-			<div class="text">
-			<h2>Ein Interessanter Test</h2>
-			<h3>Diesen Text sollten sie unbedingt lesen, denn es geht hier um ...</h3>
-
-			Lorem ipsum dolor sit amet consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et Lorem ipsum dolor sit amet consectetur
-			adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  dolore magna aliqua. Lorem ipsum dolor sit amet consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et Lorem ipsum dolor sit amet consectetur
-			adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  dolore magna aliqua.
-			<br />
-			<br />
-			Lorem ipsum dolor sit amet consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et Lorem ipsum dolor sit amet consectetur
-			adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  dolore magna aliqua. Lorem ipsum dolor sit amet consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et Lorem ipsum dolor sit amet consectetur
-			adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  dolore magna aliqua.
-			<br />
-			<br />
-			Lorem ipsum dolor sit amet consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et Lorem ipsum dolor sit amet consectetur
-			adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  dolore magna aliqua. Lorem ipsum dolor sit amet consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et Lorem ipsum dolor sit amet consectetur
-			adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  dolore magna aliqua.
-
-		</div>
+			{{ macros.render_flashes() }}
+			<div class="col">
+				<table class="table records_list">
+					<thead>
+					<tr>
+						<th></th>
+						<th>Name</th>
+						<th>Actions</th>
+					</tr>
+					</thead>
+						<tbody>
+						{% for entity in main_content['entities'] %}
+							<tr>
+								<td><a class="icon_cb icon-checkbox info-tooltip" title="Checkbox"></a></td>
+								<td><a href="{{ path('page_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+								<td>
+									<a href="{{ path('page_edit', { 'id': entity.id }) }}" class="icon icon-edit info-tooltip" title="Edit"></a>
+									<a href="{{ path('page_delete', { 'id': entity.id }) }}" class="icon icon-delete info-tooltip" title="Delete"></a>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="6">No Data</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+			<div class="clear"></div>
+			<div class="col no-label">
+				<a href="{{ path('page_new') }}" class="button">New Page</a>
+			</div>
+			<div class="clear"></div>
 		</div>
 	</div>
 </div>

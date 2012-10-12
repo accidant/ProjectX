@@ -1,0 +1,29 @@
+<div id="page-heading">
+    <h1>Create Page</h1>
+</div>   
+    
+<div class="content-box-outer">
+    <div class="content-box">
+        <div class="content-box-content">
+            <div class="col">
+				{{ macros.render_flashes() }}
+                <form action="{{ path('page_create') }}" method="post" class="form" {{ form_enctype(main_content['form']) }}>
+                    <div id="system_pagebundle_pagetype">
+                        {% for element in main_content['form'] %}
+							<div class="col">
+								{{ form_row(element) }}
+							</div>
+							<div class="clear"></div>
+                        {% endfor %}
+                    </div>
+					<div class="clear"></div>
+                    <div class="col no-label">
+                    	<input type="submit" value="Create" />
+                    	<a href="{{ path('page') }}" class="button">Back</a>
+                    </div>
+					<div class="clear"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

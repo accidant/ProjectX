@@ -38,7 +38,7 @@ class PageController extends AbstractModuleController{
 
 		return $this->generateView(array(
 			'entity' => $entity,
-			'form' => $form
+			'form' => $form->createView()
 		));
 	}
 
@@ -61,7 +61,7 @@ class PageController extends AbstractModuleController{
 
 		return $this->generateView(array(
 			'entity' => $entity,
-			'form' => $form
+			'form' => $form->createView()
 		));
 	}
 
@@ -71,7 +71,7 @@ class PageController extends AbstractModuleController{
 
 		return $this->generateView(array(
 			'entity' => $entity,
-			'form' => $form
+			'form' => $form->createView()
 		));
 	}
 
@@ -95,7 +95,7 @@ class PageController extends AbstractModuleController{
 
 		return $this->generateView(array(
 			'entity' => $entity,
-			'form' => $form
+			'form' => $form->createView()
 		), 'SystemPageBundle:Page:edit.html.twig');
 
 	}

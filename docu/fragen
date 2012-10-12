@@ -1,12 +1,35 @@
 Folgende Fragen sind von meiner Seite aus zu klären:
 
 - wie integriere ich weitere css-Files?
+	Siehe: ProjektX/app/Ressources/views/backend.html.twig Zeile 9
+		<link rel="stylesheet" type="text/css" href="{{ asset('bundles/coreentrance/css/backend.css') }}" />
 - wie integriere ich javascript-Files?
+	Siehe: Gleicher Fall wie bei css-Files. Diese können dort auch integriert werden.
+	
+	Für beide Fälle CSS und JS muss noch ein geeignet vorgehen überdacht werden, wie diese Dateien auch aus Modulen heruas automatisiert integriert werden können. Das sehe ich aber erstmal als low 		Priority
+
 - wie wird tinyMCE integriert bzw. installiert und dann verwendet?
+	Über JS - low Priority: Würde ich vorschlagen ganz am Ende zu integrieren um die Struktur nicht zu stark mit Javascript zu belasten.
 - wie soll die Datumsauswahl umgesetzt werden? Datepicker? wie integrieren und ins richtige Format für die Form umwandeln?
+	Über JS - low Priority: Würde ich vorschlagen ganz am Ende zu integrieren um die Struktur nicht zu stark mit Javascript zu belasten. Ist auch etwas aufwändiger. Mit diese Sache hackel ich auch noch 		in dem Firmenprojekt
+
 - wie wird der Inhalt von z.B. einer News gespeichert? in HTML?
+	In der Datenbank? Wenn ich deine Frage richtig verstanden habe. Oder meinst du, wie der Inhalt in der Datenbank gespeichert wird? => Plaintext
+
 - wie funktionieren die Checkboxen? mit Javascript? wichtig u.a. für news list...
+	Ja, dazu muss das JS aber noch integriert werden. Ich wollte versuchen Implementierungen von JS so weit wie möglich rauszuzögern. Wenn alles ohne JS funktioniert, dann funktioniert es nämlich mit JS
+	noch besser
 - wo sind die icons für edit usw. her? wir bräuchten noch eins für "zurück" (Back to list). Dann könnte man die icons, die nicht direkt zu der action gehören (bei edit wäre das delete und back), oben recht darstellen!
+	Die gehörten mit zu dem Template was ich fürs Backend gedownloaded habe. Ich stimme dir da zu. Ich wollte auch eigentlich noch eine kleine Box rechts neben der großen Positionieren, wo solche Sachen 		reinkommen. Ich muss mal schauen, ob ich dafür ein passendes Icon finde.
+
 - wo sollte man manuelles Prüfen von Feldern implementieren? Javascript? oder in php-Funktionen? Konkreter Fall: Überprüfen, ob Url eine gültige Url ist (http://www. oder www.) in Game.
+	Das geht über Annotaions. Wir validieren auf jedenfall nichts über JS. Das ist total scheiße, weil wenn jemand mal kein JS aktiviert hat, kann er diese Validierung umgehen. Es gibt für URL, EMAIL usw 	glaube ich schon fertige validationen von Symfony. Schau mal in "Book" im Kapitel Validation. Da wird das erklärt. Da wird auch erklärt, wie man eigene Validationen implementieren kann.
+
 - wie auf Project-Base-Directory zugreifen? Man will ja nicht, wenn man in html ein Bild anzeigen möchte, den relativen Pfad angeben...
+	Genauso, wie das logo in "ProjektX/app/Ressources/views/backend.html.twig" eingebunden ist. Wenn es um die Bilder geht, welche bei Games ausgewählt werden. Wir müssen noch ein vereinheitlichtes 		Uploadschema definieren und nach möglichkeit einen Ordner im Root-verzeichnis, in welchem die ganzen Bilder abgelegt werden.
+
 - wo sollten Helper-Funktionen definiert werden? (Beispiel: Game, getIcons mehrfach in GameBackendController)
+	Man kann sogenannte "Services" einrichten. Dazu gibt es auch eine Erklärung im "Book". Das sollten wir zum Laden von Bildern auch noch machen. BZW sollten wir uns herbei eher einen FileLoadService 		schreiben, der abstrahiert ist und für verschiedenste Sachen genutzt werden kann (Excel, images, text,...)
+	
+	Zunächst können wir das so lassen, wie du das da getan hast. Sollten wir aber aufjedenfall nochmal anpassen. vielleicht können wir uns das mal überlegen, wenn wir uns nochmal treffen.
+	

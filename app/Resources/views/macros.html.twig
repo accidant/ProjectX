@@ -10,6 +10,14 @@
 	</div>
 {% endmacro %}
 
+{% macro render_flashes() %}
+	{% for key, flash in app.session.flashes %}
+		{{ _self.message(key, flash|nl2br ) }}
+		{# fix remove flash manually #}
+		{% if app.session.removeFlash(key) %}{% endif %}
+	{% endfor %}
+{% endmacro %}
+
 {% macro render_backend_menu(navigation) %}
 	{% set selected_category = null %}
 	<div id="navigation">

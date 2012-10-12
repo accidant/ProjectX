@@ -11,27 +11,7 @@
 <div class="content-box-outer">
     <div class="content-box">
         <div class="content-box-content">
-            {% if main_content['status'] and main_content['message'] != "" %}
-                            <div class="message success">
-                                <div class="content"> {{ main_content['message'] }} </div>
-                                <div class="close">
-                                    <a href="javascript:hideMessage('success')">
-                                        <img alt="close" src="/ProjectX/web/bundles/coreentrance/images/table/icon_close_success.gif">
-                                    </a>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                        {% elseif not main_content['status'] and main_content['message'] != "" %}
-                            <div class="message error">
-                                <div class="content"> {{ main_content['message'] }} </div>
-                                <div class="close">
-                                    <a href="javascript:hideMessage('error')">
-                                        <img alt="close" src="/ProjectX/web/bundles/coreentrance/images/table/icon_close_error.gif">
-                                    </a>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                        {% endif %}
+            {{ macros.render_flashes() }}
             <div class="col">
                 <table class="table record_properties">
                     <tbody>
@@ -51,20 +31,20 @@
                             <td class="label">Updatedate</td>
                             <td>{{ main_content['entity'].updateDate|date('Y-m-d H:i:s') }}</td>
                         </tr>
-                        {% if main_content['news']|length!=0 %}
                         <tr>
                             <td class="label">News</td>
                             <td>
-                                {% for news in main_content['news'] %}
+                                {% for news in main_content['entity'].news %}
                                     <a href="{{ path('news_show', { 'id': news.id }) }}">{{ news.title }}</a><br/>
+								{% else %}
+									Empty Data
                                 {% endfor %}
                             </td>
                          </tr>
-                         {% endif %}
                     </tbody>
                 </table>
             </div>
-            <div class="col">
+            <div class="col no-label">
                 <a href="{{ path('newscategory') }}" class="icon icon-check info-tooltip" title="Back to list"></a>
                 <a href="{{ path('newscategory_edit', { 'id': main_content['entity'].id }) }}" class="icon icon-edit info-tooltip" title="Edit"></a>
                 <form action="{{ path('newscategory_delete', { 'id': main_content['entity'].id }) }}" method="post">

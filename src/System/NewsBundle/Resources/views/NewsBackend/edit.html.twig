@@ -51,7 +51,7 @@
 			<form class="form" action="{{ path('news_update', { 'id': main_content['entity'].id }) }}" method="post" {{ form_enctype(main_content['edit_form']) }}>
                             <div id="system_newsbundle_newstype">
                                 {% for element in main_content['edit_form'] if loop.first %}
-                                <div class="col">    
+                                <div class="col">
                                     {{ form_row(element) }}
                                 </div>
                                 <div class="clear"></div>
@@ -80,11 +80,11 @@
                                             <input id="system_newsbundle_newstype_startDate_date_year" name="system_newsbundle_newstype[startDate][date][year]" type="hidden" value="{{main_content['entity'].startDate.date|slice(0, 4)}}" />
                                             <input id="system_newsbundle_newstype_startDate_date_month" name="system_newsbundle_newstype[startDate][date][month]" type="hidden" value="{{main_content['entity'].startDate.date|slice(5, 2)}}" />
                                             <input id="system_newsbundle_newstype_startDate_date_day" name="system_newsbundle_newstype[startDate][date][day]" type="hidden" value="{{main_content['entity'].startDate.date|slice(8, 2)}}" />
-                                        </div>    
+                                        </div>
                                         <div id="system_newsbundle_newstype_startDate_time">
                                             <input id="system_newsbundle_newstype_startDate_time_hour" name="system_newsbundle_newstype[startDate][time][hour]" type="hidden" value="{{main_content['entity'].startDate.date|slice(11, 2)}}" />
                                             <input id="system_newsbundle_newstype_startDate_time_minute" name="system_newsbundle_newstype[startDate][time][minute]" type="hidden" value="{{main_content['entity'].startDate.date|slice(14, 2)}}" />
-                                        </div>   
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col">
@@ -97,11 +97,11 @@
                                             <input id="system_newsbundle_newstype_endDate_date_year" name="system_newsbundle_newstype[endDate][date][year]" type="hidden" value="{{main_content['entity'].endDate.date|slice(0, 4)}}" />
                                             <input id="system_newsbundle_newstype_endDate_date_month" name="system_newsbundle_newstype[endDate][date][month]" type="hidden" value="{{main_content['entity'].endDate.date|slice(5, 2)}}" />
                                             <input id="system_newsbundle_newstype_endDate_date_day" name="system_newsbundle_newstype[endDate][date][day]" type="hidden" value="{{main_content['entity'].endDate.date|slice(8, 2)}}" />
-                                        </div>    
+                                        </div>
                                         <div id="system_newsbundle_newstype_endDate_time">
                                             <input id="system_newsbundle_newstype_endDate_time_hour" name="system_newsbundle_newstype[endDate][time][hour]" type="hidden" value="{{main_content['entity'].endDate.date|slice(11, 2)}}" />
                                             <input id="system_newsbundle_newstype_endDate_time_minute" name="system_newsbundle_newstype[endDate][time][minute]" type="hidden" value="{{main_content['entity'].endDate.date|slice(14, 2)}}" />
-                                        </div>   
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="clear"></div>
@@ -121,8 +121,8 @@
                                         {% for newsCategory in main_content['newsCategories'] %}
                                             <option value={{ i }} {% if newsCategory.name==main_content['entity'].newsCategory %} selected="selected" {% endif %}>{{ newsCategory.name }}</option>
                                             {% set i=i+1 %}
-                                        {% endfor %}    
-                                    </select>      
+                                        {% endfor %}
+                                    </select>
                                 </div>
                                 <div class="clear"></div>
                             </div>
@@ -131,7 +131,7 @@
                                 <a href="{{ path('news_delete', { 'id': main_content['entity'].id }) }}" class="button">Delete</a>
                                 <a href="{{ path('news') }}" class="button">Back</a>
                             </div>
-                            <div class="clear"></div>                        
+                            <div class="clear"></div>
                         </form>
 		</div>
 	</div>

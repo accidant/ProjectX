@@ -3,7 +3,9 @@
 namespace System\NewsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use Core\CoreBaseBundle\Entity\BaseEntity;
+use System\NewsBundle\Entity\News;
 
 /**
  * Date: 03.08.12
@@ -40,7 +42,7 @@ use Core\CoreBaseBundle\Entity\BaseEntity;
          
     public function __construct()
     {
-        $this->news = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->news = new ArrayCollection();
     }
     
     /**
@@ -83,13 +85,22 @@ use Core\CoreBaseBundle\Entity\BaseEntity;
         return $this->description;
     }
 
+	/**
+	 * Set an ArrayCollection with news into the Entity
+	 *
+	 * @param ArrayCollection $news
+	 */
+	public function setNews($news)
+	{
+		$this->news = $news;
+	}
  
     /**
      * Add news
      *
      * @param System\NewsBundle\Entity\News $news
      */
-    public function addNews(\System\NewsBundle\Entity\News $news)
+    public function addNews(News $news)
     {
         $this->news[] = $news;
     }

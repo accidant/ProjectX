@@ -62,9 +62,21 @@ use DateInterval;
 	 
 	 /**
 	 * @var \System\NewsBundle\Entity\NewsCategory
-	 * @ORM\ManyToOne(targetEntity="System\NewsBundle\Entity\NewsCategory")
+	 * @ORM\ManyToOne(targetEntity="System\NewsBundle\Entity\NewsCategory", inversedBy="news")
 	 */
 	 private $newsCategory;
+
+
+	public function __construct()
+	{
+		 $this->setCreateDate(new DateTime());
+		 $date_start = new DateTime();
+		 $this->setStartDate($date_start);
+		 $date_end = new DateTime();
+		 $date_end->add(new DateInterval('P7D'));
+		 $this->setEndDate($date_end);
+		 $this->setCommentsAllowed(true);
+	}
 
     /**
      * Set title
@@ -225,16 +237,5 @@ use DateInterval;
     public function getNewsCategory()
     {
         return $this->newsCategory;
-    }
-    
-    
-    public function __construct() {
-        $this->setCreateDate(new DateTime());
-        $date_start = new DateTime();
-        $this->setStartDate($date_start);
-        $date_end = new DateTime();
-        $date_end->add(new DateInterval('P7D'));
-        $this->setEndDate($date_end);
-        $this->setCommentsAllowed(true);
     }
 }

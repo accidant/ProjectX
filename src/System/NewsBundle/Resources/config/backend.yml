@@ -7,24 +7,32 @@ news_new:
     defaults: { _controller: SystemNewsBundle:NewsBackend:new }
     
 news_show:
-    pattern: /news/show
+    pattern: /news/{id}/show
     defaults: { _controller: SystemNewsBundle:NewsBackend:show }
+    requirements:
+          id:  \d+
 
 news_create:
     pattern: /news/create
     defaults: { _controller: SystemNewsBundle:NewsBackend:create }
 
 news_edit:
-    pattern: /news/edit
+    pattern: /news/{id}/edit
     defaults: { _controller: SystemNewsBundle:NewsBackend:edit }
+    requirements:
+          id:  \d+
     
 news_update:
-    pattern: /news/update
+    pattern: /news/{id}/update
     defaults: { _controller: SystemNewsBundle:NewsBackend:update }
+    requirements:
+          id:  \d+
     
 news_delete:
-    pattern: /news/delete
+    pattern: /news/{id}/delete
     defaults: { _controller: SystemNewsBundle:NewsBackend:delete }
+    requirements:
+          id:  \d+
 
 newscategory:
     pattern:  /news_category
@@ -35,21 +43,29 @@ newscategory_new:
     defaults: { _controller: SystemNewsBundle:NewsCategoryBackend:new }
     
 newscategory_show:
-    pattern:  /news_category/show
+    pattern:  /news_category/{id}/show
     defaults: { _controller: SystemNewsBundle:NewsCategoryBackend:show }
+    requirements:
+      id:  \d+
     
 newscategory_create:
     pattern:  /news_category/create
     defaults: { _controller: SystemNewsBundle:NewsCategoryBackend:create }
     
 newscategory_edit:
-    pattern:  /news_category/edit
+    pattern:  /news_category/{id}/edit
     defaults: { _controller: SystemNewsBundle:NewsCategoryBackend:edit }
+    requirements:
+          id:  \d+
     
 newscategory_update:
-    pattern:  /news_category/update
+    pattern:  /news_category/{id}/update
     defaults: { _controller: SystemNewsBundle:NewsCategoryBackend:update }
+    requirements:
+          id:  \d+
     
 newscategory_delete:
-    pattern:  /news_category/delete
+    pattern:  /news_category/{id}/delete
     defaults: { _controller: SystemNewsBundle:NewsCategoryBackend:delete }
+    requirements:
+          id:  \d+

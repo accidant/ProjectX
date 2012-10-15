@@ -41,8 +41,9 @@ use System\NewsBundle\Entity\News;
 	 // TODO: Rechte!
          
     public function __construct()
-    {
+    {   
         $this->news = new ArrayCollection();
+        /* set CreateDate?!?! */
     }
     
     /**

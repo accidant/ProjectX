@@ -34,7 +34,7 @@ class EventBackendController extends AbstractModuleController
         $entities = $em->getRepository('ModuleEventBundle:Event')->findAll();
 
         return array (
-            'method'    => 'render',
+            '_method'    => 'render',
             '_template' => 'ModuleEventBundle:Event:index.html.twig',
             'entities'  => $entities,
             'status'    => $status,
@@ -60,7 +60,7 @@ class EventBackendController extends AbstractModuleController
         $deleteForm = $this->createDeleteForm($id);
 
         return array (
-            'method'      => 'render',
+            '_method'      => 'render',
             '_template'   => 'ModuleEventBundle:Event:show.html.twig',
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView()
@@ -77,7 +77,7 @@ class EventBackendController extends AbstractModuleController
         $form   = $this->createForm(new EventType(), $entity);
 
         return array (
-            'method'    => 'render',
+            '_method'    => 'render',
             '_template' => 'ModuleEventBundle:Event:new.html.twig',
             'status'    => false,
             'message'   => '',
@@ -103,14 +103,14 @@ class EventBackendController extends AbstractModuleController
             $em->flush();
 
             return array (
-                'method' => 'redirect',
+                '_method' => 'redirect',
                 'url'    => $this->generateUrl('events_show', array('id' => $entity->getId()))
             );
             
         }
 
         return array (
-            'method'    => 'render',
+            '_method'    => 'render',
             '_template' => 'ModuleEventBundle:Event:new.html.twig',
             'status'    => false,
             'message'   => 'Event creation failed.',
@@ -148,7 +148,7 @@ class EventBackendController extends AbstractModuleController
         $deleteForm = $this->createDeleteForm($id);
 
         return array (
-            'method'      => 'render',
+            '_method'      => 'render',
             '_template'   => 'ModuleEventBundle:Event:edit.html.twig',
             'message'     => $message,
             'status'      => $status,
@@ -186,13 +186,13 @@ class EventBackendController extends AbstractModuleController
             $em->flush();
 
             return array (
-                'method' => 'redirect',
+                '_method' => 'redirect',
                 'url'    => $this->generateUrl('events_edit', array('id' => $id, 'message' => 'Event successfully updated', 'status' => true))
             );
         }
 
         return array (
-            'method'      => 'render',
+            '_method'      => 'render',
             '_template'   => 'ModuleEventBundle:Event:edit.html.twig',
             'message'     => 'Event update failed',
             'status'      => false,
@@ -228,7 +228,7 @@ class EventBackendController extends AbstractModuleController
         //}
 
         return array (
-            'method' => 'redirect',
+            '_method' => 'redirect',
             'url'    => $this->generateUrl('events', array('message' => 'Event successfully deleted', 'status' => true))
         );
     }

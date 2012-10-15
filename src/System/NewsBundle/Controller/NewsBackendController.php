@@ -34,7 +34,7 @@ class NewsBackendController extends AbstractModuleController
         $entities = $em->getRepository('SystemNewsBundle:News')->findAll();
 
         return array (
-            'method'    => 'render',
+            '_method'    => 'render',
             '_template' => 'SystemNewsBundle:News:index.html.twig',
             'entities'  => $entities,
             'message'   => $message,
@@ -60,7 +60,7 @@ class NewsBackendController extends AbstractModuleController
         $deleteForm = $this->createDeleteForm($id);
 
         return array (
-            'method'      => 'render',
+            '_method'      => 'render',
             '_template'   => 'SystemNewsBundle:News:show.html.twig',
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView()
@@ -81,7 +81,7 @@ class NewsBackendController extends AbstractModuleController
         $em->flush();
         
         return array (
-            'method'          => 'render',
+            '_method'          => 'render',
             '_template'       => 'SystemNewsBundle:News:new.html.twig',
             'entity'          => $entity,
             'newsCategories'  => $newsCategories,
@@ -106,7 +106,7 @@ class NewsBackendController extends AbstractModuleController
             $em->flush();
 
             return array (
-                'method' => 'redirect',
+                '_method' => 'redirect',
                 'url'    => $this->generateUrl('news_show', array('id' => $entity->getId()))
             );
             
@@ -118,7 +118,7 @@ class NewsBackendController extends AbstractModuleController
         // needed if form was invalid
         $entity = new News();
         return array (
-            'method'       => 'render',
+            '_method'       => 'render',
             '_template'    => 'SystemNewsBundle:News:new.html.twig',
             'entity'       => $entity,
             'newsCategories' => $newsCategories,
@@ -160,7 +160,7 @@ class NewsBackendController extends AbstractModuleController
         $em->flush();
 
         return array (
-            'method'         => 'render',
+            '_method'         => 'render',
             '_template'      => 'SystemNewsBundle:News:edit.html.twig',
             'message'        => $message,
             'status'         => $status,
@@ -204,13 +204,13 @@ class NewsBackendController extends AbstractModuleController
             $em->flush();
             
             return array (
-                'method' => 'redirect',
+                '_method' => 'redirect',
                 'url'    => $this->generateUrl('news_edit', array('id' => $id, 'message' => 'News successfully updated', 'status' => true))
             );
         }
 
         return array (
-            'method'         => 'render',
+            '_method'         => 'render',
             '_template'      => 'SystemNewsBundle:News:edit.html.twig',
             'entity'         => $entity,
             'message'        => 'News update failed',
@@ -247,7 +247,7 @@ class NewsBackendController extends AbstractModuleController
         //}
         
         return array (
-            'method' => 'redirect',
+            '_method' => 'redirect',
             'url'    => $this->generateUrl('news', array('message' => 'News successfully deleted', 'status' => true))
         );
     }

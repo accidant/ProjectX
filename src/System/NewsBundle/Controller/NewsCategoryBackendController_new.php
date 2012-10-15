@@ -23,7 +23,7 @@ class NewsCategoryBackendController extends AbstractModuleController
         $entities = $this->getDoctrine()->getRepository('SystemNewsBundle:NewsCategory')->findAll();
 
         return array (
-            'method'    => 'render',
+            '_method'    => 'render',
             'entities'  => $entities,
         );
     }
@@ -40,7 +40,7 @@ class NewsCategoryBackendController extends AbstractModuleController
 		$deleteForm = $this->createDeleteForm($id);
 
 		return array (
-			'method'      => 'render',
+			'_method'      => 'render',
 			'entity'      => $entity,
 			'delete_form' => $deleteForm->createView(),
 		);
@@ -77,7 +77,7 @@ class NewsCategoryBackendController extends AbstractModuleController
         $deleteForm = $this->createDeleteForm($id);
 
         return array (
-            'method'      => 'render',
+            '_method'      => 'render',
             '_template'   => 'SystemNewsBundle:NewsCategory:show.html.twig',
             'entity'      => $entity,
             'news'        => $news,
@@ -98,7 +98,7 @@ class NewsCategoryBackendController extends AbstractModuleController
         $form   = $this->createForm(new NewsCategoryType(), $entity);
 
         return array (
-            'method'    => 'render',
+            '_method'    => 'render',
             'entity'    => $entity,
             'form'      => $form->createView()
         );
@@ -114,21 +114,15 @@ class NewsCategoryBackendController extends AbstractModuleController
 		$entity  = new NewsCategory();
 		$form    = $this->createForm(new NewsCategoryType(), $entity);
 		$form->bindRequest($this->getRequest());
-
+                
 		if ($form->isValid()) {
-			$em = $this->getDoctrine()->getEntityManager();
-
-			$em->persist($entity);
-			$em->flush();
-
+                        $this->persistEntity($entity);
 			$this->get('session')->setFlash('success', 'News Category created successfully');
 
 			return array (
-				'method' => 'redirect',
+				'_method' => 'redirect',
 				'url'    => $this->generateUrl('newscategory_show', array(
-					'id' => $entity->getId(),
-					'status'=>'success',
-					'message'=>'News Category created successfully',
+					'id' => $entity->getId()
 				)),
 			);
 		}
@@ -136,8 +130,7 @@ class NewsCategoryBackendController extends AbstractModuleController
 		$this->get('session')->setFlash('error', 'The Category could not be created');
 
 		return array (
-			'method'    => 'render',
-			'_template' => 'SystemNewsBundle:NewsCategoryBackend:new.html.twig',
+			'_method'    => 'render',
 			'entity'    => $entity,
 			'form'      => $form->createView()
 		);
@@ -160,7 +153,7 @@ class NewsCategoryBackendController extends AbstractModuleController
                 $em->flush();
             } catch (\PDOException $e) {
                 return array (
-                    'method'    => 'render',
+                    '_method'    => 'render',
                     '_template' => 'SystemNewsBundle:NewsCategory:new.html.twig',
                     'status'    => false,
                     'message'   => 'News Category creation failed. Probably the name is not unique.',
@@ -172,12 +165,12 @@ class NewsCategoryBackendController extends AbstractModuleController
             $news = $em->getRepository('SystemNewsBundle:News')->findByNewsCategory($entity->getId());
 
             return array (
-                'method' => 'redirect',
+                '_method' => 'redirect',
                 'url'    => $this->generateUrl('newscategory_show', array('id' => $entity->getId(), 'status'=>true, 'message'=>'News Category created successfully', 'news'=>$news)),
             );
         }
 	return array (
-            'method'    => 'render',
+            '_method'    => 'render',
             '_template' => 'SystemNewsBundle:NewsCategory:new.html.twig',
             'status'    => false,
             'message'   => 'News Category creation failed',
@@ -201,7 +194,7 @@ class NewsCategoryBackendController extends AbstractModuleController
 		$deleteForm = $this->createDeleteForm($id);
 
 		return array (
-			'method'      => 'render',
+			'_method'      => 'render',
 			'entity'      => $entity,
 			'form'   => $form->createView(),
 			'delete_form' => $deleteForm->createView()
@@ -238,7 +231,7 @@ class NewsCategoryBackendController extends AbstractModuleController
         $deleteForm = $this->createDeleteForm($id);
 
         return array (
-            'method'      => 'render',
+            '_method'      => 'render',
             '_template'   => 'SystemNewsBundle:NewsCategory:edit.html.twig',
             'message'     => $message,
             'status'      => $status,
@@ -264,11 +257,7 @@ class NewsCategoryBackendController extends AbstractModuleController
 		$form->bindRequest($this->getRequest());
 
 		if ($form->isValid()) {
-			$em = $this->getDoctrine()->getEntityManager();
-
-			$em->persist($entity);
-			$em->flush();
-
+                        $this->persistEntity($entity);
 			$this->get('session')->setFlash('success', 'News Category successfully updated');
 
 			return array (
@@ -355,9 +344,8 @@ class NewsCategoryBackendController extends AbstractModuleController
 	 * @todo Hierbei nochmal das vorgehen überdenken. Dies könnte man eventuell noch anders Handhaben
      *
      */
-    public function deleteAction()
+    public function deleteAction($id)
     {
-        $id = $_GET['id'];
         
         /*$form = $this->createDeleteForm($id);
         $request = $this->getRequest();
@@ -366,24 +354,24 @@ class NewsCategoryBackendController extends AbstractModuleController
 
         var_dump($form->isValid());exit;
         if ($form->isValid()) {*/
-            $em = $this->getDoctrine()->getEntityManager();
-            $entityNewsCategory = $em->getRepository('SystemNewsBundle:NewsCategory')->find($id);
-            $entityNews = $em->getRepository('SystemNewsBundle:News')->findOneByNewsCategory($id);
+            $newsCategory = $this->findOneBy(array('id'=>$id));
+            $newsExists = $this->exists(array('newsCategory' => $id), 'SystemNewsBundle:News');
 
-            if (!$entityNewsCategory) {
+            if (!$newsCategory) {
                 throw $this->createNotFoundException('Unable to find NewsCategory entity.');
             }
-            if ($entityNews) {
-                $news = $em->getRepository('SystemNewsBundle:News')->findByNewsCategory($entity->getId());
+            if ($newsExists) {
+                $news = $this->findBy(array('newsCategory' => $id), 'SystemNewsBundle:News');
+                
+                $this->get('session')->setFlash('success', 'News Category deletion failed. At least one News exists for this Category.');
                 
                 return array (
                     'method' => 'redirect',
-                    'url'    => $this->generateUrl('newscategory_show', array('id'=>$id, 'news'=>$news, 'status'=>false, 'message'=>'News Category deletion failed. At least one News exists for this Category.'))
+                    'url'    => $this->generateUrl('newscategory_show', array('id'=>$id, 'news'=>$news))
                 );
             }
 
-            $em->remove($entityNewsCategory);
-            $em->flush();
+            $this->removeEntity($newsCategory);
         //}
 
         return array (

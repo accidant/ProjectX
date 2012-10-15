@@ -4,6 +4,8 @@ namespace Core\CoreBaseBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use DateTime;
+
 /**
  * Date: 03.08.12
  * Time: 21:43
@@ -72,6 +74,7 @@ abstract class BaseEntity{
 	 */
 	protected $deleted = false;
 
+        
 	/**
 	 * @return int
 	 */

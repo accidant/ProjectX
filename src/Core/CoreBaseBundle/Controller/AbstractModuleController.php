@@ -73,7 +73,7 @@ abstract class AbstractModuleController extends Controller {
 			$strpos = \strrpos($repository, "Backend");
 
 			if (false !== $strpos){
-				$repository = \substr($repository, $strpos);
+				$repository = \substr($repository, 0, $strpos);
 			}
 
 			return $repository;
@@ -81,6 +81,43 @@ abstract class AbstractModuleController extends Controller {
 
 		return $repository;
 	}
+        
+         /**
+	 * Checks if entity with given dependencies exists
+	 *
+	 * @param array $elements
+	 * @param string $repository
+	 * @return boolean
+	 */
+	public function exists(array $elements, $repository = ''){
+            $repository = $this->getRepositoryName($repository);
+
+            $entities = $this->getDoctrine()->getRepository($repository)->findBy($elements);
+
+            return $entities!=null;
+        }
+        
+        /**
+	 * Persists the given entity
+	 *
+	 * @param object $entity
+	 */        
+        public function persistEntity($entity) {
+            $em = $this->getDoctrine()->getEntityManager();
+
+            $em->persist($entity);
+            $em->flush();
+        }
+
+        /**
+	 * Removes the given entity
+	 *
+	 * @param object $entity
+	 */        
+        public function removeEntity($entity) {
+            $em->remove($entity);
+            $em->flush();
+        }
 
 	/**
 	 * Throws an Exception if the delivered entity is NULL

@@ -37,7 +37,7 @@
                                 {% for news in main_content['entity'].news %}
                                     <a href="{{ path('news_show', { 'id': news.id }) }}">{{ news.title }}</a><br/>
 								{% else %}
-									Empty Data
+									No News
                                 {% endfor %}
                             </td>
                          </tr>

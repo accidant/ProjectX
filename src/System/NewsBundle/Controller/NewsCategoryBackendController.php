@@ -24,7 +24,7 @@ class NewsCategoryBackendController extends AbstractModuleController
 
         return array (
             '_method'    => 'render',
-            'entities'  => $entities,
+            'entities'  => $entities
         );
     }
 
@@ -308,7 +308,7 @@ class NewsCategoryBackendController extends AbstractModuleController
                 $em->flush();
             } catch (\PDOException $e) {
                 return array (
-                    'method'      => 'render',
+                    '_method'      => 'render',
                     '_template'   => 'SystemNewsBundle:NewsCategory:edit.html.twig',
                     'entity'      => $entity,
                     'message'     => 'News Category update failed. Probably the name is not unique.',
@@ -319,13 +319,13 @@ class NewsCategoryBackendController extends AbstractModuleController
             }
 
             return array (
-                'method' => 'redirect',
+                '_method' => 'redirect',
                 'url'    => $this->generateUrl('newscategory_edit', array('id' => $id, 'message' => 'News Category successfully updated', 'status' => true))
             );
         }
 
         return array (
-            'method'      => 'render',
+            '_method'      => 'render',
             '_template'   => 'SystemNewsBundle:NewsCategory:edit.html.twig',
             'entity'      => $entity,
             'message'     => 'News Category update failed',
@@ -354,7 +354,9 @@ class NewsCategoryBackendController extends AbstractModuleController
 
         var_dump($form->isValid());exit;
         if ($form->isValid()) {*/
-            $newsCategory = $this->findOneBy(array('id'=>$id));
+            //$newsCategory = $this->findOneBy(array('id'=>$id));
+            $em = $this->getDoctrine()->getEntityManager();
+            $newsCategory = $em->getRepository('SystemNewsBundle:NewsCategory')->find($id);
             $newsExists = $this->exists(array('newsCategory' => $id), 'SystemNewsBundle:News');
 
             if (!$newsCategory) {
@@ -366,16 +368,17 @@ class NewsCategoryBackendController extends AbstractModuleController
                 $this->get('session')->setFlash('success', 'News Category deletion failed. At least one News exists for this Category.');
                 
                 return array (
-                    'method' => 'redirect',
+                    '_method' => 'redirect',
                     'url'    => $this->generateUrl('newscategory_show', array('id'=>$id, 'news'=>$news))
                 );
             }
 
-            $this->removeEntity($newsCategory);
+            //$this->removeEntity($newsCategory);
+            $em->remove($newsCategory);
         //}
 
         return array (
-            'method' => 'redirect',
+            '_method' => 'redirect',
             'url'    => $this->generateUrl('newscategory', array('status'=>true, 'message'=>'News Category deleted successfully'))
         );
     }

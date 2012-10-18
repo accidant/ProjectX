@@ -6,6 +6,7 @@ use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Core\CoreBaseBundle\Component\Controller\InformationService;
+use Core\CoreBaseBundle\Component\Controller\ResponseService;
 
 
 /**
@@ -57,6 +58,7 @@ class ProjectInjectionKernelListener extends ContainerAware {
 		$controller = $event->getController();
 
 		$controller[0]->setInformationService(new InformationService());
+		$controller[0]->setResponseService(new ResponseService());
 
 		$handleController = 'FrontendEntranceController';
 		if($this->isBackendRequest($event->getRequest()))
@@ -105,6 +107,7 @@ class ProjectInjectionKernelListener extends ContainerAware {
 		$controller = new $controllerName();
 		$controller->setContainer($this->container);
 		$controller->setInformationService(new InformationService());
+		$controller->setResponseService(new ResponseService());
 		return $controller;
 	}
 }

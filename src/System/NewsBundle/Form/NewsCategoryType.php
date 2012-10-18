@@ -11,9 +11,7 @@ class NewsCategoryType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('description', 'textarea', array(
-			   'required' => false
-			));
+            ->add('description', 'textarea', array('required' => false));
         ;
     }
 

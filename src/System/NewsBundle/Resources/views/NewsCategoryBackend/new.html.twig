@@ -5,23 +5,23 @@
 <div class="content-box-outer">
     <div class="content-box">
         <div class="content-box-content">
+            {{ macros.render_flashes() }}
             <div class="col">
-				{{ macros.render_flashes() }}
                 <form action="{{ path('newscategory_create') }}" method="post" class="form" {{ form_enctype(main_content['form']) }}>
                     <div id="system_newsbundle_newscategorytype">
                         {% for element in main_content['form'] %}
-							<div class="col">
-								{{ form_row(element) }}
-							</div>
-							<div class="clear"></div>
+                            <div class="col">
+                                {{ form_row(element) }}
+                            </div>
+                            <div class="clear"></div>
                         {% endfor %}
                     </div>
-					<div class="clear"></div>
+                    <div class="clear"></div>
                     <div class="col no-label">
                     	<input type="submit" value="Create" />
                     	<a href="{{ path('newscategory') }}" class="button">Back</a>
                     </div>
-					<div class="clear"></div>
+                    <div class="clear"></div>
                 </form>
             </div>
         </div>

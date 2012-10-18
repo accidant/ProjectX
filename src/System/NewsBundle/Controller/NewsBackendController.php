@@ -2,7 +2,6 @@
 
 namespace System\NewsBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Core\CoreBaseBundle\Controller\AbstractModuleController;
 
 use System\NewsBundle\Entity\News;
@@ -17,51 +16,33 @@ class NewsBackendController extends AbstractModuleController
     /**
      * Lists all News entities.
      *
+     * @return array
+     * 
      */
     public function indexAction()
     {
-        $message = "";
-        $status = false;
-        if (isset($_GET['message'])) {
-            $message = $_GET['message'];
-        }
-        if (isset($_GET['status'])) {
-            $status = $_GET['status'];
-        }
-        
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $entities = $em->getRepository('SystemNewsBundle:News')->findAll();
+        $entities = $this->getDoctrine()->getRepository('SystemNewsBundle:News')->findAll();
 
         return array (
             '_method'    => 'render',
-            '_template' => 'SystemNewsBundle:News:index.html.twig',
-            'entities'  => $entities,
-            'message'   => $message,
-            'status'    => $status
+            'entities'  => $entities
         );
     }
 
     /**
      * Finds and displays a News entity.
      *
+     * @param int $id
+     * @return array
+     * 
      */
-    public function showAction()
+    public function showAction($id)
     {
-        $id = $_GET['id'];
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $entity = $em->getRepository('SystemNewsBundle:News')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find News entity.');
-        }
-
+        $entity = $this->findOneBy(array('id' => $id));
         $deleteForm = $this->createDeleteForm($id);
 
         return array (
             '_method'      => 'render',
-            '_template'   => 'SystemNewsBundle:News:show.html.twig',
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView()
         );
@@ -70,185 +51,140 @@ class NewsBackendController extends AbstractModuleController
     /**
      * Displays a form to create a new News entity.
      *
+     * @return array
+     * 
      */
     public function newAction()
     {
         $entity = new News();
         $form   = $this->createForm(new NewsType(), $entity);
         
-        $em = $this->getDoctrine()->getEntityManager();
-        $newsCategories = $em->getRepository('SystemNewsBundle:NewsCategory')->findAll();
-        $em->flush();
+        $newsCategories = $this->getDoctrine()->getRepository('SystemNewsBundle:NewsCategory')->findAll();
         
         return array (
             '_method'          => 'render',
-            '_template'       => 'SystemNewsBundle:News:new.html.twig',
             'entity'          => $entity,
-            'newsCategories'  => $newsCategories,
-            'form'            => $form->createView()
+            'form'            => $form->createView(),
+            'newsCategories'  => $newsCategories
         );
     }
 
     /**
      * Creates a new News entity.
      *
+     * @return array
+     * 
      */
     public function createAction()
     {
         $entity  = new News();
-        $request = $this->getRequest();
         $form    = $this->createForm(new NewsType(), $entity);
-        $form->bindRequest($request);
+        $form->bindRequest($this->getRequest());
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
-            $em->persist($entity);
-            $em->flush();
-
+            $this->persistEntity($entity);
+            $this->get('session')->setFlash('success', 'News created successfully');
+            
             return array (
                 '_method' => 'redirect',
                 'url'    => $this->generateUrl('news_show', array('id' => $entity->getId()))
-            );
-            
+            );    
         }
-        $em = $this->getDoctrine()->getEntityManager();
-        $newsCategories = $em->getRepository('SystemNewsBundle:NewsCategory')->findAll();
-        $em->flush();
+        $this->get('session')->setFlash('error', 'The news could not be created');
         
-        // needed if form was invalid
-        $entity = new News();
+        $newsCategories = $this->getDoctrine()->getRepository('SystemNewsBundle:NewsCategory')->findAll();
+        
         return array (
-            '_method'       => 'render',
-            '_template'    => 'SystemNewsBundle:News:new.html.twig',
-            'entity'       => $entity,
-            'newsCategories' => $newsCategories,
-            'form'         => $form->createView()
+            '_method'        => 'render',
+            'entity'         => $entity,
+            'form'           => $form->createView(),
+            'newsCategories' => $newsCategories
         );
     }
 
     /**
      * Displays a form to edit an existing News entity.
      *
+     * @param int $id
+     * @return array
+     * 
      */
-    public function editAction()
+    public function editAction($id)
     {
-        $id = $_GET['id'];
-        
-        $message = "";
-        $status = false;
-        if (isset($_GET['message'])) {
-            $message = $_GET['message'];
-        }
-        if (isset($_GET['status'])) {
-            $status = $_GET['status'];
-        }
-        
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $entity = $em->getRepository('SystemNewsBundle:News')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find News entity.');
-        }
+        $entity = $this->findOneBy(array('id' => $id));
 
         $editForm = $this->createForm(new NewsType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
         
-        
-        $em = $this->getDoctrine()->getEntityManager();
-        $newsCategories = $em->getRepository('SystemNewsBundle:NewsCategory')->findAll();
-        $em->flush();
+        $newsCategories = $this->getDoctrine()->getRepository('SystemNewsBundle:NewsCategory')->findAll();
 
         return array (
-            '_method'         => 'render',
-            '_template'      => 'SystemNewsBundle:News:edit.html.twig',
-            'message'        => $message,
-            'status'         => $status,
+            '_method'        => 'render',
             'entity'         => $entity,
-            'newsCategories' => $newsCategories,
             'edit_form'      => $editForm->createView(),
-            'delete_form'    => $deleteForm->createView()
+            'delete_form'    => $deleteForm->createView(),
+            'newsCategories' => $newsCategories
         );
     }
 
     /**
      * Edits an existing News entity.
      *
+     * @param int $id
+     * @return array
+     * 
      */
-    public function updateAction()
+    public function updateAction($id)
     {
-        $id = $_GET['id'];
+        $entity = $this->findOneBy(array('id' => $id));
+
+        $form   = $this->createForm(new NewsType(), $entity);
+        $form->bindRequest($this->getRequest());
         
-        $em = $this->getDoctrine()->getEntityManager();
+        $newsCategories = $this->getDoctrine()->getRepository('SystemNewsBundle:NewsCategory')->findAll();
 
-        $entity = $em->getRepository('SystemNewsBundle:News')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find News entity.');
-        }
-
-        $editForm   = $this->createForm(new NewsType(), $entity);
-        $deleteForm = $this->createDeleteForm($id);
-
-        $request = $this->getRequest();
-
-        $editForm->bindRequest($request);
-        
-        
-        $em = $this->getDoctrine()->getEntityManager();
-        $newsCategories = $em->getRepository('SystemNewsBundle:NewsCategory')->findAll();
-        $em->flush();
-
-        if ($editForm->isValid()) {
-            $em->persist($entity);
-            $em->flush();
+        if ($form->isValid()) {
+            $this->persistEntity($entity);
+            $this->get('session')->setFlash('success', 'News successfully updated');
             
             return array (
                 '_method' => 'redirect',
-                'url'    => $this->generateUrl('news_edit', array('id' => $id, 'message' => 'News successfully updated', 'status' => true))
+                'url'    => $this->generateUrl('news_edit', array('id' => $id))
             );
         }
 
+        $deleteForm = $this->createDeleteForm($id);
+        
+        $this->get('session')->setFlash('error', 'News update failed');
+        
         return array (
-            '_method'         => 'render',
-            '_template'      => 'SystemNewsBundle:News:edit.html.twig',
+            '_method'        => 'render',
             'entity'         => $entity,
-            'message'        => 'News update failed',
-            'status'         => false,
-            'newsCategories' => $newsCategories,
-            'edit_form'      => $editForm->createView(),
-            'delete_form'    => $deleteForm->createView()
+            'edit_form'      => $form->createView(),
+            'delete_form'    => $deleteForm->createView(),
+            'newsCategories' => $newsCategories
         );
     }
 
     /**
      * Deletes a News entity.
      *
+     * @param int $id
+     * @return array
+     * @todo Hierbei nochmal das vorgehen überdenken. Dies könnte man eventuell noch anders Handhaben
+     * 
      */
-    public function deleteAction()
-    {
-        $id = $_GET['id'];
-        /*$form = $this->createDeleteForm($id);
-        $request = $this->getRequest();
-
-        $form->bindRequest($request);
+    public function deleteAction($id)
+    {        
+        $news = $this->findOneBy(array('id'=>$id));
         
-        if ($form->isValid()) {*/
+        $this->removeEntity($news);
         
-        $em = $this->getDoctrine()->getEntityManager();
-        $entity = $em->getRepository('SystemNewsBundle:News')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find News entity.');
-        }
-
-        $em->remove($entity);
-        $em->flush();
-        //}
+        $this->get('session')->setFlash('success', 'News successfully deleted.');
         
         return array (
             '_method' => 'redirect',
-            'url'    => $this->generateUrl('news', array('message' => 'News successfully deleted', 'status' => true))
+            'url'    => $this->generateUrl('news')
         );
     }
 

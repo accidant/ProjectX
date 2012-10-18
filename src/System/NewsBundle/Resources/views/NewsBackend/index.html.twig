@@ -11,38 +11,8 @@
 <div class="content-box-outer">
 	<div class="content-box">
 		<div class="content-box-content">
-                   {% if main_content['status'] and main_content['message'] != "" %}
-                            <div class="message success">
-                                <div class="content"> {{ main_content['message'] }} </div>
-                                <div class="close">
-                                    <a href="javascript:hideMessage('success')">
-                                        <img alt="close" src="/ProjectX/web/bundles/coreentrance/images/table/icon_close_success.gif">
-                                    </a>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                    {% elseif not main_content['status'] and main_content['message'] != "" %}
-                            <div class="message error">
-                                <div class="content"> {{ main_content['message'] }} </div>
-                                <div class="close">
-                                    <a href="javascript:hideMessage('false')">
-                                        <img alt="close" src="/ProjectX/web/bundles/coreentrance/images/table/icon_close_error.gif">
-                                    </a>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                    {% endif %}
-                    {% if main_content['entities']|length==0 %}
-                        <div class="message info">
-                            <div class="content"> No news existing! </div>
-                            <div class="close">
-                                <a href="javascript:hideMessage('info')">
-                                    <img alt="close" src="/ProjectX/web/bundles/coreentrance/images/table/icon_close_info.gif">
-                            </a>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-                    {% else %}
+                    {{ macros.render_flashes() }}
+                    <div class="col">    
                         <table class="table records_list">
                             <thead>
                                 <tr>
@@ -61,7 +31,6 @@
                             </thead>
                             <tbody>
                                 {% for entity in main_content['entities'] %}
-                                    {% if entity.deleted == false %}
                                         <tr>
                                             <td><a class="icon_cb icon-checkbox info-tooltip" title="Checkbox"></a></td>
                                             <td><a href="{{ path('news_show', { 'id': entity.id }) }}">{{ entity.title }}</a></td>
@@ -78,13 +47,18 @@
                                                 <a href="{{ path('news_delete', { 'id': entity.id }) }}" class="icon icon-delete info-tooltip" title="Delete"></a>
                                             </td>
                                         </tr>
-                                    {% endif %}
+                                {% else %}
+                                        <tr>
+                                            <td colspan="6">No Data</td>
+                                        </tr>
                                 {% endfor %}
                             </tbody>
                         </table>
-                        <div class="clear"></div>
-                    {% endif %}
-                    <a href="{{ path('news_new') }}" class="button">Create News</a>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="col no-label">
+                        <a href="{{ path('news_new') }}" class="button">Create News</a>
+                    </div>
                     <div class="clear"></div>
 		</div>
 	</div>

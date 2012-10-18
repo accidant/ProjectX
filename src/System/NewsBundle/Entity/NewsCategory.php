@@ -26,7 +26,7 @@ use System\NewsBundle\Entity\News;
 	
 	/**
 	 * @var string
-	 * @ORM\Column(type="string")
+	 * @ORM\Column(type="string", nullable=true)
 	 */
 	private $description;
 	

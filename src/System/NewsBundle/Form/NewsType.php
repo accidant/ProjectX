@@ -11,7 +11,7 @@ class NewsType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('subtitle')
+            ->add('subtitle', 'textarea', array('required' => false))
             ->add('content')
             ->add('startDate', 'datetime', array('required'=>false))
             ->add('endDate', 'datetime', array('required'=>false))

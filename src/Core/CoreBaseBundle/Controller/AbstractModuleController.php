@@ -58,7 +58,7 @@ abstract class AbstractModuleController extends Controller {
 	 * @param string $repository
 	 * @return object
 	 */
-	public function findOneBy(array $elements, $repository = ''){
+	public function findOneBy(array $elements, $repository = '') {
 		$repository = $this->getRepositoryName($repository);
 
 		$entity = $this->getDoctrine()->getRepository($repository)->findOneBy($elements);
@@ -67,7 +67,7 @@ abstract class AbstractModuleController extends Controller {
 		return $entity;
 	}
 
-	private function getRepositoryName($repository){
+	private function getRepositoryName($repository) {
 		if($repository == ''){
 			$repository = $this->getInformationService()->getFullControllerName();
 			$strpos = \strrpos($repository, "Backend");
@@ -115,6 +115,8 @@ abstract class AbstractModuleController extends Controller {
 	 * @param object $entity
 	 */        
         public function removeEntity($entity) {
+            $em = $this->getDoctrine()->getEntityManager();
+            
             $em->remove($entity);
             $em->flush();
         }

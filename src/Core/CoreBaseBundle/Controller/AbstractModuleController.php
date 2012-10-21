@@ -3,6 +3,7 @@ namespace Core\CoreBaseBundle\Controller;
 
 use Core\CoreBaseBundle\Component\Controller\AbstractInformationService;
 use Core\CoreBaseBundle\Component\Controller\InformationService;
+use Core\CoreBaseBundle\Component\Controller\ResponseService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
@@ -17,6 +18,27 @@ abstract class AbstractModuleController extends Controller {
 	 * @var \Core\CoreBaseBundle\Component\Controller\AbstractInformationService
 	 */
 	protected $informationService;
+
+	/**
+	 * @var \Core\CoreBaseBundle\Component\Controller\ResponseService
+	 */
+	protected $responseService;
+
+	/**
+	 * @todo Dokumentieren
+	 * @param \Core\CoreBaseBundle\Component\Controller\ResponseService $service
+	 */
+	public function setResponseService(ResponseService $service){
+		$this->responseService = $service;
+	}
+
+	/**
+	 * @todo Dokumentieren
+	 * @return \Core\CoreBaseBundle\Component\Controller\ResponseService
+	 */
+	public function getResponseService(){
+		return $this->responseService;
+	}
 
 	/**
 	 * @todo Dokumentieren
@@ -82,7 +104,7 @@ abstract class AbstractModuleController extends Controller {
 		return $repository;
 	}
         
-         /**
+     /**
 	 * Checks if entity with given dependencies exists
 	 *
 	 * @param array $elements
@@ -90,30 +112,30 @@ abstract class AbstractModuleController extends Controller {
 	 * @return boolean
 	 */
 	public function exists(array $elements, $repository = ''){
-            $repository = $this->getRepositoryName($repository);
+		$repository = $this->getRepositoryName($repository);
 
-            $entities = $this->getDoctrine()->getRepository($repository)->findBy($elements);
+		$entities = $this->getDoctrine()->getRepository($repository)->findBy($elements);
 
-            return $entities!=null;
-        }
+		return $entities!=null;
+	}
         
-        /**
+	/**
 	 * Persists the given entity
 	 *
 	 * @param object $entity
 	 */        
-        public function persistEntity($entity) {
-            $em = $this->getDoctrine()->getEntityManager();
+	public function persistEntity($entity) {
+		$em = $this->getDoctrine()->getEntityManager();
 
-            $em->persist($entity);
-            $em->flush();
-        }
+		$em->persist($entity);
+		$em->flush();
+	}
 
-        /**
+     /**
 	 * Removes the given entity
 	 *
 	 * @param object $entity
-	 */        
+	 */
         public function removeEntity($entity) {
             $em = $this->getDoctrine()->getEntityManager();
             
@@ -129,7 +151,7 @@ abstract class AbstractModuleController extends Controller {
 	 */
 	protected function throwExceptionIfNull($entity){
 		if ($entity == null) {
-			throw $this->createNotFoundException('Unable to find NewsCategory entity.');
+			throw $this->createNotFoundException('Unable to find entity.');
 		}
 	}
 
@@ -141,7 +163,7 @@ abstract class AbstractModuleController extends Controller {
 	 * @return array
 	 */
 	public function generateView(array $params, $template = null){
-		return $this->renderer('render', $params, $template);
+		return $this->responseService->renderer('render', $params, $template);
 	}
 
 	/**
@@ -152,25 +174,6 @@ abstract class AbstractModuleController extends Controller {
 	 * @return array
 	 */
 	public function generateRedirect($url, array $params = array()){
-		return $this->renderer('redirect', \array_merge($params, array('url' => $url)), null);
+		return $this->responseService->renderer('redirect', \array_merge($params, array('url' => $url)), null);
 	}
-
-	/**
-	 * An internal function which generates an array for the rendering of the view
-	 *
-	 * @param string $method
-	 * @param array $params
-	 * @param null|string $template
-	 * @return array
-	 */
-	private function renderer($method, array $params, $template){
-		$renderInformations = array('_method' => $method);
-
-		if($template != null){
-			$renderInformations['_template'] = $template;
-		}
-
-		return \array_merge($params, $renderInformations);
-	}
-
 }

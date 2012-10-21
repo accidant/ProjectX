@@ -48,9 +48,7 @@ class PageController extends AbstractModuleController{
 		$form->bindRequest($this->getRequest());
 
 		if($form->isValid()){
-			$em = $this->getDoctrine()->getEntityManager();
-			$em->persist($entity);
-			$em->flush();
+			$this->persistEntity($entity);
 
 			$this->get('session')->setFlash('success', 'The Page has been created');
 
@@ -82,9 +80,7 @@ class PageController extends AbstractModuleController{
 		$form->bindRequest($this->getRequest());
 
 		if ($form->isValid()){
-			$em = $this->getDoctrine()->getEntityManager();
-			$em->persist($entity);
-			$em->flush();
+			$this->persistEntity($entity);
 
 			$this->get('session')->setFlash('success', 'The Page has been updated');
 

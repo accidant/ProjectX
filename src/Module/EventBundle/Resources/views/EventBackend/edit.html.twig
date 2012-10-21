@@ -1,6 +1,6 @@
 <script>
-    function setHiddenFields() {
-        var startDate = document.getElementById("startDate");
+    function setHiddenFields() {        
+        var startDate = document.getElementById("date");
         document.getElementById("module_eventbundle_eventtype_date_date_year").value=date.value.substr(0,4);
         document.getElementById("module_eventbundle_eventtype_date_date_month").value=date.value.substr(5,2);
         document.getElementById("module_eventbundle_eventtype_date_date_day").value=date.value.substr(8,2);
@@ -10,15 +10,17 @@
 </script>
 
 <div id="page-heading">
-    <h1>Event creation</h1>
+    <h1>Event edit</h1>
 </div>
 
 <div class="content-box-outer">
 	<div class="content-box">
 		<div class="content-box-content">
-                    <form action="{{ path('events_create') }}" method="post" class="form" {{ form_enctype(main_content['form']) }}>
-                        <div id="module_eventbundle_eventtype">
-                                {% for element in main_content['form'] if loop.first %}
+                    {{ macros.render_flashes() }}
+                    <div class="col">
+                        <form action="{{ path('events_update', { 'id': main_content['entity'].id }) }}" method="post" class="form" {{ form_enctype(main_content['edit_form']) }}>
+                            <div id="module_eventbundle_eventtype">
+                                {% for element in main_content['edit_form'] if loop.first %}
                                 <div class="col">    
                                     {{ form_row(element) }}
                                 </div>
@@ -26,12 +28,12 @@
                                 {% endfor %}
                                 <div class="col">
                                     <label>Name:</label>
-                                    <input type="text" id="module_eventbundle_eventtype_name" name="module_eventbundle_eventtype[name]" required="required" />
+                                    <input type="text" id="module_eventbundle_eventtype_name" name="module_eventbundle_eventtype[name]" required="required" value="{{ main_content['entity'].name }}" />
                                 </div>
                                 <div class="clear"></div>
                                 <div class="col">
                                     <label>Description:</label>
-                                    <input type="text" id="module_eventbundle_eventtype_description" name="module_eventbundle_eventtype[description]" required="required" />
+                                    <input type="text" id="module_eventbundle_eventtype_description" name="module_eventbundle_eventtype[description]" required="required" value="{{ main_content['entity'].description }}" />
                                 </div>
                                 <div class="clear"></div>
                                 <div class="col">
@@ -53,12 +55,14 @@
                                 </div>
                                 <div class="clear"></div>
                             </div>
-                            <div class="col">
-                                <input type="submit" value="Create" />
+                            <div class="col no-label">
+                                <input type="submit" value="Update" />
+                                <a href="{{ path('events_delete', { 'id': main_content['entity'].id }) }}" class="button">Delete</a>
                                 <a href="{{ path('events') }}" class="button">Back</a>
                             </div>
-                            <div class="clear"></div>
-                    </form>
+                            <div class="clear"></div>                        
+                        </form>
+                    </div>
 		</div>
 	</div>
 </div>

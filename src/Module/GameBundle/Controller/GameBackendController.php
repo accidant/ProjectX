@@ -2,7 +2,6 @@
 
 namespace Module\GameBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Core\CoreBaseBundle\Controller\AbstractModuleController;
 
 use Module\GameBundle\Entity\Game;
@@ -17,60 +16,43 @@ class GameBackendController extends AbstractModuleController
     /**
      * Lists all Game entities.
      *
+     * @return array
+     * 
      */
     public function indexAction()
-    {
-        $message = "";
-        $status = false;
-        if (isset($_GET['message'])) {
-            $message = $_GET['message'];
-        }
-        if (isset($_GET['status'])) {
-            $status = $_GET['status'];
-        }
-        
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $entities = $em->getRepository('ModuleGameBundle:Game')->findAll();
+    {        
+        $entities = $this->getDoctrine()->getRepository('ModuleGameBundle:Game')->findAll();
 
         return array (
             '_method'    => 'render',
-            '_template' => 'ModuleGameBundle:Game:index.html.twig',
-            'entities'  => $entities,
-            'status'    => $status,
-            'message'   => $message
+            'entities'  => $entities
         );
     }
 
     /**
      * Finds and displays a Game entity.
      *
+     * @param int $id
+     * @return array
+     * 
      */
-    public function showAction()
+    public function showAction($id)
     {
-        $id = $_GET['id'];
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $entity = $em->getRepository('ModuleGameBundle:Game')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Game entity.');
-        }
-
+        $entity = $this->findOneBy(array('id' => $id));
         $deleteForm = $this->createDeleteForm($id);
 
         return array (
             '_method'      => 'render',
-            '_template'   => 'ModuleGameBundle:Game:show.html.twig',
             'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-
+            'delete_form' => $deleteForm->createView()
         );
     }
 
     /**
      * Displays a form to create a new Game entity.
      *
+     * @return array
+     * 
      */
     public function newAction()
     {
@@ -78,7 +60,6 @@ class GameBackendController extends AbstractModuleController
         $form   = $this->createForm(new GameType(), $entity);
         
         $icons = array ();
-        
         $folder = opendir($_SERVER['DOCUMENT_ROOT'].'/ProjectX/web/bundles/coreentrance/images/icons_games');
         while($file = readdir($folder)) 
         {  
@@ -92,28 +73,25 @@ class GameBackendController extends AbstractModuleController
 
         return array (
             '_method'    => 'render',
-            '_template' => 'ModuleGameBundle:Game:new.html.twig',
-            'status'    => false,
-            'message'   => '',
-            'icons'     => $icons,
             'entity'    => $entity,
-            'form'      => $form->createView()
+            'form'      => $form->createView(),
+            'icons'     => $icons
         );
     }
 
     /**
      * Creates a new Game entity.
      *
+     * @return array
+     * 
      */
     public function createAction()
     {
         $entity  = new Game();
-        $request = $this->getRequest();
         $form    = $this->createForm(new GameType(), $entity);
-        $form->bindRequest($request);
+        $form->bindRequest($this->getRequest());
         
         $icons = array ();
-        
         $folder = opendir($_SERVER['DOCUMENT_ROOT'].'/ProjectX/web/bundles/coreentrance/images/icons_games');
         while($file = readdir($folder)) 
         {  
@@ -126,34 +104,18 @@ class GameBackendController extends AbstractModuleController
         closedir($folder); 
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
-            try {
-                $em->persist($entity);
-                $em->flush();
-            } catch (\PDOException $e) {
-                return array (
-                    '_method'    => 'render',
-                    '_template' => 'ModuleGameBundle:Game:new.html.twig',
-                    'status'    => false,
-                    'message'   => 'Game creation failed. Probably the name is not unique.',
-                    'entity'    => $entity,
-                    'form'      => $form->createView(),
-                    'icons'     => $icons
-                );
-            }
+            $this->persistEntity($entity);
+            $this->get('session')->setFlash('success', 'The game was created successfully');
 
             return array (
                 '_method' => 'redirect',
-                'url'    => $this->generateUrl('games_show', array('id' => $entity->getId(), 'status'=>true, 'message'=>'Game created successfully'))
-            );
-            
+                'url'    => $this->generateUrl('games_show', array('id' => $entity->getId()))
+            );            
         }
+        $this->get('session')->setFlash('error', 'The game could not be created');
 
         return array (
             '_method'    => 'render',
-            '_template' => 'ModuleGameBundle:Game:new.html.twig',
-            'status'    => false,
-            'message'   => 'Game creation failed.',
             'entity'    => $entity,
             'form'      => $form->createView(),
             'icons'     => $icons
@@ -163,33 +125,18 @@ class GameBackendController extends AbstractModuleController
     /**
      * Displays a form to edit an existing Game entity.
      *
+     * @param int $id
+     * @return array
+     * 
      */
-    public function editAction()
+    public function editAction($id)
     {
-        $id = $_GET['id'];
+        $entity = $this->findOneBy(array('id' => $id));
         
-        $message = "";
-        $status = false;
-        if (isset($_GET['message'])) {
-            $message = $_GET['message'];
-        }
-        if (isset($_GET['status'])) {
-            $status = $_GET['status'];
-        }
-        
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $entity = $em->getRepository('ModuleGameBundle:Game')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Game entity.');
-        }
-
         $editForm = $this->createForm(new GameType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
         
         $icons = array ();
-        
         $folder = opendir($_SERVER['DOCUMENT_ROOT'].'/ProjectX/web/bundles/coreentrance/images/icons_games');
         while($file = readdir($folder)) 
         {  
@@ -203,9 +150,6 @@ class GameBackendController extends AbstractModuleController
         
         return array (
             '_method'      => 'render',
-            '_template'   => 'ModuleGameBundle:Game:edit.html.twig',
-            'message'     => $message,
-            'status'      => $status,
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -216,87 +160,69 @@ class GameBackendController extends AbstractModuleController
     /**
      * Edits an existing Game entity.
      *
+     * @param int $id
+     * @return array
+     * 
      */
-    public function updateAction()
+    public function updateAction($id)
     {
-        $id = $_GET['id'];
-        
-        $em = $this->getDoctrine()->getEntityManager();
+        $entity = $this->findOneBy(array('id' => $id));
 
-        $entity = $em->getRepository('ModuleGameBundle:Game')->find($id);
+        $form   = $this->createForm(new GameType(), $entity);
+        $form->bindRequest($this->getRequest());
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Game entity.');
-        }
-
-        $editForm   = $this->createForm(new GameType(), $entity);
-        $deleteForm = $this->createDeleteForm($id);
-
-        $request = $this->getRequest();
-
-        $editForm->bindRequest($request);
-
-        if ($editForm->isValid()) {
-            try {
-                $em->persist($entity);
-                $em->flush();
-            } catch (\PDOException $e) {
-                return array (
-                    '_method'      => 'render',
-                    '_template'   => 'ModuleGameBundle:Game:edit.html.twig',
-                    'message'     => 'Game update failed. Probably the name is not unique.',
-                    'status'      => false,
-                    'entity'      => $entity,
-                    'edit_form'   => $editForm->createView(),
-                    'delete_form' => $deleteForm->createView(),
-                );
+        $icons = array ();
+        $folder = opendir($_SERVER['DOCUMENT_ROOT'].'/ProjectX/web/bundles/coreentrance/images/icons_games');
+        while($file = readdir($folder)) 
+        {  
+            $info = @getimagesize($file);  
+            if(!is_dir($file)) 
+            {
+                $icons[]="/ProjectX/web/bundles/coreentrance/images/icons_games/".$file;
             }
-
+        }
+        closedir($folder); 
+        
+        if ($form->isValid()) {
+            $this->persistEntity($entity);
+            $this->get('session')->setFlash('success', 'The game was updated successfully');
+            
             return array(
                 '_method' => 'redirect',
-                'url'    => $this->generateUrl('games_edit', array('id' => $id, 'message' => 'Game successfully updated', 'status' => true))
+                'url'    => $this->generateUrl('games_edit', array('id' => $id))
             );
         }
-
+        
+        $deleteForm = $this->createDeleteForm($id);
+        $this->get('session')->setFlash('error', 'The game could not be updated');
+        
         return array (
             '_method'      => 'render',
-            '_template'   => 'ModuleGameBundle:Game:edit.html.twig',
-            'message'     => 'Game update failed',
-            'status'      => false,
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'edit_form'   => $form->createView(),
+            'delete_form' => $deleteForm->createView()
         );
     }
 
     /**
      * Deletes a Game entity.
      *
+     * @param int $id
+     * @return array
+     * @todo Hierbei nochmal das vorgehen überdenken. Dies könnte man eventuell noch anders Handhaben
+     * 
      */
-    public function deleteAction()
+    public function deleteAction($id)
     {
-        $id = $_GET['id'];
+        $game = $this->findOneBy(array('id'=>$id));
         
-        /*$form = $this->createDeleteForm($id);
-        $request = $this->getRequest();
-
-        $form->bindRequest($request);
-
-        if ($form->isValid()) {*/
-        $em = $this->getDoctrine()->getEntityManager();
-        $entity = $em->getRepository('ModuleGameBundle:Game')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Game entity.');
-        }
-
-        $em->remove($entity);
-        $em->flush();
-        //}
+        $this->removeEntity($game);
+        
+        $this->get('session')->setFlash('success', 'The game was deleted successfully');
 
         return array (
             '_method' => 'redirect',
-            'url'    => $this->generateUrl('games', array('message' => 'Game successfully deleted', 'status' => true))
+            'url'    => $this->generateUrl('games')
         );
     }
 

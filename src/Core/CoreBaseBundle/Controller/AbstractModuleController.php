@@ -127,8 +127,12 @@ abstract class AbstractModuleController extends Controller {
 	public function persistEntity($entity) {
 		$em = $this->getDoctrine()->getEntityManager();
 
-		$em->persist($entity);
-		$em->flush();
+                try {
+                    $em->persist($entity);
+                    $em->flush();
+                } catch (\PDOException $e) {
+                    $this->get('session')->setFlash('error', 'Entity could not be deleted. Perhaps the name is not unique.');
+                }
 	}
 
      /**

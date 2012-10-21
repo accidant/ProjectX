@@ -14,10 +14,6 @@
         document.getElementById("system_newsbundle_newstype_endDate_time_hour").value=endDate.value.substr(11,2);
         document.getElementById("system_newsbundle_newstype_endDate_time_minute").value=endDate.value.substr(14,2);
     } 
-    
-    function hideMessage(type) {
-        document.getElementsByClassName(type)[0].style.display="none";
-    }
 </script>
 
 <div id="page-heading">
@@ -27,27 +23,8 @@
 <div class="content-box-outer">
 	<div class="content-box">
 		<div class="content-box-content">
-                        {% if main_content['status'] and main_content['message'] != "" %}
-                            <div class="message success">
-                                <div class="content"> {{ main_content['message'] }} </div>
-                                <div class="close">
-                                    <a href="javascript:hideMessage('success')">
-                                        <img alt="close" src="/ProjectX/web/bundles/coreentrance/images/table/icon_close_success.gif">
-                                    </a>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                        {% elseif not main_content['status'] and main_content['message'] != "" %}
-                            <div class="message error">
-                                <div class="content"> {{ main_content['message'] }} </div>
-                                <div class="close">
-                                    <a href="javascript:hideMessage('error')">
-                                        <img alt="close" src="/ProjectX/web/bundles/coreentrance/images/table/icon_close_error.gif">
-                                    </a>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                        {% endif %}
+                    {{ macros.render_flashes() }}
+                    <div class="col">    
 			<form class="form" action="{{ path('news_update', { 'id': main_content['entity'].id }) }}" method="post" {{ form_enctype(main_content['edit_form']) }}>
                             <div id="system_newsbundle_newstype">
                                 {% for element in main_content['edit_form'] if loop.first %}
@@ -133,6 +110,7 @@
                             </div>
                             <div class="clear"></div>
                         </form>
+                    </div>
 		</div>
 	</div>
 </div>

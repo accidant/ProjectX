@@ -5,17 +5,25 @@ games_new:
     pattern:  /games/new
     defaults: { _controller: ModuleGameBundle:GameBackend:new }
 games_show:
-    pattern:  /games/show
+    pattern:  /games/{id}/show
     defaults: { _controller: ModuleGameBundle:GameBackend:show }
+    requirements:
+          id:  \d+
 games_create:
     pattern:  /games/create
     defaults: { _controller: ModuleGameBundle:GameBackend:create }
 games_edit:
-    pattern:  /games/edit
+    pattern:  /games/{id}/edit
     defaults: { _controller: ModuleGameBundle:GameBackend:edit }
+    requirements:
+          id:  \d+
 games_update:
-    pattern:  /games/update
+    pattern:  /games/{id}/update
     defaults: { _controller: ModuleGameBundle:GameBackend:update }
+    requirements:
+          id:  \d+
 games_delete:
-    pattern:  /games/delete
+    pattern:  /games/{id}/delete
     defaults: { _controller: ModuleGameBundle:GameBackend:delete }
+    requirements:
+          id:  \d+

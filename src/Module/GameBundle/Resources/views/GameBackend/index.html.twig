@@ -1,0 +1,53 @@
+<div id="page-heading">
+    <h1>Game list</h1>
+</div>
+
+<div class="content-box-outer">
+	<div class="content-box">
+		<div class="content-box-content">
+                    {{ macros.render_flashes() }}
+                    <div class="col">
+                        <table class="table records_list">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Icon</th>
+                                    <th>Url</th>
+                                    <th>Createdate</th>
+                                    <th>Updatedate</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for entity in main_content['entities'] %}
+                                <tr>
+                                    <td><a class="icon_cb icon-checkbox info-tooltip" title="Checkbox"></a></td>
+                                    <td><a href="{{ path('games_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+                                    <td>{{ entity.description }}</td>
+                                    <td><img src="{{ entity.icon }}" class="icon-game" alt="No picture" /></td>
+                                    <td>{{ entity.url }}</td>
+                                    <td>{% if entity.createDate %}{{ entity.createDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                    <td>{% if entity.updateDate %}{{ entity.updateDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                    <td>
+                                        <a href="{{ path('games_edit', { 'id': entity.id }) }}" class="icon icon-edit info-tooltip" title="Edit"></a>
+                                        <a href="{{ path('games_delete', { 'id': entity.id }) }}" class="icon icon-delete info-tooltip" title="Delete"></a>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="6">No Data</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="col no-label">
+                        <a href="{{ path('games_new') }}" class="button">Create Game</a>
+                    </div>
+                    <div class="clear"></div>
+		</div>
+	</div>
+</div>

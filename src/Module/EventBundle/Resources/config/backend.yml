@@ -5,17 +5,25 @@ events_new:
     pattern:  /events/new
     defaults: { _controller: ModuleEventBundle:EventBackend:new }
 events_show:
-    pattern:  /events/show
+    pattern:  /events/{id}/show
     defaults: { _controller: ModuleEventBundle:EventBackend:show }
+    requirements:
+          id:  \d+
 events_create:
     pattern:  /events/create
     defaults: { _controller: ModuleEventBundle:EventBackend:create }
 events_edit:
-    pattern:  /events/edit
+    pattern:  /events/{id}/edit
     defaults: { _controller: ModuleEventBundle:EventBackend:edit }
+    requirements:
+          id:  \d+
 events_update:
-    pattern:  /events/update
+    pattern:  /events/{id}/update
     defaults: { _controller: ModuleEventBundle:EventBackend:update }
+    requirements:
+          id:  \d+
 events_delete:
-    pattern:  /events/delete
+    pattern:  /events/{id}/delete
     defaults: { _controller: ModuleEventBundle:EventBackend:delete }
+    requirements:
+          id:  \d+

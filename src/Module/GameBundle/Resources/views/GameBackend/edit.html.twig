@@ -1,8 +1,4 @@
 <script>
-    function hideMessage(type) {
-        document.getElementsByClassName(type)[0].style.display="none";
-    }
-     
     function setIcon(icon) {
         document.getElementById("module_gamebundle_gametype_icon").value=icon;
         document.getElementById("icon_chosen").setAttribute("src",icon);
@@ -16,27 +12,8 @@
 <div class="content-box-outer">
 	<div class="content-box">
 		<div class="content-box-content">
-                        {% if main_content['status'] and main_content['message'] != "" %}
-                            <div class="message success">
-                                <div class="content"> {{ main_content['message'] }} </div>
-                                <div class="close">
-                                    <a href="javascript:hideMessage('success')">
-                                        <img alt="close" src="/ProjectX/web/bundles/coreentrance/images/table/icon_close_success.gif">
-                                    </a>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                        {% elseif not main_content['status'] and main_content['message'] != "" %}
-                            <div class="message error">
-                                <div class="content"> {{ main_content['message'] }} </div>
-                                <div class="close">
-                                    <a href="javascript:hideMessage('error')">
-                                        <img alt="close" src="/ProjectX/web/bundles/coreentrance/images/table/icon_close_error.gif">
-                                    </a>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                        {% endif %}
+                    {{ macros.render_flashes() }}
+                    <div class="col">                        
                         <form action="{{ path('games_update', { 'id': main_content['entity'].id }) }}" method="post" class="form" {{ form_enctype(main_content['edit_form']) }}>
                             <div id="module_gamebundle_gametype">
                                 {% for element in main_content['edit_form'] if loop.first %}
@@ -60,15 +37,10 @@
                                     <input type="text" id="module_gamebundle_gametype_url" name="module_gamebundle_gametype[url]" value="{{ main_content['entity'].url }}" />
                                 </div>
                                 <div class="clear"></div>
-                                <!--div class="col">
-                                    <label>Icon:</label>
-                                    <input type="text" id="module_gamebundle_gametype_icon" name="module_gamebundle_gametype[icon]" required="required" value="{{ main_content['entity'].icon }}" />
-                                </div>
-                                <div class="clear"></div-->
                                 <div class="col">
                                     <label>Icon:</label>
                                     <img id="icon_chosen" class="icon-game" src="{{ main_content['entity'].icon }}" alt="No picture" />
-                                    <input type="hidden" id="module_gamebundle_gametype_icon" name="module_gamebundle_gametype[icon]" />
+                                    <input type="hidden" id="module_gamebundle_gametype_icon" name="module_gamebundle_gametype[icon]" value="{{ main_content['entity'].icon }}" />
                                     <!--input type="text" id="module_gamebundle_gametype_icon" name="module_gamebundle_gametype[icon]" required="required" /-->
                                 </div>
                                 <div class="clear"></div> 
@@ -86,6 +58,7 @@
                             </div>
                             <div class="clear"></div>                      
                         </form>
+                    </div>
 		</div>
 	</div>
 </div>

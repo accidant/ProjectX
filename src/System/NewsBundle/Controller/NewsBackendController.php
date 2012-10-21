@@ -83,7 +83,7 @@ class NewsBackendController extends AbstractModuleController
 
         if ($form->isValid()) {
             $this->persistEntity($entity);
-            $this->get('session')->setFlash('success', 'News created successfully');
+            $this->get('session')->setFlash('success', 'The news was created successfully');
             
             return array (
                 '_method' => 'redirect',
@@ -145,7 +145,7 @@ class NewsBackendController extends AbstractModuleController
 
         if ($form->isValid()) {
             $this->persistEntity($entity);
-            $this->get('session')->setFlash('success', 'News successfully updated');
+            $this->get('session')->setFlash('success', 'The news was updated successfully');
             
             return array (
                 '_method' => 'redirect',
@@ -153,9 +153,8 @@ class NewsBackendController extends AbstractModuleController
             );
         }
 
-        $deleteForm = $this->createDeleteForm($id);
-        
-        $this->get('session')->setFlash('error', 'News update failed');
+        $deleteForm = $this->createDeleteForm($id);        
+        $this->get('session')->setFlash('error', 'The news could not be updated');
         
         return array (
             '_method'        => 'render',
@@ -180,7 +179,7 @@ class NewsBackendController extends AbstractModuleController
         
         $this->removeEntity($news);
         
-        $this->get('session')->setFlash('success', 'News successfully deleted.');
+        $this->get('session')->setFlash('success', 'The news was successfully deleted');
         
         return array (
             '_method' => 'redirect',

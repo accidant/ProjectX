@@ -80,7 +80,7 @@ class NewsCategoryBackendController extends AbstractModuleController
 
         if ($form->isValid()) {
             $this->persistEntity($entity);
-            $this->get('session')->setFlash('success', 'News Category created successfully');
+            $this->get('session')->setFlash('success', 'The news category was created successfully');
 
             return array (
                     '_method' => 'redirect',
@@ -88,7 +88,7 @@ class NewsCategoryBackendController extends AbstractModuleController
             );
         }
 
-        $this->get('session')->setFlash('error', 'The Category could not be created');
+        $this->get('session')->setFlash('error', 'The news category could not be created');
 
         return array (
             '_method'   => 'render',
@@ -136,7 +136,7 @@ class NewsCategoryBackendController extends AbstractModuleController
 
         if ($form->isValid()) {
                 $this->persistEntity($entity);
-                $this->get('session')->setFlash('success', 'News Category successfully updated');
+                $this->get('session')->setFlash('success', 'The news category was updated successfully');
 
                 return array (
                         '_method' => 'redirect',
@@ -146,7 +146,7 @@ class NewsCategoryBackendController extends AbstractModuleController
 
         $deleteForm = $this->createDeleteForm($id);
 
-        $this->get('session')->setFlash('error', 'News Category update failed');
+        $this->get('session')->setFlash('error', 'The news category could not be updated');
 
         return array (
                 '_method'      => 'render',
@@ -172,7 +172,7 @@ class NewsCategoryBackendController extends AbstractModuleController
         if ($newsExists) {
             $news = $this->findBy(array('newsCategory' => $id), 'SystemNewsBundle:News');
 
-            $this->get('session')->setFlash('error', 'News Category deletion failed. At least one News exists for this Category.');
+            $this->get('session')->setFlash('error', 'The news category could not be deleted. At least one news exists for this category.');
 
             return array (
                 '_method' => 'redirect',
@@ -182,7 +182,7 @@ class NewsCategoryBackendController extends AbstractModuleController
 
         $this->removeEntity($newsCategory);
 
-        $this->get('session')->setFlash('success', 'News Category successfully deleted.');
+        $this->get('session')->setFlash('success', 'The news category was deleted successfully');
         
         return array (
             '_method' => 'redirect',

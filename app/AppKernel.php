@@ -24,7 +24,8 @@ class AppKernel extends Kernel
             new System\PageBundle\SystemPageBundle(),
 	    new System\NewsBundle\SystemNewsBundle(),
             new Module\GameBundle\ModuleGameBundle(),
-            new Module\EventBundle\ModuleEventBundle()
+            new Module\EventBundle\ModuleEventBundle(),
+            new Module\ApplicationBundle\ModuleApplicationBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

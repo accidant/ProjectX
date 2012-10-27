@@ -1,0 +1,29 @@
+applications:
+    pattern:  /applications
+    defaults: { _controller: ModuleApplicationBundle:ApplicationBackend:index }
+applications_new:
+    pattern:  /applications/new
+    defaults: { _controller: ModuleApplicationBundle:ApplicationBackend:new }
+applications_show:
+    pattern:  /applications/{id}/show
+    defaults: { _controller: ModuleApplicationBundle:ApplicationBackend:show }
+    requirements:
+          id:  \d+
+applications_create:
+    pattern:  /applications/create
+    defaults: { _controller: ModuleApplicationBundle:ApplicationBackend:create }
+applications_edit:
+    pattern:  /applications/{id}/edit
+    defaults: { _controller: ModuleApplicationBundle:ApplicationBackend:edit }
+    requirements:
+          id:  \d+
+applications_update:
+    pattern:  /applications/{id}/update
+    defaults: { _controller: ModuleApplicationBundle:ApplicationBackend:update }
+    requirements:
+          id:  \d+
+applications_delete:
+    pattern:  /applications/{id}/delete
+    defaults: { _controller: ModuleApplicationBundle:ApplicationBackend:delete }
+    requirements:
+          id:  \d+

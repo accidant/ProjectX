@@ -142,7 +142,7 @@ abstract class AbstractModuleController extends Controller {
 	 */
         public function removeEntity($entity) {
             $em = $this->getDoctrine()->getEntityManager();
-            
+
             $em->remove($entity);
             $em->flush();
         }
@@ -155,7 +155,7 @@ abstract class AbstractModuleController extends Controller {
 	 */
 	protected function throwExceptionIfNull($entity){
 		if ($entity == null) {
-			throw $this->createNotFoundException('Unable to find entity.');
+                    throw $this->createNotFoundException('Unable to find entity.');
 		}
 	}
 

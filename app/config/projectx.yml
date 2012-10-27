@@ -9,3 +9,4 @@ core_entrance:
       News Categories: { route: 'newscategory', category: 'News'}
       Games: { route: 'games', category: 'Games' }
       Events: { route: 'events', category: 'Events' }
+      Applications: { route: 'applications', category: 'Applications' }

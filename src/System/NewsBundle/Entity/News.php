@@ -238,4 +238,10 @@ use DateInterval;
     {
         return $this->newsCategory;
     }
+    
+    public function __toString()
+    {
+        return $this->title;
+    }
+    
 }

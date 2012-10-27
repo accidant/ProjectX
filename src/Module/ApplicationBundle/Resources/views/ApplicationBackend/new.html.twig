@@ -1,0 +1,77 @@
+<div id="page-heading">
+    <h1>Application creation</h1>
+</div>
+
+<div class="content-box-outer">
+	<div class="content-box">
+		<div class="content-box-content">
+                    {{ macros.render_flashes() }}
+                    <div class="col">
+                        <form action="{{ path('applications_create') }}" method="post" class="form" {{ form_enctype(main_content['form']) }}>
+                            <div id="module_applicationbundle_applicationtype">
+                                    {% for element in main_content['form'] if loop.first %}
+                                    <div class="col">    
+                                        {{ form_row(element) }}
+                                    </div>
+                                    <div class="clear"></div>
+                                    {% endfor %}
+                                    <div class="col">
+                                        <label>Nickname:</label>
+                                        <input type="text" id="module_applicationbundle_applicationtype_nickname" name="module_applicationbundle_applicationtype[nickname]" required="required" />
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="col">
+                                        <label>Firstname:</label>
+                                        <input type="text" id="module_applicationbundle_applicationtype_firstname" name="module_applicationbundle_applicationtype[firstname]" required="required" />
+                                    </div>
+                                    <div class="col">
+                                        <label>Surname:</label>
+                                        <input type="text" id="module_applicationbundle_applicationtype_surname" name="module_applicationbundle_applicationtype[surname]"/>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="col">
+                                        <label>Age:</label>
+                                        <input type="text" id="module_applicationbundle_applicationtype_age" name="module_applicationbundle_applicationtype[age]" required="required" />
+                                    </div>
+                                    <div class="col">
+                                        <label>Email:</label>
+                                        <input type="text" id="module_applicationbundle_applicationtype_email" name="module_applicationbundle_applicationtype[email]"/>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="col">
+                                        <label>Skype:</label>
+                                        <input type="text" id="module_applicationbundle_applicationtype_skype" name="module_applicationbundle_applicationtype[skype]"/>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="col">
+                                        <label>Clanhistory:</label>
+                                        <input type="text" id="module_applicationbundle_applicationtype_clanhistory" name="module_applicationbundle_applicationtype[clanhistory]"/>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="col">
+                                        <label>Text:</label>
+                                        <textarea id="module_applicationbundle_applicationtype_text" name="module_applicationbundle_applicationtype[text]" required="required"></textarea>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <!--div class="col">
+                                        <label>Games:</label>
+                                        <select id="module_applicationbundle_applicationtype_games" name="module_applictionbundle_applicationtype[games]">
+                                            {% set i=1 %}
+                                            {% for game in main_content['games'] %}
+                                                <option value={{ game.id }}>{{ game.name }}</option>
+                                                {% set i=i+1 %}
+                                            {% endfor %}    
+                                        </select>      
+                                    </div>
+                                    <div class="clear"></div-->
+                                </div>
+                                <div class="col">
+                                    <input type="submit" value="Create" />
+                                    <a href="{{ path('applications') }}" class="button">Back</a>
+                                </div>
+                                <div class="clear"></div>
+                        </form>
+                    </div>
+		</div>
+	</div>
+</div>

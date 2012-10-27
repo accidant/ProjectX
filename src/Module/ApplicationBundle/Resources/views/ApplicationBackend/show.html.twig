@@ -1,0 +1,46 @@
+<div id="page-heading">
+    <h1>Event</h1>
+</div>
+
+<div class="content-box-outer">
+    <div class="content-box">
+        <div class="content-box-content">
+            {{ macros.render_flashes() }}
+            <div class="col">
+                <table class="table record_properties">
+                    <tbody>
+                        <tr>
+                            <td class="label">Name</td>
+                            <td>{{ main_content['entity'].name }}</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Description</td>
+                            <td>{{ main_content['entity'].description }}</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Date</td>
+                            <td>{{ main_content['entity'].date|date('Y-m-d H:i:s') }}</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Createdate</td>
+                            <td>{{ main_content['entity'].createDate|date('Y-m-d H:i:s') }}</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Updatedate</td>
+                            <td>{{ main_content['entity'].updateDate|date('Y-m-d H:i:s') }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col">
+                <a href="{{ path('events') }}" class="icon icon-check info-tooltip" title="Back to list"></a>
+                <a href="{{ path('events_edit', { 'id': main_content['entity'].id }) }}" class="icon icon-edit info-tooltip" title="Edit"></a>
+                <form action="{{ path('events_delete', { 'id': main_content['entity'].id }) }}" method="post">
+                    {{ form_widget(main_content['delete_form']) }}
+                    <a type="submit" href="{{ path('events_delete', { 'id': main_content['entity'].id }) }}" class="icon icon-delete info-tooltip" title="Delete"></a>
+                </form>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>

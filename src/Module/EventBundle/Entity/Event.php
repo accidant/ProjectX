@@ -105,4 +105,9 @@ use DateInterval;
         $date->setTime('20','00','00');
         $this->setDate($date);
     }
+    
+    public function __toString()
+    {
+        return $this->name;
+    }
  }

@@ -52,7 +52,7 @@ use DateTime;
     public function __construct()
     {
         $this->setCreateDate(new DateTime());
-        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->users = new ArrayCollection();
     }
     
     /**
@@ -153,5 +153,10 @@ use DateTime;
     public function getUsers()
     {
         return $this->users;
+    }
+    
+    public function __toString()
+    {
+        return $this->name;
     }
 }

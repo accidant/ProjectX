@@ -1,0 +1,3 @@
+ModuleApplicationBundle_applications:
+    resource: "@ModuleApplicationBundle/Resources/config/routing/application.php"
+    prefix:   /applications
